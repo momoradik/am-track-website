@@ -642,23 +642,29 @@
       source: 'website',
     };
 
-    // Store lead in localStorage as backup (in case licence server isn't reachable)
+    // Send lead via Formspree (free — emails you every download)
+    // Replace FORM_ID below with your Formspree form ID after signup
+    const FORMSPREE_ID = 'xvzypyel';
+    try {
+      await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name: lead.full_name,
+          company: lead.company_name,
+          industry: lead.industry,
+          email: lead.email,
+          _subject: 'New AM-Track Download: ' + lead.company_name,
+        }),
+      });
+    } catch (_) {}
+
+    // Backup: store in localStorage
     try {
       const existing = JSON.parse(localStorage.getItem('amtrack_leads') || '[]');
       existing.push({ ...lead, downloaded_at: new Date().toISOString() });
       localStorage.setItem('amtrack_leads', JSON.stringify(existing));
     } catch (_) {}
-
-    // Try to send to licence server (will work when you have it exposed, fails silently otherwise)
-    try {
-      await fetch('https://api.am-track.co.uk/api/leads', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(lead),
-      });
-    } catch (_) {
-      // Licence server not reachable — that's fine, lead is in localStorage
-    }
 
     // Show success and start download
     document.getElementById('download-form-section').style.display = 'none';
