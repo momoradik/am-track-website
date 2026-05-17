@@ -512,7 +512,7 @@
           <li>All core modules</li>
           <li>Auto-updates</li>
           <li>Community support</li>
-          <li>14-day free trial</li>
+          <li>30-day free trial</li>
         </ul>
         <a href="#download" class="price-btn price-btn-outline">Start Free Trial</a>
       </div>
@@ -526,7 +526,7 @@
           <li>All modules</li>
           <li>Priority support</li>
           <li>Custom reports</li>
-          <li>14-day free trial</li>
+          <li>30-day free trial</li>
         </ul>
         <a href="#download" class="price-btn price-btn-primary">Start Free Trial</a>
       </div>
@@ -540,7 +540,7 @@
           <li>Custom integrations</li>
           <li>Dedicated support &amp; SLA</li>
           <li>On-site training available</li>
-          <li>14-day free trial</li>
+          <li>30-day free trial</li>
         </ul>
         <a href="#download" class="price-btn price-btn-outline">Contact Us</a>
       </div>
@@ -549,12 +549,48 @@
   </div>
 </section>
 
-<!-- ═══════════════ CTA ═══════════════ -->
+<!-- ═══════════════ CTA / DOWNLOAD ═══════════════ -->
 <section class="cta" id="download">
-  <h2>Ready to Ditch the Spreadsheets?</h2>
-  <p>Download AM-Track and have your team running on it by lunch. No credit card required.</p>
-  <a href="#" class="btn-primary">Download Free Trial</a>
-  <p style="margin-top:16px;font-size:13px;color:var(--indigo-300)">Windows 10/11 &bull; Under 100MB &bull; 14-day free trial</p>
+  <div id="download-form-section">
+    <h2>Ready to Ditch the Spreadsheets?</h2>
+    <p>Fill in your details and download AM-Track instantly. No credit card required.</p>
+    <form id="download-form" style="max-width:480px;margin:32px auto 0;text-align:left">
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:13px;color:var(--indigo-200);margin-bottom:4px;font-weight:600">Full Name *</label>
+        <input type="text" id="dl-name" required placeholder="John Smith" style="width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+      </div>
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:13px;color:var(--indigo-200);margin-bottom:4px;font-weight:600">Company Name *</label>
+        <input type="text" id="dl-company" required placeholder="Your company name" style="width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+      </div>
+      <div style="margin-bottom:14px">
+        <label style="display:block;font-size:13px;color:var(--indigo-200);margin-bottom:4px;font-weight:600">Industry *</label>
+        <select id="dl-industry" required style="width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;outline:none;appearance:auto">
+          <option value="" style="color:#333">Select your industry</option>
+          <option value="Additive Manufacturing" style="color:#333">Additive Manufacturing / 3D Printing</option>
+          <option value="Precision Engineering" style="color:#333">Precision Engineering</option>
+          <option value="Aerospace" style="color:#333">Aerospace</option>
+          <option value="Automotive" style="color:#333">Automotive</option>
+          <option value="Medical Devices" style="color:#333">Medical Devices</option>
+          <option value="Defence" style="color:#333">Defence</option>
+          <option value="General Manufacturing" style="color:#333">General Manufacturing</option>
+          <option value="Other" style="color:#333">Other</option>
+        </select>
+      </div>
+      <div style="margin-bottom:20px">
+        <label style="display:block;font-size:13px;color:var(--indigo-200);margin-bottom:4px;font-weight:600">Work Email *</label>
+        <input type="email" id="dl-email" required placeholder="you@company.com" style="width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;text-align:center;font-size:17px;padding:16px">Download Free Trial</button>
+      <p style="text-align:center;margin-top:14px;font-size:12px;color:var(--indigo-300)">Windows 10/11 &bull; Under 100MB &bull; 30-day free trial &bull; No credit card</p>
+    </form>
+  </div>
+  <div id="download-success" style="display:none;text-align:center">
+    <div style="font-size:48px;margin-bottom:16px">&#10003;</div>
+    <h2>Your download is starting!</h2>
+    <p style="color:var(--indigo-200);margin:16px auto;max-width:500px">If the download doesn't start automatically, <a id="manual-download" href="#" style="color:white;font-weight:700;text-decoration:underline">click here</a>.</p>
+    <p style="font-size:14px;color:var(--indigo-300);margin-top:24px">Install AM-Track, create your admin account, and your team can start using it immediately via any browser on your network.</p>
+  </div>
 </section>
 
 <!-- ═══════════════ FOOTER ═══════════════ -->
@@ -565,7 +601,7 @@
       <a href="#features">Features</a>
       <a href="#pricing">Pricing</a>
       <a href="#comparison">Compare</a>
-      <a href="mailto:hello@am-track.co.uk">Contact</a>
+      <a href="mailto:info@am-track.co.uk">Contact</a>
     </div>
     <div class="footer-copy">&copy; 2026 AM-Track Ltd. All rights reserved. &bull; Manufacturing Management, Simplified.</div>
   </div>
@@ -587,6 +623,55 @@
     } else {
       nav.style.boxShadow = 'none';
     }
+  });
+
+  // Download form
+  const DOWNLOAD_URL = 'https://github.com/momoradik/SinTrack/releases/latest/download/AMTrack-Setup-1.6.1.exe';
+
+  document.getElementById('download-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.textContent = 'Preparing download...';
+    btn.disabled = true;
+
+    const lead = {
+      full_name: document.getElementById('dl-name').value,
+      company_name: document.getElementById('dl-company').value,
+      industry: document.getElementById('dl-industry').value,
+      email: document.getElementById('dl-email').value,
+      source: 'website',
+    };
+
+    // Store lead in localStorage as backup (in case licence server isn't reachable)
+    try {
+      const existing = JSON.parse(localStorage.getItem('amtrack_leads') || '[]');
+      existing.push({ ...lead, downloaded_at: new Date().toISOString() });
+      localStorage.setItem('amtrack_leads', JSON.stringify(existing));
+    } catch (_) {}
+
+    // Try to send to licence server (will work when you have it exposed, fails silently otherwise)
+    try {
+      await fetch('https://api.am-track.co.uk/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lead),
+      });
+    } catch (_) {
+      // Licence server not reachable — that's fine, lead is in localStorage
+    }
+
+    // Show success and start download
+    document.getElementById('download-form-section').style.display = 'none';
+    document.getElementById('download-success').style.display = 'block';
+    document.getElementById('manual-download').href = DOWNLOAD_URL;
+
+    // Auto-start download
+    const a = document.createElement('a');
+    a.href = DOWNLOAD_URL;
+    a.download = '';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
   });
 </script>
 
