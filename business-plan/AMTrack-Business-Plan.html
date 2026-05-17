@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AMTrack Business Plan 2026</title>
+<style>
+  @page { margin: 2cm; size: A4; }
+  @media print { .page-break { page-break-before: always; } }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', -apple-system, system-ui, sans-serif; color: #1e293b; line-height: 1.7; background: #f8fafc; }
+  .page { max-width: 900px; margin: 0 auto; background: white; }
+  @media screen { .page { margin: 30px auto; border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.08); } }
+
+  .cover { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4f46e5 100%); color: white; padding: 100px 80px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+  .cover h1 { font-size: 56px; font-weight: 800; letter-spacing: -2px; line-height: 1.1; }
+  .cover .subtitle { font-size: 22px; font-weight: 300; margin-top: 16px; color: #c7d2fe; }
+  .cover .tagline { font-size: 16px; margin-top: 40px; color: #a5b4fc; line-height: 1.8; max-width: 520px; }
+  .cover .meta { margin-top: 60px; font-size: 13px; color: #818cf8; }
+  .cover .meta span { display: block; margin-bottom: 4px; }
+  .cover .version-badge { display: inline-block; background: rgba(255,255,255,0.15); padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-top: 20px; }
+
+  .content { padding: 60px 80px; }
+  h2 { font-size: 28px; font-weight: 700; color: #1e1b4b; margin-bottom: 8px; letter-spacing: -0.5px; }
+  h2::after { content: ''; display: block; width: 50px; height: 3px; background: #6366f1; margin-top: 8px; border-radius: 2px; }
+  h3 { font-size: 18px; font-weight: 700; color: #334155; margin: 28px 0 10px; }
+  h4 { font-size: 15px; font-weight: 600; color: #4f46e5; margin: 20px 0 8px; }
+  p { margin-bottom: 14px; font-size: 14px; color: #475569; }
+  ul, ol { margin: 10px 0 16px 24px; font-size: 14px; color: #475569; }
+  li { margin-bottom: 6px; }
+  strong { color: #1e293b; }
+  .highlight { background: #eef2ff; border-left: 4px solid #6366f1; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+  .highlight p { margin-bottom: 0; color: #3730a3; font-weight: 500; }
+  .warn { background: #fef3c7; border-left: 4px solid #f59e0b; padding: 16px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+  .warn p { margin-bottom: 0; color: #92400e; font-weight: 500; }
+
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .cards-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 20px 0; }
+  .card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 20px; }
+  .card h4 { margin-top: 0; color: #6366f1; font-size: 14px; }
+  .card p { font-size: 13px; margin-bottom: 0; }
+  .card .price { font-size: 24px; font-weight: 800; color: #1e1b4b; }
+  .card .period { font-size: 12px; color: #94a3b8; }
+
+  table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 13px; }
+  th { background: #1e1b4b; color: white; padding: 12px 16px; text-align: left; font-weight: 600; }
+  th:first-child { border-radius: 8px 0 0 0; } th:last-child { border-radius: 0 8px 0 0; }
+  td { padding: 10px 16px; border-bottom: 1px solid #e2e8f0; }
+  tr:nth-child(even) { background: #f8fafc; }
+  .check { color: #22c55e; font-weight: 700; }
+  .cross { color: #ef4444; }
+  .partial { color: #f59e0b; }
+  .fin-table td:nth-child(n+2) { text-align: right; font-family: 'Cascadia Code', monospace; }
+  .fin-table tr.total { font-weight: 700; background: #eef2ff !important; }
+  .fin-table tr.total td { border-top: 2px solid #6366f1; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+  .stat { text-align: center; background: #f8fafc; border-radius: 10px; padding: 20px 12px; border: 1px solid #e2e8f0; }
+  .stat .num { font-size: 32px; font-weight: 800; color: #4f46e5; }
+  .stat .label { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+  .toc { list-style: none; margin: 0; padding: 0; }
+  .toc li { padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 15px; }
+  .toc li span { color: #6366f1; font-weight: 700; margin-right: 12px; }
+  .section-num { color: #6366f1; font-size: 13px; font-weight: 700; margin-bottom: 4px; display: block; }
+  .screenshot { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); border: 2px dashed #cbd5e1; border-radius: 12px; padding: 40px; text-align: center; margin: 20px 0; color: #94a3b8; font-size: 13px; font-style: italic; }
+  .flow { display: flex; align-items: center; gap: 8px; margin: 16px 0; flex-wrap: wrap; }
+  .flow .step { background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 8px; padding: 8px 14px; font-size: 12px; font-weight: 600; color: #4338ca; }
+  .flow .arrow { color: #a5b4fc; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════ COVER -->
+<div class="page">
+  <div class="cover">
+    <div class="version-badge">Business Plan 2026&ndash;2029</div>
+    <h1 style="margin-top:24px">AMTrack</h1>
+    <div class="subtitle">AI-Powered Manufacturing Management for SMEs</div>
+    <div class="tagline">
+      One platform. Zero cloud fees. Built with AI, priced for small teams, designed to scale.
+      AMTrack replaces spreadsheets, WhatsApp, and six-figure enterprise software &mdash; for less than the cost of a single employee's monthly phone bill.
+    </div>
+    <div class="meta">
+      <span>Prepared: May 2026</span>
+      <span>Version 1.6</span>
+      <span>Confidential</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ TOC -->
+<div class="page page-break">
+  <div class="content">
+    <h2>Contents</h2>
+    <ul class="toc">
+      <li><span>01</span> Executive Summary</li>
+      <li><span>02</span> The Problem</li>
+      <li><span>03</span> The Solution</li>
+      <li><span>04</span> Product-Market Fit</li>
+      <li><span>05</span> Product Overview</li>
+      <li><span>06</span> Competitive Landscape</li>
+      <li><span>07</span> Why AMTrack Wins</li>
+      <li><span>08</span> AI-First Development &amp; Operations</li>
+      <li><span>09</span> Business Model &amp; Pricing</li>
+      <li><span>10</span> Go-to-Market (Low-Cost, AI-Driven)</li>
+      <li><span>11</span> Financial Projections</li>
+      <li><span>12</span> Unit Economics</li>
+      <li><span>13</span> Growth &amp; Scaling Strategy</li>
+      <li><span>14</span> Exit Strategy</li>
+      <li><span>15</span> Risk Analysis &amp; Mitigation</li>
+      <li><span>16</span> Roadmap</li>
+      <li><span>17</span> Team</li>
+      <li><span>18</span> Appendix: Full Feature List</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 01 EXEC SUMMARY -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">01</span>
+    <h2>Executive Summary</h2>
+
+    <p><strong>AMTrack</strong> is a locally-hosted, all-in-one manufacturing management platform purpose-built for small and medium additive manufacturing companies. It combines ERP, MES, QMS, and HR into a single application that installs in 5 minutes, runs on any Windows PC, and costs less than a Netflix subscription per employee.</p>
+
+    <div class="highlight">
+      <p>We built AMTrack using AI (Claude, GitHub Copilot) as our core development team &mdash; keeping costs near zero while delivering enterprise-grade software. This same AI-first approach powers our marketing, support, and scaling strategy.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="num">&pound;29</div><div class="label">Per month</div></div>
+      <div class="stat"><div class="num">1</div><div class="label">Platform</div></div>
+      <div class="stat"><div class="num">0</div><div class="label">Cloud fees</div></div>
+      <div class="stat"><div class="num">5 min</div><div class="label">Setup</div></div>
+    </div>
+
+    <h3>The Opportunity</h3>
+    <p>The global AM services market will reach <strong>&pound;24.5 billion by 2028</strong> (21% CAGR). Over 73% of AM companies have fewer than 50 employees. These companies are trapped between inadequate spreadsheets and unaffordable enterprise software. AMTrack is built for exactly this gap.</p>
+
+    <h3>Why Now</h3>
+    <ul>
+      <li><strong>AI slashes development costs:</strong> We build features in hours, not months. One developer + AI = a 10-person team's output.</li>
+      <li><strong>AM industry booming:</strong> Thousands of new shops opening annually, all needing operational tooling.</li>
+      <li><strong>Compliance pressure:</strong> AS9100/ISO 9001 requirements trickling down to SMEs via supply chain mandates.</li>
+      <li><strong>No incumbent:</strong> No affordable, AM-specific, local-first solution exists today.</li>
+    </ul>
+
+    <h3>The Ask</h3>
+    <p>We are seeking <strong>&pound;30,000</strong> in seed funding to cover 12 months of marketing, trade show presence, and legal costs. Development costs are near zero thanks to our AI-first approach. We project profitability within <strong>8 months</strong>.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 02 THE PROBLEM -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">02</span>
+    <h2>The Problem</h2>
+
+    <h3>What Small AM Companies Do Today</h3>
+    <p>A typical 10-30 person AM shop runs on:</p>
+
+    <div class="cards">
+      <div class="card"><h4>Excel</h4><p>Job tracking, inventory counts, timesheets, BOMs, customer lists &mdash; all in disconnected spreadsheets that break when someone forgets to save.</p></div>
+      <div class="card"><h4>WhatsApp</h4><p>Task assignments, machine status updates, urgent requests &mdash; buried in group chats that nobody can search.</p></div>
+      <div class="card"><h4>Paper Forms</h4><p>Quality inspections, SOP sign-offs, visitor logs &mdash; filed in cabinets that nobody opens until an audit.</p></div>
+      <div class="card"><h4>Email</h4><p>Purchase orders, customer approvals, delivery tracking &mdash; scattered across inboxes with no central visibility.</p></div>
+    </div>
+
+    <h3>The Real Cost of "Free" Tools</h3>
+    <table>
+      <tr><th>Hidden Cost</th><th>Impact</th><th>Annual Cost (est.)</th></tr>
+      <tr><td>Operator time on manual data entry</td><td>30-60 min/day/person wasted</td><td>&pound;15,000&ndash;30,000</td></tr>
+      <tr><td>Failed audits / lost contracts</td><td>Can't prove traceability</td><td>&pound;50,000+ per lost contract</td></tr>
+      <tr><td>Inventory waste (over-ordering, stockouts)</td><td>No real-time visibility</td><td>&pound;5,000&ndash;15,000</td></tr>
+      <tr><td>Quality escapes</td><td>NCRs not tracked systematically</td><td>&pound;10,000+ in rework/scrap</td></tr>
+      <tr class="total"><td><strong>Total hidden cost</strong></td><td></td><td><strong>&pound;80,000&ndash;145,000/year</strong></td></tr>
+    </table>
+
+    <h3>Why Enterprise Software Doesn't Work</h3>
+    <ul>
+      <li><strong>SAP Business One:</strong> &pound;150/user/month + &pound;50k implementation. A 15-person shop pays &pound;27k/year before it's even configured.</li>
+      <li><strong>Oracle NetSuite:</strong> &pound;100/user/month + 6-12 month implementation. Requires dedicated IT staff.</li>
+      <li><strong>AMFG:</strong> &pound;30k/year. AM-specific but cloud-only, no HR/timesheets, no local data control.</li>
+      <li><strong>Odoo:</strong> Free core but &pound;500/user/year for manufacturing modules. Complex self-hosting. Not AM-specific.</li>
+    </ul>
+
+    <div class="warn">
+      <p>Result: 80%+ of small AM companies operate with no proper digital system. They know they need one. They just can't afford it or justify the implementation overhead.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 03 THE SOLUTION -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">03</span>
+    <h2>The Solution</h2>
+
+    <p>AMTrack is the affordable, all-in-one platform that small manufacturers have been waiting for. One installer. One database. One login for everyone. Runs on the office PC.</p>
+
+    <h3>How It Works</h3>
+    <div class="flow">
+      <div class="step">Download .exe</div><div class="arrow">&rarr;</div>
+      <div class="step">Install (2 min)</div><div class="arrow">&rarr;</div>
+      <div class="step">Server starts</div><div class="arrow">&rarr;</div>
+      <div class="step">Employees open browser</div><div class="arrow">&rarr;</div>
+      <div class="step">Operational</div>
+    </div>
+
+    <p>No cloud subscription. No database setup. No IT department. The application runs on any Windows PC and employees access it from any device on the same network via their web browser.</p>
+
+    <h3>What It Replaces</h3>
+    <table>
+      <tr><th>Current Tool</th><th>AMTrack Module</th><th>Monthly Cost Saved</th></tr>
+      <tr><td>Excel job tracking</td><td>Workflow Execution</td><td>&pound;0 (but hours of time)</td></tr>
+      <tr><td>Separate HR software</td><td>Timesheets, Holidays, Sick Leave</td><td>&pound;50&ndash;200</td></tr>
+      <tr><td>Paper quality forms</td><td>Quality Management, SOPs</td><td>&pound;0 (but audit risk)</td></tr>
+      <tr><td>Inventory spreadsheet</td><td>Inventory + Purchasing</td><td>&pound;0 (but stockout risk)</td></tr>
+      <tr><td>WhatsApp task management</td><td>My Tasks, Notifications</td><td>&pound;0 (but chaos risk)</td></tr>
+      <tr><td>Basic ERP</td><td>Business Setup, BOM, Reporting</td><td>&pound;200&ndash;1,500</td></tr>
+    </table>
+
+    <div class="highlight">
+      <p>AMTrack costs &pound;29/month for a team of up to 15 people. That's &pound;1.93 per employee. Less than a coffee.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 04 PRODUCT-MARKET FIT -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">04</span>
+    <h2>Product-Market Fit</h2>
+
+    <h3>Who Is Our Customer?</h3>
+    <div class="card" style="margin:16px 0;padding:24px;background:#f0fdf4;border-color:#bbf7d0">
+      <p style="font-size:15px;color:#166534;margin:0"><strong>Sarah runs a 12-person AM service bureau in the Midlands.</strong> She has 4 SLS printers, 2 FDM machines, and a CMM. Her team uses Excel for everything. Last month she lost a &pound;40k Rolls-Royce subcontract because she couldn't demonstrate material traceability. She knows she needs proper software but SAP quoted &pound;85k. She found AMTrack, installed it in 5 minutes, and had her team using it by lunch.</p>
+    </div>
+
+    <h3>Evidence of Demand</h3>
+    <ul>
+      <li><strong>73% of AM companies</strong> have fewer than 50 employees (Wohlers Report 2025)</li>
+      <li><strong>Only 12% of AM SMEs</strong> use any form of MES or ERP (SmarTech Analysis)</li>
+      <li><strong>62% of AM companies</strong> cite "lack of affordable production management tools" as a barrier to scaling (AMPOWER 2025)</li>
+      <li>Industry forums (3DPrinting.com, Additivemanufacturing.media) are full of "what software do you use?" posts with no satisfactory answers</li>
+    </ul>
+
+    <h3>Product-Market Fit Validation</h3>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Problem Validated</h4>
+        <p>Spoke with 15+ AM shop owners. Every single one described the same pain: "We've outgrown spreadsheets but can't afford SAP." 100% said they would pay &pound;30-100/month for a solution.</p>
+      </div>
+      <div class="card">
+        <h4>Solution Validated</h4>
+        <p>Beta deployment at a live AM facility. Setup took 4 minutes. Operators adopted it within one shift with zero training. Admin immediately saw value in automated timesheet tracking and inventory alerts.</p>
+      </div>
+      <div class="card">
+        <h4>Willingness to Pay</h4>
+        <p>Price sensitivity testing shows the sweet spot at &pound;29-79/month. At &pound;29/month, it's an impulse buy for any business owner &mdash; no procurement committee needed.</p>
+      </div>
+      <div class="card">
+        <h4>Retention Signal</h4>
+        <p>Once data goes into AMTrack (timesheets, quality records, inventory), switching cost is inherently high. Projected 95%+ annual retention based on comparable vertical SaaS benchmarks.</p>
+      </div>
+    </div>
+
+    <h3>Total Addressable Market</h3>
+    <div class="stats">
+      <div class="stat"><div class="num">15,000+</div><div class="label">AM Service Bureaus Globally</div></div>
+      <div class="stat"><div class="num">~40,000</div><div class="label">Precision Eng SMEs (UK+EU)</div></div>
+      <div class="stat"><div class="num">&pound;29&ndash;79</div><div class="label">Monthly Price Point</div></div>
+      <div class="stat"><div class="num">&pound;50M+</div><div class="label">Serviceable Market</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 05 PRODUCT OVERVIEW -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">05</span>
+    <h2>Product Overview</h2>
+
+    <h3>Core Modules</h3>
+    <div class="cards">
+      <div class="card"><h4>Workflow Design &amp; Execution</h4><p>Visual drag-and-drop builder. Define steps, quality gates, pass/fail/rework routing, resource assignments, substeps, and BOM links. Operators execute via browser on any device.</p></div>
+      <div class="card"><h4>Purchasing &amp; Inventory</h4><p>BOMs with full costing. Supplier database. Real-time stock with reorder alerts. Purchase order lifecycle. Auto-deduct on workflow completion. Waste tracking.</p></div>
+      <div class="card"><h4>Quality Management</h4><p>NCRs, observations, corrective actions. Evidence capture (photos/docs). Risk assessments. SOP versioning with operator confirmation. Full audit trail for AS9100/ISO 9001.</p></div>
+      <div class="card"><h4>Resources &amp; Equipment</h4><p>Machine/equipment registry. Assign to workflow steps. Maintenance scheduling. Calibration tracking. Usage logging. Real-time availability status.</p></div>
+      <div class="card"><h4>HR &amp; Time</h4><p>Clock in/out, timesheets, holiday requests with approval, sick leave, skills/certifications. Employee dashboard showing current status and assigned tasks.</p></div>
+      <div class="card"><h4>Business Setup &amp; Reporting</h4><p>Customers, contracts, products. Customisable reports. Part traceability. Visitor log. Complete audit logging of every action.</p></div>
+    </div>
+
+    <h3>Key Screens</h3>
+    <div class="screenshot">[Insert: Dashboard &mdash; active workflows, metrics, employee status]</div>
+    <div class="screenshot">[Insert: Workflow Builder &mdash; visual canvas with connected steps]</div>
+    <div class="screenshot">[Insert: BOM Table &mdash; items with costs, suppliers, order buttons]</div>
+    <div class="screenshot">[Insert: Operator Task View &mdash; substeps, SOP confirm, evidence upload]</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 06 COMPETITIVE LANDSCAPE -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">06</span>
+    <h2>Competitive Landscape</h2>
+
+    <table>
+      <tr>
+        <th>Capability</th><th>AMTrack</th><th>SAP B1</th><th>Odoo</th><th>AMFG</th><th>Spreadsheets</th>
+      </tr>
+      <tr><td>Workflow Builder</td><td class="check">Yes</td><td class="cross">No</td><td class="partial">Basic</td><td class="check">Yes</td><td class="cross">No</td></tr>
+      <tr><td>Shop Floor Execution</td><td class="check">Yes</td><td class="cross">No</td><td class="cross">No</td><td class="check">Yes</td><td class="cross">No</td></tr>
+      <tr><td>BOM &amp; Purchasing</td><td class="check">Yes</td><td class="check">Yes</td><td class="check">Yes</td><td class="cross">No</td><td class="partial">Manual</td></tr>
+      <tr><td>Inventory with Auto-Deduct</td><td class="check">Yes</td><td class="check">Yes</td><td class="check">Yes</td><td class="cross">No</td><td class="cross">No</td></tr>
+      <tr><td>Quality / NCR</td><td class="check">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="partial">Basic</td><td class="cross">No</td></tr>
+      <tr><td>HR / Timesheets</td><td class="check">Yes</td><td class="partial">Add-on</td><td class="check">Yes</td><td class="cross">No</td><td class="partial">Manual</td></tr>
+      <tr><td>Local / No Cloud</td><td class="check">Yes</td><td class="check">Yes</td><td class="check">Self-host</td><td class="cross">Cloud</td><td class="check">Yes</td></tr>
+      <tr><td>AM-Specific</td><td class="check">Yes</td><td class="cross">No</td><td class="cross">No</td><td class="check">Yes</td><td class="cross">No</td></tr>
+      <tr><td>Auto-Updates</td><td class="check">OTA</td><td class="cross">No</td><td class="cross">No</td><td class="check">Yes</td><td class="cross">N/A</td></tr>
+      <tr><td>Setup Time</td><td><strong>5 min</strong></td><td>6&ndash;12 months</td><td>2&ndash;4 weeks</td><td>1&ndash;2 weeks</td><td>Immediate</td></tr>
+      <tr><td><strong>Cost (15 users/year)</strong></td><td><strong>&pound;348</strong></td><td><strong>&pound;27,000+</strong></td><td><strong>&pound;7,500+</strong></td><td><strong>&pound;30,000+</strong></td><td><strong>&pound;0</strong></td></tr>
+    </table>
+
+    <div class="highlight">
+      <p>AMTrack costs 1.3% of SAP, 4.6% of Odoo, and 1.2% of AMFG &mdash; while offering more integrated functionality than any of them for an AM-specific use case.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 07 WHY AMTRACK WINS -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">07</span>
+    <h2>Why AMTrack Wins</h2>
+
+    <h3>1. Radically Low Price</h3>
+    <p>&pound;29/month for up to 15 users. No per-seat fees. No cloud hosting costs. This is below the "need-to-think-about-it" threshold for any business owner. Compare: a single box of nitrile gloves costs more.</p>
+
+    <h3>2. Zero Friction Adoption</h3>
+    <p>Download &rarr; double-click &rarr; operational. No server provisioning, no Docker, no database, no IT consultants. If you can install Spotify, you can install AMTrack.</p>
+
+    <h3>3. Data Stays On-Site</h3>
+    <p>Defence contractors, aerospace suppliers, and medical device companies can't put production data in the cloud. AMTrack runs entirely on the company's LAN. Data never leaves the building.</p>
+
+    <h3>4. AI-Built = Fast Evolution</h3>
+    <p>We develop features in hours using AI pair programming. A customer requests a feature on Monday; it's in their hands by Friday. Enterprise vendors take quarters.</p>
+
+    <h3>5. Natural Moat: Data Lock-In</h3>
+    <p>Once 6 months of timesheets, quality records, and inventory transactions are in AMTrack, switching is painful. This creates organic retention without contracts or penalties.</p>
+
+    <h3>6. Compliance-Ready</h3>
+    <p>Full audit trail, SOP versioning, evidence capture, risk assessments, and traceability. Provides the digital backbone needed for AS9100 and ISO 9001 without dedicated compliance software.</p>
+
+    <h3>7. Mobile-First Shop Floor</h3>
+    <p>The entire interface works on tablets and phones. Operators use it with gloves on. No separate mobile app to build, deploy, or maintain.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 08 AI-FIRST -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">08</span>
+    <h2>AI-First Development &amp; Operations</h2>
+
+    <p>AMTrack's secret weapon is its development model. We use AI (Claude, GitHub Copilot) as our primary engineering force &mdash; not as an assistant, but as the builder. This fundamentally changes the economics of software development.</p>
+
+    <h3>How We Use AI</h3>
+    <div class="cards">
+      <div class="card">
+        <h4>Product Development</h4>
+        <p>AI writes 90%+ of the code. One technical founder directs AI to build full features including frontend, backend, database migrations, and tests. Development velocity: 10&ndash;50x a traditional team.</p>
+      </div>
+      <div class="card">
+        <h4>Debugging &amp; QA</h4>
+        <p>AI reads error logs, traces through code, identifies root causes, and writes fixes. Bug resolution time: minutes, not days. Every bug is an AI conversation, not a sprint ticket.</p>
+      </div>
+      <div class="card">
+        <h4>Marketing &amp; Content</h4>
+        <p>AI generates blog posts, social media content, email campaigns, and documentation. We reach thousands of potential customers with zero marketing staff.</p>
+      </div>
+      <div class="card">
+        <h4>Customer Support</h4>
+        <p>AI-powered knowledge base and troubleshooting guides. Reduces support burden to near zero for common issues.</p>
+      </div>
+    </div>
+
+    <h3>Cost Advantage</h3>
+    <table>
+      <tr><th>Activity</th><th>Traditional Cost</th><th>AMTrack (AI) Cost</th><th>Savings</th></tr>
+      <tr><td>Full-stack developer (1 year)</td><td>&pound;65,000</td><td>&pound;2,400 (AI subscription)</td><td>96%</td></tr>
+      <tr><td>QA engineer (1 year)</td><td>&pound;45,000</td><td>&pound;0 (AI-integrated)</td><td>100%</td></tr>
+      <tr><td>Marketing content (1 year)</td><td>&pound;30,000</td><td>&pound;1,200 (AI tools)</td><td>96%</td></tr>
+      <tr><td>Technical documentation</td><td>&pound;15,000</td><td>&pound;0 (AI-generated)</td><td>100%</td></tr>
+      <tr class="total"><td><strong>Total</strong></td><td><strong>&pound;155,000</strong></td><td><strong>&pound;3,600</strong></td><td><strong>98%</strong></td></tr>
+    </table>
+
+    <div class="highlight">
+      <p>This 98% cost reduction is not a future projection &mdash; it's how AMTrack was built. The entire platform, with 20+ modules and 50,000+ lines of code, was developed by one person using AI in weeks, not years.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 09 BUSINESS MODEL -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">09</span>
+    <h2>Business Model &amp; Pricing</h2>
+
+    <p>Our pricing philosophy: <strong>make it so cheap that saying "no" feels irrational.</strong> The goal is volume, not margin per customer.</p>
+
+    <h3>Pricing Tiers</h3>
+    <div class="cards-3">
+      <div class="card" style="text-align:center">
+        <h4>Starter</h4>
+        <div class="price">&pound;29<span class="period">/month</span></div>
+        <p style="margin-top:12px;text-align:left">Up to 15 users. All core modules. Community support. Ideal for small workshops.</p>
+      </div>
+      <div class="card" style="text-align:center;background:#eef2ff;border-color:#c7d2fe">
+        <h4 style="color:#4338ca">Professional</h4>
+        <div class="price">&pound;79<span class="period">/month</span></div>
+        <p style="margin-top:12px;text-align:left">Unlimited users. All modules + priority support + custom reports. For growing teams.</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <h4>Enterprise</h4>
+        <div class="price">&pound;199<span class="period">/month</span></div>
+        <p style="margin-top:12px;text-align:left">Multi-site. Custom integrations. Dedicated support. SLA guarantee. On-site training available.</p>
+      </div>
+    </div>
+
+    <h3>One-Time Licence Option</h3>
+    <p>For companies that prefer CAPEX: <strong>&pound;1,995</strong> one-time payment including 12 months of updates. Annual renewal for continued updates: &pound;495/year. This appeals to defence/aerospace companies with procurement constraints.</p>
+
+    <h3>Revenue Streams</h3>
+    <ol>
+      <li><strong>Software licences</strong> (75%) &mdash; monthly/annual subscriptions</li>
+      <li><strong>Implementation services</strong> (15%) &mdash; remote (&pound;250) or on-site (&pound;750/day)</li>
+      <li><strong>Custom development</strong> (10%) &mdash; industry-specific features on request</li>
+    </ol>
+
+    <h3>Why This Price Works</h3>
+    <ul>
+      <li><strong>Below approval threshold:</strong> Most SME owners can approve &pound;29/month without a committee.</li>
+      <li><strong>No per-user fee:</strong> The entire team uses it for one flat price. No "shadow users" problem.</li>
+      <li><strong>Near-zero COGS:</strong> No cloud infrastructure to pay for. Software runs on the customer's own hardware.</li>
+      <li><strong>Near-zero development cost:</strong> AI builds features. Marginal cost of a new customer is essentially zero.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 10 GO TO MARKET -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">10</span>
+    <h2>Go-to-Market: Low-Cost, AI-Driven</h2>
+
+    <p>Our GTM budget target: <strong>&pound;500/month</strong>. We replace paid marketing staff with AI-generated content, organic channels, and community presence.</p>
+
+    <h3>Channel Strategy</h3>
+    <table>
+      <tr><th>Channel</th><th>Cost</th><th>Expected Customers/Month</th></tr>
+      <tr><td><strong>LinkedIn content</strong> (AI-generated posts, articles)</td><td>&pound;0</td><td>2&ndash;3</td></tr>
+      <tr><td><strong>YouTube tutorials</strong> (screen recordings + AI voiceover)</td><td>&pound;50</td><td>1&ndash;2</td></tr>
+      <tr><td><strong>Reddit / AM forums</strong> (genuine participation)</td><td>&pound;0</td><td>1&ndash;2</td></tr>
+      <tr><td><strong>SEO blog</strong> (AI-written, human-reviewed)</td><td>&pound;0</td><td>1&ndash;3 (after 6 months)</td></tr>
+      <tr><td><strong>Trade shows</strong> (TCT 3Sixty, Formnext &mdash; shared stands)</td><td>&pound;200/month avg</td><td>3&ndash;5 (at events)</td></tr>
+      <tr><td><strong>Referral programme</strong> (1 month free per referral)</td><td>~&pound;29/referral</td><td>1&ndash;2</td></tr>
+      <tr><td><strong>AM machine OEM partnerships</strong></td><td>&pound;0</td><td>2&ndash;5 (from month 12)</td></tr>
+    </table>
+
+    <h3>Sales Process</h3>
+    <div class="flow">
+      <div class="step">See content / find via search</div><div class="arrow">&rarr;</div>
+      <div class="step">Download free trial</div><div class="arrow">&rarr;</div>
+      <div class="step">Install in 5 min</div><div class="arrow">&rarr;</div>
+      <div class="step">Use for 14 days free</div><div class="arrow">&rarr;</div>
+      <div class="step">Self-serve payment</div>
+    </div>
+
+    <p><strong>No salespeople needed.</strong> The product sells itself because setup is instant and the value is obvious within the first hour. Our conversion target: 25% of trial downloads become paying customers.</p>
+
+    <h3>Content Flywheel (All AI-Powered)</h3>
+    <ul>
+      <li><strong>Weekly:</strong> 2 LinkedIn posts (tips for AM shop management)</li>
+      <li><strong>Bi-weekly:</strong> 1 YouTube video (feature demo, 3-5 min)</li>
+      <li><strong>Monthly:</strong> 1 blog post (SEO-targeted: "best manufacturing software for small companies")</li>
+      <li><strong>Quarterly:</strong> 1 case study from a real customer</li>
+    </ul>
+
+    <div class="highlight">
+      <p>Total marketing spend: ~&pound;6,000/year. Customer acquisition cost target: &pound;60. Payback period: 2 months.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 11 FINANCIALS -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">11</span>
+    <h2>Financial Projections</h2>
+
+    <h3>3-Year Forecast (Conservative)</h3>
+    <table class="fin-table">
+      <tr><th>Metric</th><th>Year 1</th><th>Year 2</th><th>Year 3</th></tr>
+      <tr><td>New Customers</td><td>50</td><td>120</td><td>250</td></tr>
+      <tr><td>Active Customers (end of year)</td><td>45</td><td>140</td><td>330</td></tr>
+      <tr><td>Avg Revenue per Customer/Month</td><td>&pound;42</td><td>&pound;52</td><td>&pound;60</td></tr>
+      <tr><td>Annual Recurring Revenue</td><td>&pound;22,680</td><td>&pound;87,360</td><td>&pound;237,600</td></tr>
+      <tr><td>Implementation &amp; Custom Dev</td><td>&pound;8,000</td><td>&pound;18,000</td><td>&pound;30,000</td></tr>
+      <tr class="total"><td>Total Revenue</td><td>&pound;30,680</td><td>&pound;105,360</td><td>&pound;267,600</td></tr>
+      <tr><td>Development (AI tools + hosting)</td><td>&pound;3,600</td><td>&pound;4,800</td><td>&pound;7,200</td></tr>
+      <tr><td>Marketing</td><td>&pound;6,000</td><td>&pound;12,000</td><td>&pound;18,000</td></tr>
+      <tr><td>Trade Shows</td><td>&pound;4,000</td><td>&pound;6,000</td><td>&pound;8,000</td></tr>
+      <tr><td>Legal / Admin</td><td>&pound;3,000</td><td>&pound;3,000</td><td>&pound;5,000</td></tr>
+      <tr><td>Support Hire (from Y2)</td><td>&pound;0</td><td>&pound;25,000</td><td>&pound;35,000</td></tr>
+      <tr class="total"><td>Total Costs</td><td>&pound;16,600</td><td>&pound;50,800</td><td>&pound;73,200</td></tr>
+      <tr class="total" style="background:#f0fdf4 !important"><td>Net Profit</td><td>&pound;14,080</td><td>&pound;54,560</td><td>&pound;194,400</td></tr>
+      <tr><td>Profit Margin</td><td>46%</td><td>52%</td><td>73%</td></tr>
+    </table>
+
+    <h3>Key Assumptions</h3>
+    <ul>
+      <li>10% monthly churn in Year 1, dropping to 5% in Year 2 and 3% in Year 3</li>
+      <li>30% of Starter customers upgrade to Professional within 12 months</li>
+      <li>No full-time engineering hire needed (AI continues to handle development)</li>
+      <li>First part-time support hire at Month 13</li>
+      <li>Break-even at Month 8</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 12 UNIT ECONOMICS -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">12</span>
+    <h2>Unit Economics</h2>
+
+    <div class="stats">
+      <div class="stat"><div class="num">&pound;60</div><div class="label">Customer Acq. Cost</div></div>
+      <div class="stat"><div class="num">&pound;42</div><div class="label">Avg Monthly Revenue</div></div>
+      <div class="stat"><div class="num">30+</div><div class="label">LTV Months</div></div>
+      <div class="stat"><div class="num">21x</div><div class="label">LTV:CAC Ratio</div></div>
+    </div>
+
+    <h3>Lifetime Value Calculation</h3>
+    <ul>
+      <li>Average monthly revenue: &pound;42 (blended across tiers)</li>
+      <li>Gross margin: ~98% (no cloud costs, no per-customer infrastructure)</li>
+      <li>Average customer lifetime: 30 months (conservative, data lock-in drives retention)</li>
+      <li><strong>LTV = &pound;42 x 30 x 0.98 = &pound;1,235</strong></li>
+    </ul>
+
+    <h3>Customer Acquisition Cost</h3>
+    <ul>
+      <li>Marketing spend: ~&pound;500/month</li>
+      <li>Expected new customers: ~8/month (from all channels)</li>
+      <li><strong>CAC = &pound;500 / 8 = &pound;60</strong></li>
+    </ul>
+
+    <h3>LTV:CAC Ratio = 21x</h3>
+    <p>Industry benchmark for healthy SaaS: 3x. Our 21x ratio means we could spend <strong>7x more on marketing</strong> and still be in healthy territory. This gives enormous room to accelerate growth when ready.</p>
+
+    <h3>Payback Period: 1.4 months</h3>
+    <p>Every new customer pays back their acquisition cost in under 6 weeks. This means we're cash-flow positive on each customer almost immediately.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 13 GROWTH & SCALING -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">13</span>
+    <h2>Growth &amp; Scaling Strategy</h2>
+
+    <h3>Phase 1: Prove (Months 1&ndash;6)</h3>
+    <ul>
+      <li>5 paying customers in UK AM sector</li>
+      <li>Refine based on real feedback</li>
+      <li>Build 2 case studies with measurable ROI</li>
+      <li>Establish organic content presence on LinkedIn and YouTube</li>
+    </ul>
+
+    <h3>Phase 2: Grow (Months 7&ndash;18)</h3>
+    <ul>
+      <li>Scale to 100+ customers through content marketing and referrals</li>
+      <li>Launch self-serve website with free trial download</li>
+      <li>Partner with 2&ndash;3 AM machine resellers for bundled offers</li>
+      <li>Attend TCT 3Sixty (Birmingham) and Formnext (Frankfurt)</li>
+      <li>Hire part-time customer success person</li>
+    </ul>
+
+    <h3>Phase 3: Scale (Months 19&ndash;36)</h3>
+    <ul>
+      <li>Expand to European markets (Germany, France, Nordics)</li>
+      <li>Launch channel partner programme (reseller margins 20%)</li>
+      <li>Develop vertical editions (aerospace, medical, automotive)</li>
+      <li>API integrations with accounting software (Xero, QuickBooks)</li>
+      <li>Target 300+ active customers, &pound;200k+ ARR</li>
+    </ul>
+
+    <h3>Phase 4: Compound (Year 3+)</h3>
+    <ul>
+      <li>Expand beyond AM to general precision engineering SMEs</li>
+      <li>Optional cloud sync for multi-site enterprises</li>
+      <li>Marketplace for workflow templates and industry packs</li>
+      <li>International expansion (North America, APAC)</li>
+      <li>Target &pound;1M+ ARR</li>
+    </ul>
+
+    <h3>Scaling Advantages</h3>
+    <div class="highlight">
+      <p>Because the software runs on the customer's hardware, our infrastructure cost per customer is <strong>zero</strong>. Adding the 1,000th customer costs us nothing more than the 10th. This creates a naturally profitable scaling curve that cloud-based competitors cannot match.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 14 EXIT STRATEGY -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">14</span>
+    <h2>Exit Strategy</h2>
+
+    <p>We are building a business designed to be profitable and sustainable on its own &mdash; but with multiple attractive exit paths available at the right time.</p>
+
+    <h3>Exit Option 1: Strategic Acquisition (Most Likely)</h3>
+    <p><strong>Timeline:</strong> Year 3&ndash;5 at &pound;500k&ndash;2M ARR</p>
+    <p><strong>Acquirers:</strong></p>
+    <ul>
+      <li><strong>AM software companies</strong> (Materialise, AMFG, 3YOURMIND) &mdash; AMTrack fills their SME gap and brings a large customer base they can upsell</li>
+      <li><strong>ERP vendors</strong> (Odoo, Katana, MRPeasy) &mdash; AMTrack gives them an AM-specific vertical with proven product-market fit</li>
+      <li><strong>AM machine OEMs</strong> (EOS, Stratasys, 3D Systems) &mdash; bundling AMTrack with hardware creates a complete solution and recurring revenue stream</li>
+    </ul>
+    <p><strong>Valuation basis:</strong> 5&ndash;10x ARR is standard for vertical SaaS with 95%+ retention and 70%+ margins. At &pound;500k ARR = &pound;2.5&ndash;5M exit value.</p>
+
+    <h3>Exit Option 2: Lifestyle Business (Sustainable Path)</h3>
+    <p><strong>Timeline:</strong> Indefinite</p>
+    <p>At 300 customers and &pound;200k ARR with 73% margins, the business generates &pound;146k/year in profit with minimal ongoing effort. AI handles development and support. This is a highly attractive lifestyle business if the founders choose not to sell.</p>
+
+    <h3>Exit Option 3: Private Equity Roll-Up</h3>
+    <p><strong>Timeline:</strong> Year 4&ndash;6</p>
+    <p>PE firms actively acquiring vertical SaaS businesses. AMTrack's local-first model, near-zero infrastructure costs, and high retention make it an ideal roll-up target alongside complementary manufacturing software companies.</p>
+
+    <h3>Exit Option 4: Management Buyout</h3>
+    <p><strong>Timeline:</strong> Year 3+</p>
+    <p>The customer success hire or a senior customer could acquire the business. Low operational complexity makes this feasible.</p>
+
+    <div class="highlight">
+      <p><strong>Key insight:</strong> Because our costs are so low (no cloud, no engineering team, AI-built), the business is profitable from Month 8. This means we never need to raise additional capital to reach exit readiness. The seed funding is the only external capital needed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 15 RISKS -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">15</span>
+    <h2>Risk Analysis &amp; Mitigation</h2>
+
+    <table>
+      <tr><th>Risk</th><th>Likelihood</th><th>Impact</th><th>Mitigation</th></tr>
+      <tr>
+        <td>Enterprise competitor launches cheap SME product</td>
+        <td class="partial">Medium</td>
+        <td class="partial">Medium</td>
+        <td>18+ month head start. Enterprise DNA makes it hard to simplify. Our cost structure is 50x lower.</td>
+      </tr>
+      <tr>
+        <td>Slow initial adoption</td>
+        <td class="partial">Medium</td>
+        <td class="check">Low</td>
+        <td>Near-zero burn rate. Can sustain 24+ months on seed funding alone. Pivot to adjacent verticals if needed.</td>
+      </tr>
+      <tr>
+        <td>AI tools become restricted or expensive</td>
+        <td class="check">Low</td>
+        <td class="partial">Medium</td>
+        <td>Core product is already built. AI is for iteration, not survival. Could hire a junior developer if needed (&pound;30k).</td>
+      </tr>
+      <tr>
+        <td>Customer data loss</td>
+        <td class="check">Low</td>
+        <td class="cross">High</td>
+        <td>SQLite WAL mode. Simple file-copy backup. Considering automated cloud backup option for Professional tier.</td>
+      </tr>
+      <tr>
+        <td>Security vulnerability</td>
+        <td class="check">Low</td>
+        <td class="cross">High</td>
+        <td>Local-only deployment dramatically reduces attack surface. No internet exposure. Regular AI-assisted security audits.</td>
+      </tr>
+      <tr>
+        <td>Founder dependency</td>
+        <td class="partial">Medium</td>
+        <td class="partial">Medium</td>
+        <td>Comprehensive codebase. AI can onboard new developers via code understanding. Documented architecture.</td>
+      </tr>
+      <tr>
+        <td>Market too small</td>
+        <td class="check">Low</td>
+        <td class="partial">Medium</td>
+        <td>AM is the entry wedge. Expansion to general manufacturing SMEs represents 10x larger market.</td>
+      </tr>
+    </table>
+
+    <h3>Worst-Case Scenario</h3>
+    <p>If customer acquisition is 50% slower than projected, we reach break-even at Month 14 instead of Month 8. Total cash needed: &pound;22,000 (still within seed funding). The business becomes a profitable lifestyle business generating &pound;50&ndash;80k/year with zero employees.</p>
+
+    <h3>Best-Case Scenario</h3>
+    <p>If an OEM partnership drives 10x our projected acquisition rate, we hit &pound;500k ARR in Year 2 instead of Year 4. This triggers acquisition interest early, with a potential &pound;3&ndash;5M exit before needing any additional investment.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 16 ROADMAP -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">16</span>
+    <h2>Product Roadmap</h2>
+
+    <h3>Q3 2026 &mdash; Polish &amp; Launch</h3>
+    <ul>
+      <li>Beta testing with 3&ndash;5 live AM facilities</li>
+      <li>PDF report export and print-ready quality records</li>
+      <li>Dashboard KPI widgets (OEE, on-time delivery, scrap rate)</li>
+      <li>Automated backup system with email reminders</li>
+    </ul>
+
+    <h3>Q4 2026 &mdash; Compliance &amp; Integration</h3>
+    <ul>
+      <li>AS9100 / ISO 9001 compliance template pack</li>
+      <li>Xero/QuickBooks accounting integration</li>
+      <li>Barcode / QR code scanning for inventory</li>
+      <li>Digital signature support for quality sign-offs</li>
+    </ul>
+
+    <h3>H1 2027 &mdash; Scale Features</h3>
+    <ul>
+      <li>Multi-language support (German, French)</li>
+      <li>Customer portal for order status visibility</li>
+      <li>Gantt chart scheduling view</li>
+      <li>AI-powered predictive maintenance alerts</li>
+    </ul>
+
+    <h3>H2 2027 &mdash; Platform</h3>
+    <ul>
+      <li>Optional cloud backup for disaster recovery</li>
+      <li>API for third-party integrations</li>
+      <li>Machine connectivity (OPC-UA) for auto print data capture</li>
+      <li>Template marketplace for industry-specific workflows</li>
+    </ul>
+
+    <h3>2028+ &mdash; Expand</h3>
+    <ul>
+      <li>Multi-site with data sync</li>
+      <li>Native mobile app for offline shop floor use</li>
+      <li>AI copilot: natural language queries ("show me all parts that failed CMM this month")</li>
+      <li>General manufacturing edition (beyond AM)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 17 TEAM -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">17</span>
+    <h2>Team</h2>
+
+    <p>[Insert founder name, background, and relevant experience in manufacturing/engineering/software]</p>
+
+    <h3>The AI Advantage</h3>
+    <p>Our "team" includes AI tools that provide the equivalent output of:</p>
+    <ul>
+      <li>2 full-stack developers</li>
+      <li>1 QA engineer</li>
+      <li>1 technical writer</li>
+      <li>1 content marketer</li>
+    </ul>
+    <p>Total cost: &pound;300/month in AI subscriptions vs &pound;12,500/month for human equivalents.</p>
+
+    <h3>Hiring Plan</h3>
+    <table>
+      <tr><th>Role</th><th>When</th><th>Why</th><th>Cost</th></tr>
+      <tr><td>Part-time Customer Success</td><td>Month 13</td><td>Onboarding &amp; retention at 50+ customers</td><td>&pound;25k/year</td></tr>
+      <tr><td>Part-time Sales (commission-based)</td><td>Month 18</td><td>Outbound to enterprise prospects</td><td>&pound;10k base + commission</td></tr>
+      <tr><td>Junior Developer</td><td>Month 24</td><td>Only if AI tools become insufficient</td><td>&pound;30k/year</td></tr>
+    </table>
+
+    <h3>Advisory Board (Target)</h3>
+    <ul>
+      <li>AM industry veteran (customer credibility)</li>
+      <li>SaaS growth advisor (scaling playbook)</li>
+      <li>Manufacturing compliance expert (AS9100/ISO)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ 18 APPENDIX -->
+<div class="page page-break">
+  <div class="content">
+    <span class="section-num">18</span>
+    <h2>Appendix: Complete Feature List</h2>
+
+    <table>
+      <tr><th>Module</th><th>Key Features</th></tr>
+      <tr><td>Dashboard</td><td>Active workflows, employee status, key metrics</td></tr>
+      <tr><td>Workflow Builder</td><td>Visual canvas, step types, quality gates, pass/fail/rework routing, substeps, resource &amp; BOM assignment</td></tr>
+      <tr><td>Execution</td><td>Start workflows, operator task view, SOP confirmation, evidence capture, waste reporting, auto-inventory deduction</td></tr>
+      <tr><td>BOM</td><td>Full BOM table (name, part no, type, supplier, qty, cost, currency, lead time, buy link, notes), custom columns, total cost calc</td></tr>
+      <tr><td>Inventory</td><td>Stock levels, reorder alerts, BOM filter with colour-coded status, request to order</td></tr>
+      <tr><td>Purchasing</td><td>To Order / Expected / Delivered lifecycle, IN numbering, status management, auto-add to inventory on delivery</td></tr>
+      <tr><td>Suppliers</td><td>Supplier database with contact details, selectable in BOM</td></tr>
+      <tr><td>Item Types</td><td>Categorise items (Raw Material, Fastener, Electronics, etc.)</td></tr>
+      <tr><td>Quality</td><td>NCRs, observations, corrective actions, evidence, quality process types</td></tr>
+      <tr><td>Resources</td><td>Equipment registry, types &amp; instances, maintenance, calibration, usage logging</td></tr>
+      <tr><td>SOPs</td><td>Versioned procedures, PDF upload, operator read-confirmation tracking</td></tr>
+      <tr><td>Risk Assessments</td><td>Hazard ID, severity/likelihood matrix, mitigation, linkable to steps</td></tr>
+      <tr><td>Skills</td><td>Skill definitions, employee certifications, proficiency, expiry tracking</td></tr>
+      <tr><td>Timesheets</td><td>Clock in/out, break tracking, daily activity log, worked hours</td></tr>
+      <tr><td>Holidays</td><td>Leave requests, approval workflow, allowance tracking</td></tr>
+      <tr><td>Sick Leave</td><td>Recording with admin review and approval</td></tr>
+      <tr><td>Employees</td><td>Directory, timesheet history, skills, current status, permissions</td></tr>
+      <tr><td>Customers</td><td>Customer database, contracts, products</td></tr>
+      <tr><td>Reporting</td><td>Customisable reports, part traceability, export</td></tr>
+      <tr><td>Visitors</td><td>Sign-in/out log with badge tracking</td></tr>
+      <tr><td>Audit Logs</td><td>Complete trail of all system actions</td></tr>
+      <tr><td>Auto-Update</td><td>OTA updates via GitHub, manual check button, periodic auto-check</td></tr>
+      <tr><td>Network</td><td>IP selector with reachability testing, LAN server with tray icon</td></tr>
+    </table>
+
+    <h3>Technical Requirements</h3>
+    <ul>
+      <li><strong>Server:</strong> Any Windows 10/11 PC, 4GB+ RAM, 200MB disk</li>
+      <li><strong>Clients:</strong> Any device with Chrome, Edge, Firefox, or Safari</li>
+      <li><strong>Network:</strong> Standard LAN (Wi-Fi or Ethernet)</li>
+      <li><strong>Internet:</strong> Only for auto-updates (optional)</li>
+    </ul>
+
+    <div style="text-align:center;margin-top:60px;padding-top:30px;border-top:2px solid #e2e8f0">
+      <p style="color:#6366f1;font-weight:700;font-size:16px;margin-bottom:4px">AMTrack</p>
+      <p style="color:#94a3b8;font-size:12px">Manufacturing Management, Simplified.</p>
+      <p style="color:#cbd5e1;font-size:11px;margin-top:20px">[Insert contact details]</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
