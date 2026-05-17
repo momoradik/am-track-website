@@ -11,174 +11,182 @@
 <meta property="og:description" content="One platform. Zero cloud fees. Built for AM shops, priced for small teams.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://am-track.co.uk">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --indigo-50: #eef2ff; --indigo-100: #e0e7ff; --indigo-200: #c7d2fe;
-    --indigo-300: #a5b4fc; --indigo-400: #818cf8; --indigo-500: #6366f1;
-    --indigo-600: #4f46e5; --indigo-700: #4338ca; --indigo-800: #3730a3;
-    --indigo-900: #312e81; --indigo-950: #1e1b4b;
+    --primary: #1e3a5f; --primary-light: #2d5a8e; --primary-dark: #0f2440;
+    --accent: #3b82f6; --accent-light: #60a5fa; --accent-dark: #2563eb;
     --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0;
     --slate-300: #cbd5e1; --slate-400: #94a3b8; --slate-500: #64748b;
     --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b;
     --slate-900: #0f172a;
-    --green-500: #22c55e; --green-50: #f0fdf4;
-    --amber-500: #f59e0b;
+    --green: #059669; --green-light: #d1fae5;
+    --red: #dc2626;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body { font-family: 'Segoe UI', -apple-system, system-ui, sans-serif; color: var(--slate-800); line-height: 1.6; }
+  body { font-family: 'Inter', -apple-system, system-ui, sans-serif; color: var(--slate-800); line-height: 1.6; -webkit-font-smoothing: antialiased; }
 
   /* ── NAV ── */
-  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-200); padding: 0 40px; }
-  .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .logo { font-size: 22px; font-weight: 800; color: var(--indigo-950); text-decoration: none; letter-spacing: -0.5px; }
-  .logo span { color: var(--indigo-500); }
-  .nav-links { display: flex; gap: 32px; align-items: center; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-200); }
+  .nav-inner { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 24px; }
+  .logo { font-size: 20px; font-weight: 800; color: var(--primary); text-decoration: none; letter-spacing: -0.5px; display: flex; align-items: center; gap: 8px; }
+  .logo-mark { width: 32px; height: 32px; background: var(--primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+  .logo-mark svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { text-decoration: none; color: var(--slate-600); font-size: 14px; font-weight: 500; transition: color 0.2s; }
-  .nav-links a:hover { color: var(--indigo-600); }
-  .nav-cta { background: var(--indigo-600); color: white !important; padding: 8px 20px; border-radius: 8px; font-weight: 600 !important; transition: background 0.2s !important; }
-  .nav-cta:hover { background: var(--indigo-700) !important; }
+  .nav-links a:hover { color: var(--primary); }
+  .nav-cta { background: var(--primary); color: white !important; padding: 8px 20px; border-radius: 6px; font-weight: 600 !important; transition: background 0.2s !important; }
+  .nav-cta:hover { background: var(--primary-light) !important; }
   .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-  .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--slate-700); margin: 5px 0; transition: 0.3s; }
+  .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--slate-700); margin: 5px 0; }
 
   /* ── HERO ── */
-  .hero { background: linear-gradient(135deg, var(--indigo-950) 0%, var(--indigo-900) 40%, var(--indigo-600) 100%); color: white; padding: 160px 40px 100px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%); border-radius: 50%; }
-  .hero::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 500px; height: 500px; background: radial-gradient(circle, rgba(129,140,248,0.1) 0%, transparent 70%); border-radius: 50%; }
-  .hero-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
-  .hero-badge { display: inline-block; background: rgba(255,255,255,0.12); padding: 6px 18px; border-radius: 20px; font-size: 13px; font-weight: 600; color: var(--indigo-200); margin-bottom: 24px; border: 1px solid rgba(255,255,255,0.1); }
-  .hero h1 { font-size: 56px; font-weight: 800; letter-spacing: -2px; line-height: 1.1; margin-bottom: 20px; }
-  .hero h1 .highlight { color: var(--indigo-300); }
-  .hero p { font-size: 20px; color: var(--indigo-200); max-width: 600px; margin: 0 auto 40px; line-height: 1.6; font-weight: 300; }
-  .hero-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn-primary { background: white; color: var(--indigo-950); padding: 14px 32px; border-radius: 10px; font-size: 16px; font-weight: 700; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-  .btn-secondary { background: transparent; color: white; padding: 14px 32px; border-radius: 10px; font-size: 16px; font-weight: 600; text-decoration: none; border: 2px solid rgba(255,255,255,0.25); transition: border-color 0.2s, background 0.2s; display: inline-block; }
-  .btn-secondary:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
-
-  /* ── STATS BAR ── */
-  .stats-bar { background: white; border-bottom: 1px solid var(--slate-200); padding: 40px; }
-  .stats-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center; }
-  .stat-num { font-size: 36px; font-weight: 800; color: var(--indigo-600); }
-  .stat-label { font-size: 13px; color: var(--slate-400); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .hero { background: var(--primary-dark); color: white; padding: 140px 24px 100px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .hero-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+  .hero-text { }
+  .hero-label { display: inline-block; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.25); padding: 4px 14px; border-radius: 4px; font-size: 12px; font-weight: 600; color: var(--accent-light); margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .hero h1 { font-size: 48px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
+  .hero p { font-size: 17px; color: #94a3b8; max-width: 480px; line-height: 1.7; margin-bottom: 32px; }
+  .hero-buttons { display: flex; gap: 12px; }
+  .btn { display: inline-block; padding: 12px 28px; border-radius: 6px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
+  .btn-white { background: white; color: var(--primary-dark); }
+  .btn-white:hover { background: #f1f5f9; transform: translateY(-1px); }
+  .btn-outline-light { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.2); }
+  .btn-outline-light:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-primary:hover { background: var(--primary-light); }
+  .btn-accent { background: var(--accent); color: white; }
+  .btn-accent:hover { background: var(--accent-dark); }
+  .hero-visual { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 32px; text-align: center; }
+  .hero-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .hero-stat { text-align: center; }
+  .hero-stat-num { font-size: 36px; font-weight: 900; color: white; }
+  .hero-stat-label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .hero-stat-divider { grid-column: 1 / -1; height: 1px; background: rgba(255,255,255,0.06); }
 
   /* ── SECTIONS ── */
-  section { padding: 100px 40px; }
-  .section-inner { max-width: 1200px; margin: 0 auto; }
-  .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
-  .section-header h2 { font-size: 36px; font-weight: 800; color: var(--indigo-950); letter-spacing: -1px; margin-bottom: 16px; }
-  .section-header p { font-size: 18px; color: var(--slate-500); }
+  section { padding: 96px 24px; }
+  .container { max-width: 1140px; margin: 0 auto; }
+  .section-label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 12px; }
+  .section-title { font-size: 32px; font-weight: 800; color: var(--slate-900); letter-spacing: -0.5px; margin-bottom: 12px; }
+  .section-desc { font-size: 16px; color: var(--slate-500); max-width: 560px; }
+  .section-header-center { text-align: center; margin-bottom: 56px; }
+  .section-header-center .section-desc { margin: 0 auto; }
   .alt-bg { background: var(--slate-50); }
 
   /* ── PROBLEM ── */
-  .problem-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .problem-card { background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 28px; }
-  .problem-card h3 { font-size: 18px; font-weight: 700; color: var(--slate-800); margin-bottom: 8px; }
-  .problem-card p { font-size: 14px; color: var(--slate-500); margin: 0; }
-  .problem-card .icon { font-size: 28px; margin-bottom: 12px; display: block; }
+  .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+  .problem-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 24px; }
+  .problem-card h3 { font-size: 15px; font-weight: 700; color: var(--slate-800); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .problem-card h3 svg { width: 18px; height: 18px; stroke: var(--accent); fill: none; stroke-width: 2; flex-shrink: 0; }
+  .problem-card p { font-size: 13px; color: var(--slate-500); margin: 0; line-height: 1.6; }
 
   /* ── FEATURES ── */
-  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .feature-card { background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 32px; transition: border-color 0.2s, box-shadow 0.2s; }
-  .feature-card:hover { border-color: var(--indigo-300); box-shadow: 0 4px 16px rgba(99,102,241,0.08); }
-  .feature-icon { width: 48px; height: 48px; background: var(--indigo-50); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; margin-bottom: 16px; }
-  .feature-card h3 { font-size: 17px; font-weight: 700; color: var(--slate-800); margin-bottom: 8px; }
-  .feature-card p { font-size: 14px; color: var(--slate-500); margin: 0; line-height: 1.6; }
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feature-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 28px; transition: box-shadow 0.2s; }
+  .feature-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .feature-card svg { width: 36px; height: 36px; stroke: var(--primary); fill: none; stroke-width: 1.5; margin-bottom: 16px; }
+  .feature-card h3 { font-size: 15px; font-weight: 700; color: var(--slate-800); margin-bottom: 8px; }
+  .feature-card p { font-size: 13px; color: var(--slate-500); margin: 0; line-height: 1.6; }
 
   /* ── HOW IT WORKS ── */
-  .steps { display: flex; align-items: flex-start; justify-content: center; gap: 16px; flex-wrap: wrap; margin-top: 40px; }
-  .step { text-align: center; flex: 1; min-width: 140px; max-width: 180px; }
-  .step-num { width: 48px; height: 48px; background: var(--indigo-600); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 18px; margin: 0 auto 12px; }
-  .step h3 { font-size: 15px; font-weight: 700; color: var(--slate-800); margin-bottom: 4px; }
-  .step p { font-size: 13px; color: var(--slate-500); }
-  .step-arrow { font-size: 24px; color: var(--indigo-300); margin-top: 12px; font-weight: 700; }
+  .steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+  .step-card { text-align: center; }
+  .step-num { width: 40px; height: 40px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; margin: 0 auto 14px; }
+  .step-card h3 { font-size: 15px; font-weight: 700; color: var(--slate-800); margin-bottom: 4px; }
+  .step-card p { font-size: 13px; color: var(--slate-500); }
 
-  /* ── COMPARISON TABLE ── */
-  .comparison-wrapper { overflow-x: auto; }
-  .comparison { width: 100%; border-collapse: collapse; font-size: 14px; }
-  .comparison th { background: var(--indigo-950); color: white; padding: 14px 18px; text-align: left; font-weight: 600; }
-  .comparison th:first-child { border-radius: 10px 0 0 0; }
-  .comparison th:last-child { border-radius: 0 10px 0 0; }
-  .comparison td { padding: 12px 18px; border-bottom: 1px solid var(--slate-200); }
+  /* ── COMPARISON ── */
+  .comparison-wrapper { overflow-x: auto; margin-top: 40px; }
+  .comparison { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+  .comparison th { background: var(--primary-dark); color: white; padding: 12px 16px; text-align: left; font-weight: 600; font-size: 12px; }
+  .comparison th:first-child { border-radius: 8px 0 0 0; } .comparison th:last-child { border-radius: 0 8px 0 0; }
+  .comparison td { padding: 10px 16px; border-bottom: 1px solid var(--slate-100); }
   .comparison tr:nth-child(even) { background: var(--slate-50); }
-  .comparison .yes { color: var(--green-500); font-weight: 700; }
-  .comparison .no { color: #ef4444; }
-  .comparison .partial { color: var(--amber-500); }
-  .comparison .amtrack-col { background: var(--indigo-50) !important; font-weight: 600; }
-  .comparison tr:last-child td:first-child { border-radius: 0 0 0 10px; }
-  .comparison tr:last-child td:last-child { border-radius: 0 0 10px 0; }
+  .comparison .yes { color: var(--green); font-weight: 700; }
+  .comparison .no { color: var(--red); opacity: 0.6; }
+  .comparison .partial { color: #d97706; }
+  .comparison .hl { background: #eff6ff !important; font-weight: 600; }
 
   /* ── PRICING ── */
-  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 960px; margin: 0 auto; }
-  .price-card { background: white; border: 1px solid var(--slate-200); border-radius: 16px; padding: 36px; text-align: center; transition: transform 0.2s, box-shadow 0.2s; }
-  .price-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
-  .price-card.featured { border: 2px solid var(--indigo-500); background: var(--indigo-50); position: relative; }
-  .price-card.featured::before { content: 'Most Popular'; position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: var(--indigo-600); color: white; padding: 4px 16px; border-radius: 12px; font-size: 12px; font-weight: 700; }
-  .price-card h3 { font-size: 18px; font-weight: 700; color: var(--slate-700); margin-bottom: 8px; }
-  .price-amount { font-size: 48px; font-weight: 800; color: var(--indigo-950); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
+  .price-card { background: white; border: 1px solid var(--slate-200); border-radius: 10px; padding: 32px; text-align: center; }
+  .price-card.featured { border: 2px solid var(--accent); position: relative; }
+  .price-card.featured::before { content: 'Most Popular'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 3px 14px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .price-card h3 { font-size: 16px; font-weight: 700; color: var(--slate-700); margin-bottom: 8px; }
+  .price-amount { font-size: 42px; font-weight: 900; color: var(--slate-900); }
   .price-period { font-size: 14px; color: var(--slate-400); }
-  .price-desc { font-size: 14px; color: var(--slate-500); margin: 16px 0 24px; }
-  .price-features { list-style: none; text-align: left; margin-bottom: 28px; }
-  .price-features li { font-size: 14px; color: var(--slate-600); padding: 6px 0; border-bottom: 1px solid var(--slate-100); }
-  .price-features li::before { content: '\2713'; color: var(--green-500); font-weight: 700; margin-right: 8px; }
-  .price-btn { display: block; padding: 12px; border-radius: 10px; font-size: 15px; font-weight: 700; text-decoration: none; transition: 0.2s; }
-  .price-btn-primary { background: var(--indigo-600); color: white; }
-  .price-btn-primary:hover { background: var(--indigo-700); }
-  .price-btn-outline { background: white; color: var(--indigo-600); border: 2px solid var(--indigo-200); }
-  .price-btn-outline:hover { border-color: var(--indigo-400); background: var(--indigo-50); }
+  .price-desc { font-size: 13px; color: var(--slate-500); margin: 12px 0 20px; }
+  .price-features { list-style: none; text-align: left; margin-bottom: 24px; }
+  .price-features li { font-size: 13px; color: var(--slate-600); padding: 5px 0; display: flex; align-items: center; gap: 8px; }
+  .price-features li svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2.5; flex-shrink: 0; }
+  .price-btn { display: block; padding: 10px; border-radius: 6px; font-size: 14px; font-weight: 600; text-decoration: none; transition: 0.2s; }
 
-  /* ── WHY ── */
-  .why-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-  .why-card { display: flex; gap: 16px; background: white; border: 1px solid var(--slate-200); border-radius: 12px; padding: 28px; }
-  .why-card .why-num { font-size: 32px; font-weight: 800; color: var(--indigo-200); line-height: 1; flex-shrink: 0; }
-  .why-card h3 { font-size: 16px; font-weight: 700; color: var(--slate-800); margin-bottom: 6px; }
-  .why-card p { font-size: 14px; color: var(--slate-500); margin: 0; }
+  /* ── ABOUT ── */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+  .about-text p { font-size: 15px; color: var(--slate-600); margin-bottom: 16px; line-height: 1.7; }
+  .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .about-value { padding: 20px; border: 1px solid var(--slate-200); border-radius: 8px; }
+  .about-value h4 { font-size: 14px; font-weight: 700; color: var(--slate-800); margin-bottom: 4px; }
+  .about-value p { font-size: 12px; color: var(--slate-500); margin: 0; line-height: 1.5; }
 
-  /* ── SCREENSHOT ── */
-  .screenshot-section { text-align: center; }
-  .screenshot-placeholder { background: linear-gradient(135deg, var(--slate-100), var(--slate-200)); border: 2px dashed var(--slate-300); border-radius: 16px; padding: 80px 40px; max-width: 900px; margin: 0 auto; color: var(--slate-400); font-size: 15px; font-style: italic; }
+  /* ── CONTACT ── */
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 40px; }
+  .contact-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 28px; text-align: center; }
+  .contact-card svg { width: 32px; height: 32px; stroke: var(--primary); fill: none; stroke-width: 1.5; margin-bottom: 12px; }
+  .contact-card h3 { font-size: 14px; font-weight: 700; color: var(--slate-800); margin-bottom: 4px; }
+  .contact-card p { font-size: 13px; color: var(--slate-500); margin: 0; }
+  .contact-card a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  .contact-card a:hover { text-decoration: underline; }
 
   /* ── CTA ── */
-  .cta { background: linear-gradient(135deg, var(--indigo-950) 0%, var(--indigo-900) 40%, var(--indigo-600) 100%); color: white; text-align: center; padding: 100px 40px; }
-  .cta h2 { font-size: 40px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
-  .cta p { font-size: 18px; color: var(--indigo-200); max-width: 500px; margin: 0 auto 36px; }
-  .cta .btn-primary { font-size: 18px; padding: 16px 40px; }
+  .cta { background: var(--primary-dark); color: white; text-align: center; padding: 96px 24px; position: relative; }
+  .cta h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 12px; }
+  .cta > p { font-size: 16px; color: #94a3b8; max-width: 480px; margin: 0 auto 32px; }
 
   /* ── FOOTER ── */
-  footer { background: var(--slate-900); color: var(--slate-400); padding: 48px 40px; }
-  .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
-  .footer-logo { font-size: 20px; font-weight: 800; color: white; }
-  .footer-logo span { color: var(--indigo-400); }
-  .footer-links { display: flex; gap: 24px; }
-  .footer-links a { color: var(--slate-400); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-  .footer-links a:hover { color: white; }
-  .footer-copy { font-size: 13px; width: 100%; text-align: center; margin-top: 24px; padding-top: 24px; border-top: 1px solid var(--slate-800); }
+  footer { background: var(--slate-900); color: var(--slate-400); padding: 40px 24px; }
+  .footer-inner { max-width: 1140px; margin: 0 auto; }
+  .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 32px; margin-bottom: 32px; }
+  .footer-brand { }
+  .footer-brand-name { font-size: 18px; font-weight: 800; color: white; margin-bottom: 4px; }
+  .footer-brand p { font-size: 12px; color: var(--slate-500); }
+  .footer-cols { display: flex; gap: 48px; }
+  .footer-col h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--slate-500); margin-bottom: 10px; }
+  .footer-col a { display: block; font-size: 13px; color: var(--slate-400); text-decoration: none; margin-bottom: 6px; transition: color 0.2s; }
+  .footer-col a:hover { color: white; }
+  .footer-bottom { border-top: 1px solid var(--slate-800); padding-top: 20px; font-size: 12px; text-align: center; }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; text-align: center; }
+    .hero p { margin: 0 auto 32px; }
+    .hero-buttons { justify-content: center; }
+    .hero-visual { display: none; }
     .hero h1 { font-size: 36px; }
-    .hero p { font-size: 17px; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .features-grid { grid-template-columns: 1fr; }
-    .problem-cards { grid-template-columns: 1fr; }
-    .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
-    .why-grid { grid-template-columns: 1fr; }
-    .comparison { font-size: 12px; }
-    .comparison th, .comparison td { padding: 8px 10px; }
-    section { padding: 60px 20px; }
-    .hero { padding: 120px 20px 60px; }
-    nav { padding: 0 20px; }
+    .problem-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
+    .steps-row { grid-template-columns: repeat(2, 1fr); }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .comparison th, .comparison td { padding: 8px 10px; font-size: 11px; }
+    section { padding: 64px 20px; }
+    .footer-cols { gap: 32px; }
   }
   @media (max-width: 640px) {
-    .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; gap: 16px; border-bottom: 1px solid var(--slate-200); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; gap: 14px; border-bottom: 1px solid var(--slate-200); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
     .nav-links.open { display: flex; }
     .menu-toggle { display: block; }
-    .hero h1 { font-size: 30px; letter-spacing: -1px; }
+    .hero h1 { font-size: 28px; }
     .hero-buttons { flex-direction: column; align-items: center; }
-    .steps { flex-direction: column; align-items: center; }
-    .step-arrow { transform: rotate(90deg); }
-    .footer-inner { flex-direction: column; text-align: center; }
-    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .steps-row { grid-template-columns: 1fr; }
+    .footer-top { flex-direction: column; }
+    .footer-cols { flex-direction: column; gap: 24px; }
+    .about-values { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -187,69 +195,70 @@
 <!-- ═══════════════ NAV ═══════════════ -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">AM<span>-Track</span></a>
+    <a href="#" class="logo">
+      <div class="logo-mark"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      AM-Track
+    </a>
     <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
     <div class="nav-links">
       <a href="#features">Features</a>
-      <a href="#how-it-works">How It Works</a>
-      <a href="#comparison">Compare</a>
       <a href="#pricing">Pricing</a>
-      <a href="#download" class="nav-cta">Download Free Trial</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="#download" class="nav-cta">Download</a>
     </div>
   </div>
 </nav>
 
 <!-- ═══════════════ HERO ═══════════════ -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">ERP + MES + QMS + HR in one platform</div>
-    <h1>Manufacturing Management,<br><span class="highlight">Simplified.</span></h1>
-    <p>One platform replaces your spreadsheets, WhatsApp groups, and paper forms. Built for additive manufacturing. Runs on your PC. No cloud fees.</p>
-    <div class="hero-buttons">
-      <a href="#download" class="btn-primary">Download Free Trial</a>
-      <a href="#features" class="btn-secondary">See Features</a>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-label">ERP + MES + QMS + HR</div>
+      <h1>Manufacturing management built for AM shops.</h1>
+      <p>Replace spreadsheets, WhatsApp, and paper forms with one platform that runs on your PC. No cloud. No IT department. No six-figure contract.</p>
+      <div class="hero-buttons">
+        <a href="#download" class="btn btn-white">Start Free Trial</a>
+        <a href="#features" class="btn btn-outline-light">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="hero-stat-num">&pound;29</div><div class="hero-stat-label">Per month</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">5 min</div><div class="hero-stat-label">Setup time</div></div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat"><div class="hero-stat-num">15</div><div class="hero-stat-label">Users included</div></div>
+        <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Cloud fees</div></div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ STATS ═══════════════ -->
-<div class="stats-bar">
-  <div class="stats-grid">
-    <div><div class="stat-num">&pound;29</div><div class="stat-label">Per Month</div></div>
-    <div><div class="stat-num">15</div><div class="stat-label">Users Included</div></div>
-    <div><div class="stat-num">0</div><div class="stat-label">Cloud Fees</div></div>
-    <div><div class="stat-num">5 min</div><div class="stat-label">Setup Time</div></div>
-  </div>
-</div>
-
 <!-- ═══════════════ PROBLEM ═══════════════ -->
 <section class="alt-bg" id="problem">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2>Sound Familiar?</h2>
-      <p>Most small AM shops run on tools that weren't built for manufacturing.</p>
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-label">The Problem</div>
+      <div class="section-title">Most AM shops run on tools that weren't built for manufacturing.</div>
+      <p class="section-desc">Sound familiar?</p>
     </div>
-    <div class="problem-cards">
+    <div class="problem-grid">
       <div class="problem-card">
-        <span class="icon">&#128202;</span>
-        <h3>Excel Everywhere</h3>
-        <p>Job tracking, inventory, BOMs, timesheets &mdash; all in disconnected spreadsheets that break when someone forgets to save.</p>
+        <h3><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></svg> Spreadsheet overload</h3>
+        <p>Job tracking, inventory, BOMs, timesheets &mdash; scattered across disconnected files that break when someone forgets to save.</p>
       </div>
       <div class="problem-card">
-        <span class="icon">&#128172;</span>
-        <h3>WhatsApp Chaos</h3>
-        <p>Task assignments, machine updates, urgent requests &mdash; buried in group chats that nobody can search.</p>
+        <h3><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Communication chaos</h3>
+        <p>Task assignments and machine updates buried in group chats that nobody can search or reference later.</p>
       </div>
       <div class="problem-card">
-        <span class="icon">&#128196;</span>
-        <h3>Paper Quality Forms</h3>
-        <p>Inspection records, SOP sign-offs, visitor logs &mdash; filed in cabinets that nobody opens until an audit.</p>
+        <h3><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Paper-based quality</h3>
+        <p>Inspection records and SOP sign-offs filed in cabinets that nobody opens until an audit.</p>
       </div>
       <div class="problem-card">
-        <span class="icon">&#128176;</span>
-        <h3>Enterprise Software? Too Expensive.</h3>
+        <h3><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg> Enterprise software is too expensive</h3>
         <p>SAP quotes &pound;85k. Odoo needs IT staff. AMFG costs &pound;30k/year. You just want something that works.</p>
       </div>
     </div>
@@ -258,39 +267,40 @@
 
 <!-- ═══════════════ FEATURES ═══════════════ -->
 <section id="features">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2>Everything You Need. Nothing You Don't.</h2>
-      <p>All core modules included. No add-ons, no per-user fees, no surprises.</p>
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-label">Capabilities</div>
+      <div class="section-title">Everything you need. Nothing you don't.</div>
+      <p class="section-desc">All modules included in every plan. No add-ons, no per-user fees.</p>
     </div>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">&#9881;</div>
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         <h3>Workflow Builder &amp; Execution</h3>
         <p>Visual drag-and-drop builder with quality gates, pass/fail routing, substeps, and resource assignments. Operators execute via browser on any device.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">&#128230;</div>
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
         <h3>Purchasing &amp; Inventory</h3>
         <p>BOMs with full costing. Supplier database. Real-time stock with reorder alerts. Purchase order lifecycle. Auto-deduct on workflow completion.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">&#9989;</div>
+        <svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
         <h3>Quality Management</h3>
         <p>NCRs, corrective actions, evidence capture. SOP versioning with operator confirmation. Full audit trail for AS9100 and ISO 9001.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">&#128295;</div>
+        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
         <h3>Resources &amp; Equipment</h3>
         <p>Machine registry, maintenance scheduling, calibration tracking, usage logging. Assign equipment directly to workflow steps.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">&#128100;</div>
+        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         <h3>HR &amp; Timesheets</h3>
         <p>Clock in/out, timesheets, holiday requests with approval, sick leave tracking, skills and certifications management.</p>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">&#128200;</div>
+        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
         <h3>Reporting &amp; Traceability</h3>
         <p>Customers, contracts, products. Customisable reports. Full part traceability. Complete audit logging of every action.</p>
       </div>
@@ -298,197 +308,43 @@
   </div>
 </section>
 
-<!-- ═══════════════ SCREENSHOT ═══════════════ -->
-<section class="alt-bg screenshot-section">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2>See It in Action</h2>
-      <p>A clean, modern interface that works on desktops, tablets, and phones.</p>
-    </div>
-    <div class="screenshot-placeholder">
-      [Screenshots coming soon &mdash; dashboard, workflow builder, operator view, inventory]
-    </div>
-  </div>
-</section>
-
 <!-- ═══════════════ HOW IT WORKS ═══════════════ -->
-<section id="how-it-works">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2>Up and Running in 5 Minutes</h2>
-      <p>No cloud setup. No database configuration. No IT department needed.</p>
+<section class="alt-bg" id="how-it-works">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-label">Getting Started</div>
+      <div class="section-title">Up and running in 5 minutes</div>
+      <p class="section-desc">No cloud setup. No database configuration. No IT department required.</p>
     </div>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <h3>Download</h3>
-        <p>Get the installer (one .exe file, under 100MB)</p>
-      </div>
-      <div class="step-arrow">&rarr;</div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <h3>Install</h3>
-        <p>Double-click and follow the wizard. Takes 2 minutes.</p>
-      </div>
-      <div class="step-arrow">&rarr;</div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <h3>Launch</h3>
-        <p>The server starts automatically on your PC.</p>
-      </div>
-      <div class="step-arrow">&rarr;</div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <h3>Connect</h3>
-        <p>Your team opens a browser on any device. That's it.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ WHY AM-TRACK ═══════════════ -->
-<section class="alt-bg" id="why">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2>Why AM-Track?</h2>
-      <p>Built by someone who works on the shop floor, not in a software office.</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-num">01</div>
-        <div>
-          <h3>Radically Affordable</h3>
-          <p>&pound;29/month for up to 15 users. No per-seat fees. Below the "need-to-think-about-it" threshold for any business owner.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-num">02</div>
-        <div>
-          <h3>Your Data Stays On-Site</h3>
-          <p>Runs entirely on your LAN. Nothing goes to the cloud. Perfect for defence, aerospace, and medical device companies.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-num">03</div>
-        <div>
-          <h3>Zero Friction Setup</h3>
-          <p>If you can install Spotify, you can install AM-Track. No Docker, no databases, no IT consultants.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-num">04</div>
-        <div>
-          <h3>Built for AM</h3>
-          <p>Not a generic ERP forced into manufacturing. Built from day one for additive manufacturing workflows.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-num">05</div>
-        <div>
-          <h3>Compliance-Ready</h3>
-          <p>Full audit trail, SOP versioning, evidence capture, risk assessments, and traceability for AS9100 and ISO 9001.</p>
-        </div>
-      </div>
-      <div class="why-card">
-        <div class="why-num">06</div>
-        <div>
-          <h3>Works on Any Device</h3>
-          <p>Desktop, tablet, phone. Operators use it with gloves on. No separate mobile app to install.</p>
-        </div>
-      </div>
+    <div class="steps-row">
+      <div class="step-card"><div class="step-num">1</div><h3>Download</h3><p>One installer, under 100MB</p></div>
+      <div class="step-card"><div class="step-num">2</div><h3>Install</h3><p>Double-click and follow the wizard</p></div>
+      <div class="step-card"><div class="step-num">3</div><h3>Launch</h3><p>Server starts automatically</p></div>
+      <div class="step-card"><div class="step-num">4</div><h3>Connect</h3><p>Team opens browser on any device</p></div>
     </div>
   </div>
 </section>
 
 <!-- ═══════════════ COMPARISON ═══════════════ -->
 <section id="comparison">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2>How We Compare</h2>
-      <p>More features. Less cost. No complexity.</p>
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-label">Comparison</div>
+      <div class="section-title">How we compare</div>
+      <p class="section-desc">More features. Less cost. No complexity.</p>
     </div>
     <div class="comparison-wrapper">
       <table class="comparison">
-        <tr>
-          <th>Capability</th>
-          <th>AM-Track</th>
-          <th>SAP B1</th>
-          <th>Odoo</th>
-          <th>AMFG</th>
-          <th>Spreadsheets</th>
-        </tr>
-        <tr>
-          <td>Workflow Builder</td>
-          <td class="amtrack-col yes">Yes</td>
-          <td class="no">No</td>
-          <td class="partial">Basic</td>
-          <td class="yes">Yes</td>
-          <td class="no">No</td>
-        </tr>
-        <tr>
-          <td>Shop Floor Execution</td>
-          <td class="amtrack-col yes">Yes</td>
-          <td class="no">No</td>
-          <td class="no">No</td>
-          <td class="yes">Yes</td>
-          <td class="no">No</td>
-        </tr>
-        <tr>
-          <td>BOM &amp; Purchasing</td>
-          <td class="amtrack-col yes">Yes</td>
-          <td class="yes">Yes</td>
-          <td class="yes">Yes</td>
-          <td class="no">No</td>
-          <td class="partial">Manual</td>
-        </tr>
-        <tr>
-          <td>Quality / NCR</td>
-          <td class="amtrack-col yes">Yes</td>
-          <td class="partial">Add-on</td>
-          <td class="partial">Add-on</td>
-          <td class="partial">Basic</td>
-          <td class="no">No</td>
-        </tr>
-        <tr>
-          <td>HR / Timesheets</td>
-          <td class="amtrack-col yes">Yes</td>
-          <td class="partial">Add-on</td>
-          <td class="yes">Yes</td>
-          <td class="no">No</td>
-          <td class="partial">Manual</td>
-        </tr>
-        <tr>
-          <td>Local / No Cloud</td>
-          <td class="amtrack-col yes">Yes</td>
-          <td class="yes">Yes</td>
-          <td class="partial">Self-host</td>
-          <td class="no">Cloud only</td>
-          <td class="yes">Yes</td>
-        </tr>
-        <tr>
-          <td>AM-Specific</td>
-          <td class="amtrack-col yes">Yes</td>
-          <td class="no">No</td>
-          <td class="no">No</td>
-          <td class="yes">Yes</td>
-          <td class="no">No</td>
-        </tr>
-        <tr>
-          <td>Setup Time</td>
-          <td class="amtrack-col" style="color:var(--indigo-600);font-weight:700">5 min</td>
-          <td>6-12 months</td>
-          <td>2-4 weeks</td>
-          <td>1-2 weeks</td>
-          <td>Immediate</td>
-        </tr>
-        <tr>
-          <td><strong>Cost (15 users/year)</strong></td>
-          <td class="amtrack-col" style="color:var(--indigo-600);font-weight:700">&pound;348</td>
-          <td>&pound;27,000+</td>
-          <td>&pound;7,500+</td>
-          <td>&pound;30,000+</td>
-          <td>&pound;0</td>
-        </tr>
+        <tr><th>Capability</th><th>AM-Track</th><th>SAP B1</th><th>Odoo</th><th>AMFG</th><th>Spreadsheets</th></tr>
+        <tr><td>Workflow Builder</td><td class="hl yes">Yes</td><td class="no">No</td><td class="partial">Basic</td><td class="yes">Yes</td><td class="no">No</td></tr>
+        <tr><td>Shop Floor Execution</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr>
+        <tr><td>BOM &amp; Purchasing</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr>
+        <tr><td>Quality / NCR</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="partial">Basic</td><td class="no">No</td></tr>
+        <tr><td>HR / Timesheets</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr>
+        <tr><td>Local / No Cloud</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="partial">Self-host</td><td class="no">Cloud only</td><td class="yes">Yes</td></tr>
+        <tr><td>AM-Specific</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr>
+        <tr><td>Setup Time</td><td class="hl" style="color:var(--accent);font-weight:700">5 min</td><td>6-12 months</td><td>2-4 weeks</td><td>1-2 weeks</td><td>Immediate</td></tr>
+        <tr><td><strong>Cost (15 users/year)</strong></td><td class="hl" style="color:var(--accent);font-weight:700">&pound;348</td><td>&pound;27,000+</td><td>&pound;7,500+</td><td>&pound;30,000+</td><td>&pound;0</td></tr>
       </table>
     </div>
   </div>
@@ -496,10 +352,11 @@
 
 <!-- ═══════════════ PRICING ═══════════════ -->
 <section class="alt-bg" id="pricing">
-  <div class="section-inner">
-    <div class="section-header">
-      <h2>Simple, Honest Pricing</h2>
-      <p>No per-user fees. No hidden costs. No cloud bills. Cancel anytime.</p>
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-label">Pricing</div>
+      <div class="section-title">Simple, honest pricing</div>
+      <p class="section-desc">No per-user fees. No hidden costs. No cloud bills. Cancel anytime.</p>
     </div>
     <div class="pricing-grid">
       <div class="price-card">
@@ -508,13 +365,13 @@
         <div class="price-period">per month</div>
         <div class="price-desc">For small workshops up to 15 people.</div>
         <ul class="price-features">
-          <li>Up to 15 users</li>
-          <li>All core modules</li>
-          <li>Auto-updates</li>
-          <li>Community support</li>
-          <li>30-day free trial</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Up to 15 users</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> All core modules</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Auto-updates</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Community support</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
         </ul>
-        <a href="#download" class="price-btn price-btn-outline">Start Free Trial</a>
+        <a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a>
       </div>
       <div class="price-card featured">
         <h3>Professional</h3>
@@ -522,13 +379,13 @@
         <div class="price-period">per month</div>
         <div class="price-desc">For growing teams that need more.</div>
         <ul class="price-features">
-          <li>Unlimited users</li>
-          <li>All modules</li>
-          <li>Priority support</li>
-          <li>Custom reports</li>
-          <li>30-day free trial</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Unlimited users</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> All modules</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Custom reports</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
         </ul>
-        <a href="#download" class="price-btn price-btn-primary">Start Free Trial</a>
+        <a href="#download" class="price-btn btn-accent">Start Free Trial</a>
       </div>
       <div class="price-card">
         <h3>Enterprise</h3>
@@ -536,36 +393,97 @@
         <div class="price-period">per month</div>
         <div class="price-desc">Multi-site with dedicated support.</div>
         <ul class="price-features">
-          <li>Multi-site deployment</li>
-          <li>Custom integrations</li>
-          <li>Dedicated support &amp; SLA</li>
-          <li>On-site training available</li>
-          <li>30-day free trial</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Multi-site deployment</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Custom integrations</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Dedicated support &amp; SLA</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> On-site training</li>
+          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
         </ul>
-        <a href="#download" class="price-btn price-btn-outline">Contact Us</a>
+        <a href="#contact" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Contact Us</a>
       </div>
     </div>
-    <p style="text-align:center;margin-top:32px;color:var(--slate-400);font-size:14px">Prefer a one-time purchase? &pound;1,995 perpetual licence with 12 months of updates included.</p>
+    <p style="text-align:center;margin-top:28px;color:var(--slate-400);font-size:13px">Prefer a one-time purchase? &pound;1,995 perpetual licence with 12 months of updates included.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About Us</div>
+        <div class="section-title">Built on the shop floor,<br>not in a software office.</div>
+        <p>AM-Track was created by an additive manufacturing professional who experienced first-hand the gap between expensive enterprise software and inadequate spreadsheets.</p>
+        <p>We understand the daily challenges of running an AM shop &mdash; tracking builds, managing inventory, meeting compliance requirements, and keeping a team organised &mdash; because we live it.</p>
+        <p>Our mission is to give every small and medium manufacturer access to the same operational tools that large corporations use, at a price that makes sense.</p>
+      </div>
+      <div class="about-values">
+        <div class="about-value">
+          <h4>Local-first</h4>
+          <p>Your data stays on your hardware. Nothing leaves your building. Ever.</p>
+        </div>
+        <div class="about-value">
+          <h4>Purpose-built</h4>
+          <p>Designed specifically for additive manufacturing workflows, not adapted from generic ERP.</p>
+        </div>
+        <div class="about-value">
+          <h4>Affordable</h4>
+          <p>Enterprise capability at a fraction of the cost. No per-user fees, no cloud bills.</p>
+        </div>
+        <div class="about-value">
+          <h4>Compliance-ready</h4>
+          <p>Full audit trail, SOP versioning, and traceability for AS9100 and ISO 9001.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section class="alt-bg" id="contact">
+  <div class="container">
+    <div class="section-header-center">
+      <div class="section-label">Get in Touch</div>
+      <div class="section-title">Contact us</div>
+      <p class="section-desc">Have questions? Need a demo? We're here to help.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <h3>General Enquiries</h3>
+        <p><a href="mailto:info@am-track.co.uk">info@am-track.co.uk</a></p>
+      </div>
+      <div class="contact-card">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <h3>Technical Support</h3>
+        <p><a href="mailto:support@am-track.co.uk">support@am-track.co.uk</a></p>
+      </div>
+      <div class="contact-card">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <h3>Location</h3>
+        <p>United Kingdom</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ═══════════════ CTA / DOWNLOAD ═══════════════ -->
 <section class="cta" id="download">
   <div id="download-form-section">
-    <h2>Ready to Ditch the Spreadsheets?</h2>
-    <p>Fill in your details and download AM-Track instantly. No credit card required.</p>
-    <form id="download-form" style="max-width:480px;margin:32px auto 0;text-align:left">
-      <div style="margin-bottom:14px">
-        <label style="display:block;font-size:13px;color:var(--indigo-200);margin-bottom:4px;font-weight:600">Full Name *</label>
-        <input type="text" id="dl-name" required placeholder="John Smith" style="width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+    <h2>Ready to get started?</h2>
+    <p>Download AM-Track and have your team running on it today. No credit card required.</p>
+    <form id="download-form" style="max-width:440px;margin:0 auto;text-align:left">
+      <div style="margin-bottom:12px">
+        <label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Full Name *</label>
+        <input type="text" id="dl-name" required placeholder="John Smith" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
       </div>
-      <div style="margin-bottom:14px">
-        <label style="display:block;font-size:13px;color:var(--indigo-200);margin-bottom:4px;font-weight:600">Company Name *</label>
-        <input type="text" id="dl-company" required placeholder="Your company name" style="width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+      <div style="margin-bottom:12px">
+        <label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Company Name *</label>
+        <input type="text" id="dl-company" required placeholder="Your company name" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
       </div>
-      <div style="margin-bottom:14px">
-        <label style="display:block;font-size:13px;color:var(--indigo-200);margin-bottom:4px;font-weight:600">Industry *</label>
-        <select id="dl-industry" required style="width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;outline:none;appearance:auto">
+      <div style="margin-bottom:12px">
+        <label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Industry *</label>
+        <select id="dl-industry" required style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit;appearance:auto">
           <option value="" style="color:#333">Select your industry</option>
           <option value="Additive Manufacturing" style="color:#333">Additive Manufacturing / 3D Printing</option>
           <option value="Precision Engineering" style="color:#333">Precision Engineering</option>
@@ -577,29 +495,21 @@
           <option value="Other" style="color:#333">Other</option>
         </select>
       </div>
-      <div style="margin-bottom:20px">
-        <label style="display:block;font-size:13px;color:var(--indigo-200);margin-bottom:4px;font-weight:600">Work Email *</label>
-        <input type="email" id="dl-email" required placeholder="you@company.com" style="width:100%;padding:12px 16px;border-radius:10px;border:2px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:white;font-size:15px;outline:none" onfocus="this.style.borderColor='rgba(255,255,255,0.4)'" onblur="this.style.borderColor='rgba(255,255,255,0.15)'">
+      <div style="margin-bottom:16px">
+        <label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Work Email *</label>
+        <input type="email" id="dl-email" required placeholder="you@company.com" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
       </div>
-      <button type="submit" class="btn-primary" style="width:100%;text-align:center;font-size:17px;padding:16px">Download Free Trial</button>
-      <p style="text-align:center;margin-top:14px;font-size:12px;color:var(--indigo-300)">Windows 10/11 &bull; Under 100MB &bull; 30-day free trial &bull; No credit card</p>
+      <button type="submit" class="btn btn-white" style="width:100%;text-align:center;font-size:15px;padding:12px;cursor:pointer">Download Free Trial</button>
+      <p style="text-align:center;margin-top:12px;font-size:11px;color:#64748b">Windows 10/11 &bull; Under 100MB &bull; 30-day free trial</p>
     </form>
   </div>
   <div id="download-success" style="display:none;text-align:center">
-    <div style="font-size:48px;margin-bottom:16px">&#10003;</div>
-    <h2>Your download is starting!</h2>
-    <p style="color:var(--indigo-200);margin:16px auto;max-width:500px">If the download doesn't start automatically, <a id="manual-download" href="#" style="color:white;font-weight:700;text-decoration:underline">click here</a>.</p>
-    <div style="max-width:520px;margin:28px auto 0;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:12px;padding:24px;text-align:left">
-      <p style="font-size:14px;font-weight:700;color:white;margin-bottom:12px">Installation Note</p>
-      <p style="font-size:13px;color:var(--indigo-200);line-height:1.7;margin:0">
-        Windows may show a <strong style="color:white">"Windows protected your PC"</strong> message. This is normal for new software that hasn't been widely distributed yet.
-        To proceed:
-      </p>
-      <ol style="font-size:13px;color:var(--indigo-200);margin:10px 0 0 20px;line-height:1.8">
-        <li>Click <strong style="color:white">"More info"</strong></li>
-        <li>Click <strong style="color:white">"Run anyway"</strong></li>
-      </ol>
-      <p style="font-size:12px;color:var(--indigo-300);margin:12px 0 0">AM-Track runs entirely on your local network and does not connect to the internet. Your data never leaves your building.</p>
+    <div style="width:56px;height:56px;border-radius:50%;background:rgba(5,150,105,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 20px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <h2>Your download is starting.</h2>
+    <p style="color:#94a3b8;margin:12px auto;max-width:480px;font-size:15px">If the download doesn't start automatically, <a id="manual-download" href="#" style="color:white;font-weight:600;text-decoration:underline">click here</a>.</p>
+    <div style="max-width:480px;margin:28px auto 0;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:20px;text-align:left">
+      <p style="font-size:13px;font-weight:700;color:white;margin-bottom:8px">Installation note</p>
+      <p style="font-size:12px;color:#94a3b8;line-height:1.7;margin:0">Windows may show a <strong style="color:white">"Windows protected your PC"</strong> message. This is standard for new software. Click <strong style="color:white">"More info"</strong> then <strong style="color:white">"Run anyway"</strong> to proceed. AM-Track runs entirely on your local network &mdash; your data never leaves your building.</p>
     </div>
   </div>
 </section>
@@ -607,37 +517,44 @@
 <!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">AM<span>-Track</span></div>
-    <div class="footer-links">
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#comparison">Compare</a>
-      <a href="mailto:info@am-track.co.uk">info@am-track.co.uk</a>
-      <a href="mailto:support@am-track.co.uk">support@am-track.co.uk</a>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-brand-name">AM-Track</div>
+        <p>Manufacturing management, simplified.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#comparison">Compare</a>
+          <a href="#download">Download</a>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="mailto:info@am-track.co.uk">info@am-track.co.uk</a>
+          <a href="mailto:support@am-track.co.uk">support@am-track.co.uk</a>
+        </div>
+      </div>
     </div>
-    <div class="footer-copy">&copy; 2026 AM-Track Ltd. All rights reserved. &bull; Manufacturing Management, Simplified.</div>
+    <div class="footer-bottom">&copy; 2026 AM-Track Ltd. All rights reserved.</div>
   </div>
 </footer>
 
 <script>
-  // Close mobile menu on link click
   document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-      document.querySelector('.nav-links').classList.remove('open');
-    });
+    link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
   });
 
-  // Navbar background on scroll
   window.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY > 10) {
-      nav.style.boxShadow = '0 2px 16px rgba(0,0,0,0.06)';
-    } else {
-      nav.style.boxShadow = 'none';
-    }
+    document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 1px 8px rgba(0,0,0,0.06)' : 'none';
   });
 
-  // Download form
   const DOWNLOAD_URL = 'https://github.com/momoradik/SinTrack/releases/latest/download/AMTrack-Setup-1.6.1.exe';
 
   document.getElementById('download-form').addEventListener('submit', async (e) => {
@@ -654,36 +571,24 @@
       source: 'website',
     };
 
-    // Send lead via Formspree (free — emails you every download)
-    // Replace FORM_ID below with your Formspree form ID after signup
     const FORMSPREE_ID = 'xvzypyel';
     try {
       await fetch('https://formspree.io/f/' + FORMSPREE_ID, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          name: lead.full_name,
-          company: lead.company_name,
-          industry: lead.industry,
-          email: lead.email,
-          _subject: 'New AM-Track Download: ' + lead.company_name,
-        }),
+        body: JSON.stringify({ name: lead.full_name, company: lead.company_name, industry: lead.industry, email: lead.email, _subject: 'New AM-Track Download: ' + lead.company_name }),
       });
     } catch (_) {}
 
-    // Backup: store in localStorage
     try {
       const existing = JSON.parse(localStorage.getItem('amtrack_leads') || '[]');
       existing.push({ ...lead, downloaded_at: new Date().toISOString() });
       localStorage.setItem('amtrack_leads', JSON.stringify(existing));
     } catch (_) {}
 
-    // Show success and redirect to download
     document.getElementById('download-form-section').style.display = 'none';
     document.getElementById('download-success').style.display = 'block';
     document.getElementById('manual-download').href = DOWNLOAD_URL;
-
-    // Redirect to GitHub release download (trusted domain, not blocked)
     window.location.href = DOWNLOAD_URL;
   });
 </script>
