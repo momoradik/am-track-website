@@ -667,18 +667,13 @@
       localStorage.setItem('amtrack_leads', JSON.stringify(existing));
     } catch (_) {}
 
-    // Show success and start download
+    // Show success and redirect to download
     document.getElementById('download-form-section').style.display = 'none';
     document.getElementById('download-success').style.display = 'block';
     document.getElementById('manual-download').href = DOWNLOAD_URL;
 
-    // Auto-start download
-    const a = document.createElement('a');
-    a.href = DOWNLOAD_URL;
-    a.download = '';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    // Redirect to GitHub release download (trusted domain, not blocked)
+    window.location.href = DOWNLOAD_URL;
   });
 </script>
 
