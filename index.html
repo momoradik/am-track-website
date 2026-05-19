@@ -399,7 +399,7 @@
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
         </ul>
         <a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a>
-        <a href="https://buy.stripe.com/test_dRm4gB8gG3ukfX9an4g7e00" target="_blank" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
+        <a href="#" onclick="openBuyModal('starter','https://buy.stripe.com/test_dRm4gB8gG3ukfX9an4g7e00');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
       </div>
       <div class="price-card featured">
         <h3>Professional</h3>
@@ -414,7 +414,7 @@
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
         </ul>
         <a href="#download" class="price-btn btn-accent">Start Free Trial</a>
-        <a href="https://buy.stripe.com/test_3cI00l9kK8OE6mz1Qyg7e01" target="_blank" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
+        <a href="#" onclick="openBuyModal('professional','https://buy.stripe.com/test_3cI00l9kK8OE6mz1Qyg7e01');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
       </div>
       <div class="price-card">
         <h3>Enterprise</h3>
@@ -429,7 +429,7 @@
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
         </ul>
         <a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a>
-        <a href="https://buy.stripe.com/test_aFadRbdB02qg5iv9j0g7e02" target="_blank" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
+        <a href="#" onclick="openBuyModal('enterprise','https://buy.stripe.com/test_aFadRbdB02qg5iv9j0g7e02');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
       </div>
     </div>
     <p style="text-align:center;margin-top:28px;color:var(--slate-400);font-size:13px">Prefer a one-time purchase? &pound;1,995 perpetual licence with 12 months of updates included.</p>
@@ -529,6 +529,10 @@
         <label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Work Email *</label>
         <input type="email" id="dl-email" required placeholder="you@company.com" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'">
       </div>
+      <label style="display:flex;align-items:flex-start;gap:8px;margin-bottom:14px;cursor:pointer">
+        <input type="checkbox" id="dl-terms" required style="width:16px;height:16px;margin-top:2px;accent-color:#6366f1;flex-shrink:0">
+        <span style="font-size:12px;color:#94a3b8;line-height:1.5">I agree to the <a href="terms.html" target="_blank" style="color:white;text-decoration:underline;font-weight:600">Terms & Conditions</a> and Software Licence Agreement.</span>
+      </label>
       <button type="submit" class="btn btn-white" style="width:100%;text-align:center;font-size:15px;padding:12px;cursor:pointer">Download Free Trial</button>
       <p style="text-align:center;margin-top:12px;font-size:11px;color:#64748b">Windows 10/11 &bull; Under 100MB &bull; 30-day free trial</p>
     </form>
@@ -564,6 +568,7 @@
           <h4>Company</h4>
           <a href="#about">About</a>
           <a href="#contact">Contact</a>
+          <a href="terms.html" target="_blank">Terms & Conditions</a>
         </div>
         <div class="footer-col">
           <h4>Contact</h4>
@@ -572,7 +577,7 @@
         </div>
       </div>
     </div>
-    <div class="footer-bottom">&copy; 2026 AMTrack Ltd. All rights reserved.</div>
+    <div class="footer-bottom">&copy; 2026 AMTrack Ltd. All rights reserved. &nbsp;|&nbsp; <a href="terms.html" target="_blank" style="color:#64748b;text-decoration:underline">Terms & Conditions</a></div>
   </div>
 </footer>
 
@@ -585,7 +590,80 @@
     document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 1px 8px rgba(0,0,0,0.06)' : 'none';
   });
 
-  const DOWNLOAD_URL = 'https://github.com/momoradik/SinTrack/releases/latest/download/AMTrack-Setup-1.6.1.exe';
+  const DOWNLOAD_URL = 'https://github.com/momoradik/SinTrack/releases/latest/download/AMTrack-Setup-1.7.0.exe';
+
+  // ─── Buy Now Modal ───
+  function openBuyModal(tier, stripeUrl) {
+    const tierNames = { starter: 'Starter', professional: 'Professional', enterprise: 'Enterprise' };
+    const existing = document.getElementById('buy-modal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'buy-modal';
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)';
+    modal.innerHTML = `
+      <div style="background:white;border-radius:12px;padding:32px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.2);position:relative">
+        <button onclick="document.getElementById('buy-modal').remove()" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8;line-height:1">&times;</button>
+        <h2 style="font-size:20px;font-weight:800;color:#1e1b4b;margin:0 0 4px">Subscribe to ${tierNames[tier] || tier}</h2>
+        <p style="font-size:13px;color:#64748b;margin:0 0 20px">Complete your details to proceed to payment.</p>
+        <form id="buy-form" style="display:flex;flex-direction:column;gap:12px">
+          <div>
+            <label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Full Name *</label>
+            <input type="text" id="buy-name" required placeholder="John Smith" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit" />
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Company Name *</label>
+            <input type="text" id="buy-company" required placeholder="Your company" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit" />
+          </div>
+          <div>
+            <label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Email *</label>
+            <input type="email" id="buy-email" required placeholder="you@company.com" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit" />
+          </div>
+          <label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;margin-top:4px">
+            <input type="checkbox" id="buy-terms" required style="width:16px;height:16px;margin-top:2px;accent-color:#4f46e5;flex-shrink:0" />
+            <span style="font-size:12px;color:#475569;line-height:1.5">I agree to the <a href="terms.html" target="_blank" style="color:#4f46e5;font-weight:600;text-decoration:underline">Terms & Conditions</a> and Software Licence Agreement.</span>
+          </label>
+          <button type="submit" style="background:#4f46e5;color:white;border:none;padding:12px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;margin-top:4px;transition:background 0.2s">Proceed to Payment</button>
+          <p style="text-align:center;font-size:11px;color:#94a3b8;margin:0">Secure payment powered by Stripe</p>
+        </form>
+      </div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+
+    document.getElementById('buy-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Redirecting...';
+      btn.disabled = true;
+
+      // Save lead
+      const lead = {
+        name: document.getElementById('buy-name').value,
+        company: document.getElementById('buy-company').value,
+        email: document.getElementById('buy-email').value,
+        tier: tier,
+        _subject: 'New AMTrack Purchase: ' + document.getElementById('buy-company').value + ' (' + tierNames[tier] + ')',
+      };
+      try {
+        await fetch('https://formspree.io/f/xvzypyel', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(lead),
+        });
+      } catch (_) {}
+
+      // Store locally
+      try {
+        const existing = JSON.parse(localStorage.getItem('amtrack_purchases') || '[]');
+        existing.push({ ...lead, timestamp: new Date().toISOString() });
+        localStorage.setItem('amtrack_purchases', JSON.stringify(existing));
+      } catch (_) {}
+
+      // Open Stripe in new tab
+      window.open(stripeUrl, '_blank');
+      modal.remove();
+    });
+  }
 
   document.getElementById('download-form').addEventListener('submit', async (e) => {
     e.preventDefault();
