@@ -592,6 +592,25 @@
 
   const DOWNLOAD_URL = 'https://github.com/momoradik/SinTrack/releases/latest/download/AMTrack-Setup-1.7.0.exe';
 
+  // ─── Record T&C consent with timestamp (permanent proof) ───
+  function recordConsent(name, email, company, type) {
+    const record = { name, email, company, type, terms_version: '2026-05-19', accepted_at: new Date().toISOString(), user_agent: navigator.userAgent };
+    // Store locally as backup
+    try {
+      const consents = JSON.parse(localStorage.getItem('amtrack_consents') || '[]');
+      consents.push(record);
+      localStorage.setItem('amtrack_consents', JSON.stringify(consents));
+    } catch (_) {}
+    // Send to Formspree as permanent email record
+    try {
+      fetch('https://formspree.io/f/xvzypyel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({ ...record, _subject: 'T&C Accepted: ' + name + ' (' + company + ') — ' + type }),
+      });
+    } catch (_) {}
+  }
+
   // ─── Buy Now Modal ───
   function openBuyModal(tier, stripeUrl) {
     const tierNames = { starter: 'Starter', professional: 'Professional', enterprise: 'Enterprise' };
@@ -659,6 +678,9 @@
         localStorage.setItem('amtrack_purchases', JSON.stringify(existing));
       } catch (_) {}
 
+      // Record T&C acceptance
+      recordConsent(lead.name, lead.email, lead.company, 'purchase_' + tier);
+
       // Open Stripe in new tab
       window.open(stripeUrl, '_blank');
       modal.remove();
@@ -693,6 +715,9 @@
       existing.push({ ...lead, downloaded_at: new Date().toISOString() });
       localStorage.setItem('amtrack_leads', JSON.stringify(existing));
     } catch (_) {}
+
+    // Record T&C acceptance
+    recordConsent(lead.full_name, lead.email, lead.company_name, 'free_trial_download');
 
     document.getElementById('download-form-section').style.display = 'none';
     document.getElementById('download-success').style.display = 'block';
