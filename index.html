@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AMTrack | ERP, MES & QMS for Additive Manufacturing</title>
 <meta name="description" content="All-in-one ERP, MES, QMS and HR platform purpose-built for additive manufacturing and small manufacturing workshops. Local-first, no cloud fees, installs in 5 minutes.">
-<meta name="keywords" content="additive manufacturing software, MES, ERP, QMS, 3D printing management, manufacturing management, AM software, shop floor software, manufacturing workflow, inventory management, quality management system">
+<meta name="keywords" content="additive manufacturing software, MES, ERP, QMS, 3D printing management, manufacturing management, AM software, shop floor software">
 <link rel="icon" type="image/png" href="icon.png">
 <link rel="apple-touch-icon" href="icon.png">
 <link rel="canonical" href="https://am-track.co.uk">
@@ -18,39 +18,22 @@
 <style>
   :root {
     --primary: #4f46e5; --primary-light: #6366f1; --primary-dark: #1e1b4b;
-    --accent: #6366f1; --accent-light: #818cf8; --accent-dark: #4f46e5;
+    --accent: #6366f1; --accent-light: #818cf8;
     --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0;
     --slate-300: #cbd5e1; --slate-400: #94a3b8; --slate-500: #64748b;
     --slate-600: #475569; --slate-700: #334155; --slate-800: #1e293b;
     --slate-900: #0f172a;
-    --green: #059669; --green-light: #d1fae5;
-    --red: #dc2626; --amber: #d97706;
+    --green: #059669; --red: #dc2626; --amber: #d97706;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', -apple-system, system-ui, sans-serif; color: var(--slate-800); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
-  /* ── ANIMATIONS ── */
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes slideLeft { from { opacity: 0; transform: translateX(60px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes slideRight { from { opacity: 0; transform: translateX(-60px); } to { opacity: 1; transform: translateX(0); } }
-  @keyframes drawLine { from { stroke-dashoffset: 200; } to { stroke-dashoffset: 0; } }
-  @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
-  @keyframes typeRow { from { opacity: 0; max-height: 0; } to { opacity: 1; max-height: 40px; } }
-  @keyframes fillBar { from { width: 0; } }
-  @keyframes checkmark { from { stroke-dashoffset: 20; } to { stroke-dashoffset: 0; } }
-  @keyframes spinCube {
-    0% { transform: rotateX(-20deg) rotateY(0deg); }
-    100% { transform: rotateX(-20deg) rotateY(360deg); }
-  }
-  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-  .reveal-left.visible { opacity: 1; transform: translateX(0); }
-  .reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity: 1; transform: none; }
 
   /* ── NAV ── */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-200); }
@@ -59,45 +42,122 @@
   .nav-links { display: flex; gap: 28px; align-items: center; }
   .nav-links a { text-decoration: none; color: var(--slate-600); font-size: 14px; font-weight: 500; transition: color 0.2s; }
   .nav-links a:hover { color: var(--accent); }
-  .nav-cta { background: var(--primary); color: white !important; padding: 8px 20px; border-radius: 6px; font-weight: 600 !important; transition: background 0.2s !important; }
-  .nav-cta:hover { background: var(--accent-dark) !important; }
+  .nav-cta { background: var(--primary); color: white !important; padding: 8px 20px; border-radius: 6px; font-weight: 600 !important; }
+  .nav-cta:hover { background: #4338ca !important; }
   .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
   .menu-toggle span { display: block; width: 22px; height: 2px; background: var(--slate-700); margin: 5px 0; }
 
   /* ── HERO ── */
-  .hero { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4f46e5 100%); color: white; padding: 140px 24px 100px; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-  .hero-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 1; }
+  .hero { background: linear-gradient(135deg, #1e1b4b 0%, #312e81 40%, #4f46e5 100%); color: white; padding: 130px 24px 80px; position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+  .hero-inner { max-width: 1140px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 1.2fr; gap: 48px; align-items: center; position: relative; z-index: 1; }
   .hero-label { display: inline-block; background: rgba(99,102,241,0.2); border: 1px solid rgba(99,102,241,0.3); padding: 4px 14px; border-radius: 4px; font-size: 12px; font-weight: 600; color: #c7d2fe; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px; }
-  .hero h1 { font-size: 46px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 20px; }
+  .hero h1 { font-size: 46px; font-weight: 900; letter-spacing: -1.5px; line-height: 1.08; margin-bottom: 20px; }
   .hero h1 span { background: linear-gradient(135deg, #c7d2fe, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
   .hero p { font-size: 17px; color: #c7d2fe; max-width: 480px; line-height: 1.7; margin-bottom: 32px; }
   .hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
   .btn { display: inline-block; padding: 12px 28px; border-radius: 6px; font-size: 15px; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; }
   .btn-white { background: white; color: var(--primary-dark); }
   .btn-white:hover { background: #f1f5f9; transform: translateY(-1px); }
-  .btn-outline-light { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.2); }
-  .btn-outline-light:hover { border-color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); }
+  .btn-outline-light { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.25); }
+  .btn-outline-light:hover { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.05); }
   .btn-primary { background: var(--primary); color: white; }
   .btn-primary:hover { background: var(--primary-light); }
   .btn-accent { background: var(--primary); color: white; }
-  .btn-accent:hover { background: var(--accent-dark); }
+  .btn-accent:hover { background: #4338ca; }
 
-  /* ── 3D LOGO CUBE ── */
-  .cube-wrapper { perspective: 600px; width: 220px; height: 220px; margin: 0 auto; }
-  .cube { width: 180px; height: 180px; position: relative; transform-style: preserve-3d; animation: spinCube 12s infinite linear; margin: 20px auto; }
-  .cube-face { position: absolute; width: 180px; height: 180px; border-radius: 24px; display: flex; align-items: center; justify-content: center; font-size: 72px; font-weight: 900; color: white; backface-visibility: visible; }
-  .cube-face img { width: 120px; height: 120px; border-radius: 16px; }
-  .cube-front  { background: linear-gradient(135deg, #1e1b4b, #312e81); transform: translateZ(90px); border: 1px solid rgba(99,102,241,0.3); }
-  .cube-back   { background: linear-gradient(135deg, #312e81, #4f46e5); transform: rotateY(180deg) translateZ(90px); border: 1px solid rgba(99,102,241,0.3); }
-  .cube-left   { background: linear-gradient(135deg, #1e1b4b, #4338ca); transform: rotateY(-90deg) translateZ(90px); border: 1px solid rgba(99,102,241,0.3); }
-  .cube-right  { background: linear-gradient(135deg, #4338ca, #4f46e5); transform: rotateY(90deg) translateZ(90px); border: 1px solid rgba(99,102,241,0.3); }
-  .cube-top    { background: linear-gradient(135deg, #312e81, #4338ca); transform: rotateX(90deg) translateZ(90px); border: 1px solid rgba(99,102,241,0.3); }
-  .cube-bottom { background: linear-gradient(135deg, #1e1b4b, #312e81); transform: rotateX(-90deg) translateZ(90px); border: 1px solid rgba(99,102,241,0.3); }
-  .hero-stats-row { display: flex; justify-content: center; gap: 32px; margin-top: 16px; }
-  .hero-stat-mini { text-align: center; }
-  .hero-stat-mini .num { font-size: 28px; font-weight: 900; }
-  .hero-stat-mini .lbl { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+  /* ── HERO APP PREVIEW ── */
+  .hero-app { border-radius: 12px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.08); transform: perspective(1200px) rotateY(-4deg) rotateX(2deg); transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+  .hero-app:hover { transform: perspective(1200px) rotateY(0deg) rotateX(0deg); }
+
+  /* ── FLOATING LOGO ── */
+  @keyframes logoFloat { 0%,100% { transform: translateY(0) scale(1); } 50% { transform: translateY(-6px) scale(1.02); } }
+  @keyframes logoPulseRing { 0% { transform: scale(1); opacity: 0.4; } 100% { transform: scale(2.5); opacity: 0; } }
+  .hero-logo-float { position: absolute; top: -40px; right: -20px; z-index: 2; }
+  .hero-logo-float img { width: 80px; height: 80px; border-radius: 20px; animation: logoFloat 4s ease-in-out infinite; box-shadow: 0 16px 48px rgba(99,102,241,0.4); }
+  .hero-logo-float::before { content: ''; position: absolute; inset: -8px; border-radius: 28px; border: 2px solid rgba(99,102,241,0.3); animation: logoPulseRing 3s ease-out infinite; }
+
+  /* ── REALISTIC APP MOCKUP ── */
+  .app-mock { background: #f3f4f6; font-size: 11px; }
+  .app-topbar { height: 32px; background: #0f172a; display: flex; align-items: center; padding: 0 10px; gap: 8px; }
+  .app-topbar-logo { width: 18px; height: 18px; background: #6366f1; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: white; font-size: 9px; font-weight: 900; }
+  .app-topbar-text { color: white; font-size: 10px; font-weight: 700; }
+  .app-topbar-nav { display: flex; gap: 2px; margin-left: 8px; }
+  .app-topbar-nav span { padding: 3px 8px; border-radius: 4px; font-size: 9px; font-weight: 600; color: #94a3b8; }
+  .app-topbar-nav span.active { background: rgba(255,255,255,0.15); color: white; }
+  .app-topbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .app-topbar-right span { font-size: 9px; color: #64748b; }
+  .app-topbar-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
+  .app-body { display: flex; min-height: 280px; }
+  .app-sidebar { width: 100px; background: white; border-right: 1px solid #e5e7eb; padding: 8px 6px; }
+  .app-sidebar-label { font-size: 8px; font-weight: 700; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 6px; margin-bottom: 2px; }
+  .app-sidebar-item { padding: 5px 8px; border-radius: 6px; font-size: 9px; font-weight: 500; color: #6b7280; margin-bottom: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .app-sidebar-item.active { background: #eef2ff; color: #4f46e5; font-weight: 600; }
+  .app-main { flex: 1; padding: 12px; overflow: hidden; }
+
+  /* ── WORKFLOW CANVAS ── */
+  .wf-canvas { position: relative; height: 256px; background: white; border-radius: 8px; border: 1px solid #e5e7eb; overflow: hidden; }
+  .wf-grid { position: absolute; inset: 0; background-image: radial-gradient(circle, #e5e7eb 1px, transparent 1px); background-size: 20px 20px; }
+  .wf-node { position: absolute; background: white; border-radius: 10px; border: 1px solid #e5e7eb; padding: 6px 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); opacity: 0; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; gap: 2px; min-width: 100px; }
+  .wf-node.show { opacity: 1; }
+  .wf-node.selected { border-color: #6366f1; box-shadow: 0 0 0 2px rgba(99,102,241,0.2), 0 2px 8px rgba(0,0,0,0.08); }
+  .wf-node-color { position: absolute; left: 0; top: 0; bottom: 0; width: 4px; border-radius: 10px 0 0 10px; }
+  .wf-node-type { font-size: 7px; font-weight: 600; padding: 1px 4px; border-radius: 3px; display: inline-block; width: fit-content; }
+  .wf-node-name { font-size: 9px; font-weight: 700; color: #1f2937; }
+  .wf-port { position: absolute; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid #d1d5db; background: white; }
+  .wf-port-in { top: -4px; left: 50%; transform: translateX(-50%); }
+  .wf-port-out { bottom: -4px; display: flex; gap: 3px; }
+  .wf-port.pass { border-color: #16a34a; } .wf-port.pass.filled { background: #16a34a; }
+  .wf-port.fail { border-color: #dc2626; } .wf-port.fail.filled { background: #dc2626; }
+  .wf-svg { position: absolute; inset: 0; pointer-events: none; }
+  .wf-svg path { fill: none; stroke-width: 2; stroke-linecap: round; opacity: 0; transition: opacity 0.6s; }
+  .wf-svg path.show { opacity: 1; }
+
+  /* ── INV TABLE MOCKUP ── */
+  .inv-t { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb; }
+  .inv-t th { text-align: left; padding: 6px 8px; font-size: 9px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.3px; border-bottom: 1px solid #f1f5f9; background: #fafafa; }
+  .inv-t td { padding: 7px 8px; border-bottom: 1px solid #f8fafc; font-size: 10px; color: #374151; }
+  .inv-t tr { opacity: 0; transform: translateY(8px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .inv-t tr.show { opacity: 1; transform: none; }
+  .inv-code { font-family: monospace; font-size: 9px; color: #9ca3af; }
+  .inv-name { font-weight: 600; color: #111827; }
+  .inv-badge { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 8px; font-weight: 600; }
+  .inv-stock { font-family: monospace; font-weight: 700; text-align: right; }
+  .inv-stock.ok { color: #059669; } .inv-stock.low { color: #dc2626; }
+
+  /* ── QUALITY MOCKUP ── */
+  .q-item { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #f8fafc; border-radius: 6px; margin-bottom: 6px; opacity: 0; transform: translateY(8px); transition: all 0.4s ease; }
+  .q-item.show { opacity: 1; transform: none; }
+  .q-box { width: 18px; height: 18px; border-radius: 5px; border: 2px solid #d1d5db; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+  .q-item.done .q-box { background: #059669; border-color: #059669; }
+  .q-item.done .q-box::after { content: ''; display: block; width: 5px; height: 8px; border: solid white; border-width: 0 2px 2px 0; transform: rotate(45deg) translate(-1px, -1px); }
+  .q-label { flex: 1; font-size: 10px; color: #374151; font-weight: 500; }
+  .q-status { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; }
+  .q-status.pass { color: #059669; } .q-status.pending { color: #d97706; }
+
+  /* ── HR MOCKUP ── */
+  .hr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hr-c { background: white; border: 1px solid #f1f5f9; border-radius: 8px; padding: 10px; opacity: 0; transform: scale(0.92); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .hr-c.show { opacity: 1; transform: none; }
+  .hr-top { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+  .hr-av { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: 800; color: white; flex-shrink: 0; }
+  .hr-info .hr-nm { font-size: 10px; font-weight: 700; color: #111827; }
+  .hr-info .hr-rl { font-size: 8px; color: #9ca3af; }
+  .hr-sk { display: inline-block; padding: 1px 5px; border-radius: 3px; font-size: 7px; font-weight: 600; margin-right: 2px; }
+  .hr-st { display: flex; align-items: center; gap: 3px; font-size: 8px; font-weight: 600; margin-top: 5px; }
+  .hr-dot { width: 5px; height: 5px; border-radius: 50%; }
+  .hr-dot.on { background: #22c55e; } .hr-dot.off { background: #d1d5db; }
+
+  /* ── REPORT MOCKUP ── */
+  .rpt-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 10px; }
+  .rpt-kpi { background: white; border: 1px solid #f1f5f9; border-radius: 6px; padding: 8px; text-align: center; }
+  .rpt-kpi .rpt-num { font-size: 16px; font-weight: 800; color: #111827; }
+  .rpt-kpi .rpt-lbl { font-size: 7px; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.5px; }
+  .rpt-bars { display: flex; align-items: flex-end; gap: 6px; height: 90px; }
+  .rpt-bar { flex: 1; border-radius: 3px 3px 0 0; transition: height 1s cubic-bezier(0.16, 1, 0.3, 1); height: 0; }
+  .rpt-bar.show { height: var(--h); }
+  .rpt-lbls { display: flex; gap: 6px; margin-top: 3px; }
+  .rpt-lbls span { flex: 1; text-align: center; font-size: 7px; color: #9ca3af; font-weight: 600; }
 
   /* ── SECTIONS ── */
   section { padding: 96px 24px; }
@@ -109,99 +169,23 @@
   .section-header-center .section-desc { margin: 0 auto; }
   .alt-bg { background: var(--slate-50); }
 
-  /* ── TRUST BAR ── */
-  .trust-bar { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; align-items: center; text-align: center; }
-  .trust-item { display: flex; align-items: center; gap: 10px; color: var(--slate-500); font-size: 13px; font-weight: 600; }
-  .trust-item svg { flex-shrink: 0; }
-
-  /* ── FEATURE SHOWCASE ── */
-  .showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 80px; }
+  /* ── SHOWCASE (feature + mockup pairs) ── */
+  .showcase { display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; margin-bottom: 100px; }
   .showcase:last-child { margin-bottom: 0; }
-  .showcase.reverse { direction: rtl; }
-  .showcase.reverse > * { direction: ltr; }
-  .showcase-text .section-label { margin-bottom: 8px; }
-  .showcase-text h3 { font-size: 26px; font-weight: 800; color: var(--slate-900); letter-spacing: -0.3px; margin-bottom: 12px; }
-  .showcase-text p { font-size: 15px; color: var(--slate-500); line-height: 1.7; margin-bottom: 16px; }
-  .showcase-text ul { list-style: none; padding: 0; }
-  .showcase-text ul li { font-size: 14px; color: var(--slate-600); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
-  .showcase-text ul li svg { width: 16px; height: 16px; stroke: var(--green); fill: none; stroke-width: 2.5; flex-shrink: 0; }
-
-  /* ── APP MOCKUPS ── */
-  .mockup { background: white; border-radius: 12px; border: 1px solid var(--slate-200); box-shadow: 0 20px 60px rgba(0,0,0,0.08); overflow: hidden; }
-  .mockup-bar { height: 36px; background: var(--slate-900); display: flex; align-items: center; padding: 0 12px; gap: 6px; }
-  .mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .mockup-dot.r { background: #ef4444; } .mockup-dot.y { background: #eab308; } .mockup-dot.g { background: #22c55e; }
-  .mockup-bar-title { color: var(--slate-400); font-size: 11px; margin-left: 8px; font-weight: 500; }
-  .mockup-body { padding: 20px; min-height: 280px; position: relative; }
-  .mockup-sidebar { position: absolute; left: 0; top: 0; bottom: 0; width: 48px; background: var(--slate-900); display: flex; flex-direction: column; align-items: center; padding-top: 12px; gap: 14px; }
-  .mockup-sidebar .sb-icon { width: 24px; height: 24px; border-radius: 6px; background: rgba(255,255,255,0.08); }
-  .mockup-sidebar .sb-icon.active { background: var(--primary); }
-  .mockup-content { margin-left: 60px; }
-
-  /* Workflow Mockup */
-  .wf-nodes { position: relative; height: 220px; }
-  .wf-node { position: absolute; background: white; border: 2px solid var(--slate-200); border-radius: 10px; padding: 8px 14px; font-size: 11px; font-weight: 600; color: var(--slate-700); box-shadow: 0 2px 8px rgba(0,0,0,0.06); opacity: 0; transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-  .wf-node.show { opacity: 1; }
-  .wf-node.start { border-color: var(--green); color: var(--green); }
-  .wf-node.process { border-color: var(--primary); color: var(--primary); }
-  .wf-node.quality { border-color: var(--amber); color: var(--amber); }
-  .wf-node.end { border-color: var(--green); background: var(--green); color: white; }
-  .wf-arrow { position: absolute; stroke: var(--slate-300); fill: none; stroke-width: 2; stroke-dasharray: 200; stroke-dashoffset: 200; }
-  .wf-arrow.show { animation: drawLine 0.8s ease forwards; }
-
-  /* Inventory Mockup */
-  .inv-table { width: 100%; font-size: 11px; border-collapse: collapse; }
-  .inv-table th { text-align: left; padding: 6px 8px; color: var(--slate-400); font-weight: 600; text-transform: uppercase; font-size: 10px; letter-spacing: 0.5px; border-bottom: 1px solid var(--slate-100); }
-  .inv-table td { padding: 8px; border-bottom: 1px solid var(--slate-50); color: var(--slate-700); }
-  .inv-row { opacity: 0; transform: translateX(-20px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-  .inv-row.show { opacity: 1; transform: translateX(0); }
-  .inv-stock { font-weight: 700; font-family: 'Inter', monospace; }
-  .inv-stock.low { color: var(--red); }
-  .inv-stock.ok { color: var(--green); }
-  .inv-badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 600; }
-  .inv-badge.type { background: #eef2ff; color: var(--primary); }
-  .inv-badge.supplier { background: #f0fdf4; color: var(--green); }
-
-  /* Quality Mockup */
-  .q-checks { display: flex; flex-direction: column; gap: 10px; }
-  .q-check { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: var(--slate-50); border-radius: 8px; font-size: 12px; color: var(--slate-600); opacity: 0; transform: translateY(10px); transition: all 0.4s ease; }
-  .q-check.show { opacity: 1; transform: translateY(0); }
-  .q-check .q-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--slate-300); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s; }
-  .q-check.done .q-box { background: var(--green); border-color: var(--green); }
-  .q-check.done .q-box svg { opacity: 1; }
-  .q-check .q-box svg { width: 14px; height: 14px; stroke: white; stroke-width: 3; fill: none; opacity: 0; transition: opacity 0.3s; }
-  .q-check .q-label { flex: 1; font-weight: 500; }
-  .q-check .q-status { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
-  .q-check.done .q-status { color: var(--green); }
-  .q-check.pending .q-status { color: var(--amber); }
-
-  /* HR Mockup */
-  .hr-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .hr-card { background: var(--slate-50); border-radius: 10px; padding: 14px; opacity: 0; transform: scale(0.9); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-  .hr-card.show { opacity: 1; transform: scale(1); }
-  .hr-card .hr-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: white; margin-bottom: 8px; }
-  .hr-card .hr-name { font-size: 12px; font-weight: 700; color: var(--slate-800); }
-  .hr-card .hr-role { font-size: 10px; color: var(--slate-400); margin-bottom: 8px; }
-  .hr-card .hr-skill { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 9px; font-weight: 600; margin-right: 3px; margin-bottom: 3px; }
-  .hr-status { display: flex; align-items: center; gap: 4px; margin-top: 6px; font-size: 10px; font-weight: 600; }
-  .hr-status .dot { width: 6px; height: 6px; border-radius: 50%; }
-  .hr-status .dot.on { background: var(--green); }
-  .hr-status .dot.off { background: var(--slate-300); }
-
-  /* Reporting Mockup */
-  .rpt-bars { display: flex; align-items: flex-end; gap: 8px; height: 140px; padding-top: 20px; }
-  .rpt-bar { flex: 1; border-radius: 4px 4px 0 0; transition: height 1s cubic-bezier(0.16, 1, 0.3, 1); height: 0; }
-  .rpt-bar.show { height: var(--h); }
-  .rpt-labels { display: flex; gap: 8px; margin-top: 6px; }
-  .rpt-labels span { flex: 1; text-align: center; font-size: 9px; color: var(--slate-400); font-weight: 600; }
-  .rpt-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-top: 16px; }
-  .rpt-kpi { background: var(--slate-50); border-radius: 8px; padding: 10px; text-align: center; }
-  .rpt-kpi .rpt-num { font-size: 18px; font-weight: 800; color: var(--slate-800); }
-  .rpt-kpi .rpt-lbl { font-size: 9px; color: var(--slate-400); text-transform: uppercase; letter-spacing: 0.5px; }
+  .showcase.reverse { grid-template-columns: 1.15fr 1fr; }
+  .showcase.reverse .sc-text { order: 2; }
+  .showcase.reverse .sc-mock { order: 1; }
+  .sc-text .section-label { margin-bottom: 8px; }
+  .sc-text h3 { font-size: 26px; font-weight: 800; color: var(--slate-900); letter-spacing: -0.3px; margin-bottom: 12px; }
+  .sc-text p { font-size: 15px; color: var(--slate-500); line-height: 1.7; margin-bottom: 16px; }
+  .sc-text ul { list-style: none; padding: 0; }
+  .sc-text ul li { font-size: 14px; color: var(--slate-600); padding: 4px 0; display: flex; align-items: center; gap: 8px; }
+  .sc-text ul li::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: #d1fae5; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='%23059669' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E"); background-size: 10px; background-repeat: no-repeat; background-position: center; }
+  .sc-mock { border-radius: 12px; overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.1), 0 0 0 1px var(--slate-200); }
 
   /* ── PROBLEM ── */
   .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
-  .problem-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 24px; transition: all 0.3s ease; }
+  .problem-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 24px; transition: all 0.3s; }
   .problem-card:hover { border-color: var(--slate-300); box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
   .problem-card h3 { font-size: 15px; font-weight: 700; color: var(--slate-800); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
   .problem-card h3 svg { width: 18px; height: 18px; stroke: var(--primary-light); fill: none; stroke-width: 2; flex-shrink: 0; }
@@ -228,7 +212,7 @@
 
   /* ── PRICING ── */
   .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 960px; margin: 0 auto; }
-  .price-card { background: white; border: 1px solid var(--slate-200); border-radius: 10px; padding: 32px; text-align: center; transition: all 0.3s ease; }
+  .price-card { background: white; border: 1px solid var(--slate-200); border-radius: 10px; padding: 32px; text-align: center; transition: all 0.3s; }
   .price-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
   .price-card.featured { border: 2px solid var(--primary-light); position: relative; }
   .price-card.featured::before { content: 'Most Popular'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: white; padding: 3px 14px; border-radius: 4px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
@@ -245,14 +229,14 @@
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
   .about-text p { font-size: 15px; color: var(--slate-600); margin-bottom: 16px; line-height: 1.7; }
   .about-values { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .about-value { padding: 20px; border: 1px solid var(--slate-200); border-radius: 8px; background: var(--slate-50); transition: all 0.3s ease; }
+  .about-value { padding: 20px; border: 1px solid var(--slate-200); border-radius: 8px; background: var(--slate-50); transition: all 0.3s; }
   .about-value:hover { border-color: var(--accent-light); background: white; }
   .about-value h4 { font-size: 14px; font-weight: 700; color: var(--slate-800); margin-bottom: 4px; }
   .about-value p { font-size: 12px; color: var(--slate-500); margin: 0; line-height: 1.5; }
 
   /* ── CONTACT ── */
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-top: 40px; }
-  .contact-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 28px; text-align: center; transition: all 0.3s ease; }
+  .contact-card { background: white; border: 1px solid var(--slate-200); border-radius: 8px; padding: 28px; text-align: center; transition: all 0.3s; }
   .contact-card:hover { border-color: var(--accent-light); box-shadow: 0 4px 12px rgba(79,70,229,0.08); }
   .contact-card svg { width: 32px; height: 32px; stroke: var(--primary-light); fill: none; stroke-width: 1.5; margin-bottom: 12px; }
   .contact-card h3 { font-size: 14px; font-weight: 700; color: var(--slate-800); margin-bottom: 4px; }
@@ -279,28 +263,20 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .hero-inner { grid-template-columns: 1fr; text-align: center; }
-    .hero p { margin: 0 auto 32px; }
-    .hero-buttons { justify-content: center; }
+    .hero p { margin: 0 auto 32px; } .hero-buttons { justify-content: center; }
     .hero h1 { font-size: 34px; }
-    .showcase { grid-template-columns: 1fr; gap: 32px; }
-    .showcase.reverse { direction: ltr; }
+    .hero-app { transform: none; margin-top: 32px; }
+    .hero-app:hover { transform: none; }
+    .hero-logo-float { top: -30px; right: 10px; }
+    .hero-logo-float img { width: 56px; height: 56px; }
+    .showcase, .showcase.reverse { grid-template-columns: 1fr; gap: 32px; }
+    .showcase.reverse .sc-text { order: 0; } .showcase.reverse .sc-mock { order: 0; }
     .problem-grid { grid-template-columns: 1fr; }
     .pricing-grid { grid-template-columns: 1fr; max-width: 380px; }
     .steps-row { grid-template-columns: repeat(2, 1fr); }
     .about-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
-    .comparison th, .comparison td { padding: 8px 10px; font-size: 11px; }
     section { padding: 64px 20px; }
-    .cube-wrapper { width: 160px; height: 160px; }
-    .cube { width: 130px; height: 130px; }
-    .cube-face { width: 130px; height: 130px; }
-    .cube-face img { width: 80px; height: 80px; }
-    .cube-front, .cube-back { transform: translateZ(65px); }
-    .cube-back { transform: rotateY(180deg) translateZ(65px); }
-    .cube-left { transform: rotateY(-90deg) translateZ(65px); }
-    .cube-right { transform: rotateY(90deg) translateZ(65px); }
-    .cube-top { transform: rotateX(90deg) translateZ(65px); }
-    .cube-bottom { transform: rotateX(-90deg) translateZ(65px); }
   }
   @media (max-width: 640px) {
     .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; gap: 14px; border-bottom: 1px solid var(--slate-200); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
@@ -312,586 +288,353 @@
     .footer-top { flex-direction: column; }
     .footer-cols { flex-direction: column; gap: 24px; }
     .about-values { grid-template-columns: 1fr; }
-    .hr-cards { grid-template-columns: 1fr; }
+    .hr-grid { grid-template-columns: 1fr; }
+    .app-sidebar { display: none; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="logo"><img src="icon.png" alt="AMTrack" style="width:32px;height:32px;border-radius:8px"> AMTrack</a>
-    <button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-    <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="#download" class="nav-cta">Free Trial</a>
-    </div>
-  </div>
-</nav>
+<nav><div class="nav-inner"><a href="#" class="logo"><img src="icon.png" alt="AMTrack" style="width:32px;height:32px;border-radius:8px"> AMTrack</a><button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu"><span></span><span></span><span></span></button><div class="nav-links"><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#about">About</a><a href="#contact">Contact</a><a href="#download" class="nav-cta">Free Trial</a></div></div></nav>
 
-<!-- HERO -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-label">ERP + MES + QMS + HR &mdash; One Platform</div>
+      <div class="hero-label">ERP + MES + QMS + HR</div>
       <h1>Run your entire workshop from <span>one screen.</span></h1>
-      <p>Workflows, inventory, quality, purchasing, HR, traceability &mdash; all in one local app. Purpose-built for additive manufacturing and small-to-medium workshops.</p>
+      <p>Workflows, inventory, quality, purchasing, HR, traceability &mdash; all in one local app. Purpose-built for additive manufacturing and small workshops.</p>
       <div class="hero-buttons">
         <a href="#download" class="btn btn-white">Start Free Trial</a>
         <a href="#features" class="btn btn-outline-light">See All Features</a>
       </div>
     </div>
-    <div style="text-align:center">
-      <div class="cube-wrapper">
-        <div class="cube">
-          <div class="cube-face cube-front"><img src="icon.png" alt="AMTrack"></div>
-          <div class="cube-face cube-back"><img src="icon.png" alt="AMTrack"></div>
-          <div class="cube-face cube-left" style="font-size:48px;font-weight:900;color:#a5b4fc">MES</div>
-          <div class="cube-face cube-right" style="font-size:48px;font-weight:900;color:#a5b4fc">ERP</div>
-          <div class="cube-face cube-top" style="font-size:48px;font-weight:900;color:#a5b4fc">QMS</div>
-          <div class="cube-face cube-bottom" style="font-size:48px;font-weight:900;color:#a5b4fc">HR</div>
+    <div style="position:relative">
+      <div class="hero-logo-float"><img src="icon.png" alt="AMTrack"></div>
+      <div class="hero-app app-mock">
+        <div class="app-topbar">
+          <div class="app-topbar-logo">A</div>
+          <span class="app-topbar-text">AMTrack</span>
+          <div class="app-topbar-nav">
+            <span>Dashboard</span>
+            <span class="active">Workflow</span>
+            <span>Purchasing</span>
+            <span>Quality</span>
+            <span>HR</span>
+          </div>
+          <div class="app-topbar-right"><div class="app-topbar-dot"></div><span>Admin</span></div>
+        </div>
+        <div class="app-body">
+          <div class="app-sidebar">
+            <div class="app-sidebar-label">Operations</div>
+            <div class="app-sidebar-item">Formulation</div>
+            <div class="app-sidebar-item active">3D Printing</div>
+            <div class="app-sidebar-item">Sintering</div>
+            <div class="app-sidebar-item">CMM Inspect</div>
+            <div class="app-sidebar-item">Sanding</div>
+            <div class="app-sidebar-item">Post-Process</div>
+            <div class="app-sidebar-label" style="margin-top:6px">Outcomes</div>
+            <div class="app-sidebar-item">Product</div>
+            <div class="app-sidebar-item">Waste</div>
+          </div>
+          <div class="app-main">
+            <div class="wf-canvas" id="hero-wf">
+              <div class="wf-grid"></div>
+              <svg class="wf-svg" id="hero-svg" viewBox="0 0 500 256"></svg>
+              <!-- Nodes -->
+              <div class="wf-node" style="left:20px;top:20px;width:90px" id="hn0"><div class="wf-node-color" style="background:#6366f1"></div><div class="wf-node-type" style="background:#eef2ff;color:#6366f1">Formulation</div><div class="wf-node-name">Mix Powder</div><div class="wf-port wf-port-in" style="display:none"></div></div>
+              <div class="wf-node" style="left:160px;top:14px;width:96px" id="hn1"><div class="wf-node-color" style="background:#0891b2"></div><div class="wf-node-type" style="background:#ecfeff;color:#0891b2">3D Printing</div><div class="wf-node-name">SLS Print</div></div>
+              <div class="wf-node selected" style="left:310px;top:14px;width:96px" id="hn2"><div class="wf-node-color" style="background:#d97706"></div><div class="wf-node-type" style="background:#fffbeb;color:#d97706">Inspection</div><div class="wf-node-name">Visual Check</div></div>
+              <div class="wf-node" style="left:90px;top:100px;width:96px" id="hn3"><div class="wf-node-color" style="background:#dc2626"></div><div class="wf-node-type" style="background:#fef2f2;color:#dc2626">Furnace</div><div class="wf-node-name">Sinter Batch</div></div>
+              <div class="wf-node" style="left:250px;top:100px;width:96px" id="hn4"><div class="wf-node-color" style="background:#d97706"></div><div class="wf-node-type" style="background:#fffbeb;color:#d97706">CMM</div><div class="wf-node-name">Dimensional</div></div>
+              <div class="wf-node" style="left:100px;top:190px;width:96px" id="hn5"><div class="wf-node-color" style="background:#7c3aed"></div><div class="wf-node-type" style="background:#f5f3ff;color:#7c3aed">Manual</div><div class="wf-node-name">Post-Process</div></div>
+              <div class="wf-node" style="left:290px;top:195px;width:80px;border-radius:20px;border:2px solid #059669;background:#f0fdf415;text-align:center" id="hn6"><div class="wf-node-name" style="color:#059669;font-size:10px">Product</div></div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="hero-stats-row">
-        <div class="hero-stat-mini"><div class="num">20+</div><div class="lbl">Modules</div></div>
-        <div class="hero-stat-mini"><div class="num">5 min</div><div class="lbl">Setup</div></div>
-        <div class="hero-stat-mini"><div class="num">&pound;29</div><div class="lbl">/ month</div></div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
+<!-- ═══ TRUST ═══ -->
 <section style="padding:48px 24px;border-bottom:1px solid var(--slate-200)">
-  <div class="container trust-bar">
-    <div class="trust-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> 100% local &mdash; no cloud</div>
-    <div class="trust-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> AS9100 &amp; ISO 9001 ready</div>
-    <div class="trust-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg> Works on any device</div>
-    <div class="trust-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 30-day free trial</div>
+  <div class="container" style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;text-align:center">
+    <div style="display:flex;align-items:center;gap:10px;color:var(--slate-500);font-size:13px;font-weight:600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>100% local &mdash; no cloud</div>
+    <div style="display:flex;align-items:center;gap:10px;color:var(--slate-500);font-size:13px;font-weight:600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>AS9100 &amp; ISO 9001 ready</div>
+    <div style="display:flex;align-items:center;gap:10px;color:var(--slate-500);font-size:13px;font-weight:600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Works on any device</div>
+    <div style="display:flex;align-items:center;gap:10px;color:var(--slate-500);font-size:13px;font-weight:600"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30-day free trial</div>
   </div>
 </section>
 
-<!-- PROBLEM -->
-<section class="alt-bg" id="problem">
+<!-- ═══ PROBLEM ═══ -->
+<section class="alt-bg">
   <div class="container">
-    <div class="section-header-center reveal">
-      <div class="section-label">The Problem</div>
-      <div class="section-title">Your workshop deserves better than spreadsheets and WhatsApp.</div>
-    </div>
+    <div class="section-header-center reveal"><div class="section-label">The Problem</div><div class="section-title">Your workshop deserves better than spreadsheets.</div></div>
     <div class="problem-grid">
-      <div class="problem-card reveal"><h3><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></svg> Spreadsheet overload</h3><p>Job tracking, inventory, BOMs, timesheets &mdash; scattered across files that break when someone forgets to save.</p></div>
-      <div class="problem-card reveal"><h3><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg> Communication chaos</h3><p>Task assignments and machine updates buried in group chats that nobody can search.</p></div>
-      <div class="problem-card reveal"><h3><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Paper-based quality</h3><p>Inspection records and SOP sign-offs filed in cabinets that nobody opens until an audit.</p></div>
-      <div class="problem-card reveal"><h3><svg viewBox="0 0 24 24"><line x1="1" y1="12" x2="23" y2="12"/><line x1="1" y1="17" x2="23" y2="17"/><path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4s-1.8 4-4 4H9c-2.2 0-4 1.8-4 4s1.8 4 4 4h6"/></svg> Enterprise software is out of reach</h3><p>SAP quotes &pound;85k. Odoo needs IT staff. You just want something that works.</p></div>
+      <div class="problem-card reveal"><h3><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM9 3v18M15 3v18M3 9h18M3 15h18"/></svg>Spreadsheet overload</h3><p>Jobs, inventory, BOMs, timesheets &mdash; scattered across files that break when someone forgets to save.</p></div>
+      <div class="problem-card reveal"><h3><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Communication chaos</h3><p>Task assignments buried in group chats nobody can search or reference later.</p></div>
+      <div class="problem-card reveal"><h3><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Paper-based quality</h3><p>Inspection records in cabinets that nobody opens until an audit lands on your desk.</p></div>
+      <div class="problem-card reveal"><h3><svg viewBox="0 0 24 24"><line x1="1" y1="12" x2="23" y2="12"/><line x1="1" y1="17" x2="23" y2="17"/><path d="M7 7c0-2.2 1.8-4 4-4h2c2.2 0 4 1.8 4 4s-1.8 4-4 4H9c-2.2 0-4 1.8-4 4s1.8 4 4 4h6"/></svg>Enterprise software is out of reach</h3><p>SAP quotes &pound;85k. Odoo needs IT staff. You just want something that works.</p></div>
     </div>
   </div>
 </section>
 
-<!-- FEATURE SHOWCASES -->
+<!-- ═══ FEATURES ═══ -->
 <section id="features">
   <div class="container">
-    <div class="section-header-center reveal">
-      <div class="section-label">Platform Features</div>
-      <div class="section-title">See AMTrack in action</div>
-      <p class="section-desc">Every feature shown below is included in every plan. No add-ons.</p>
-    </div>
+    <div class="section-header-center reveal"><div class="section-label">Platform Features</div><div class="section-title">See AMTrack in action</div><p class="section-desc">Every feature is included in every plan. No add-ons, no per-user fees.</p></div>
 
-    <!-- 1. WORKFLOW BUILDER -->
-    <div class="showcase" id="showcase-wf">
-      <div class="showcase-text reveal-left">
+    <!-- WORKFLOW -->
+    <div class="showcase" id="sc-wf">
+      <div class="sc-text reveal-left">
         <div class="section-label">Manufacturing Execution</div>
         <h3>Visual Workflow Builder</h3>
-        <p>Design your manufacturing processes with a drag-and-drop builder. Add quality gates, pass/fail routing, substeps, and assign resources and equipment to each step.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Drag-and-drop step ordering</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Quality gates with pass/fail branching</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Substep breakdowns with SOP confirmations</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Equipment and resource assignments</li>
-        </ul>
+        <p>Design processes with drag-and-drop. Colour-coded step types, quality gates with pass/fail branching, substep breakdowns, and equipment assignments.</p>
+        <ul><li>Drag-and-drop step ordering on a canvas</li><li>Quality gates with pass/fail/rework routing</li><li>Substeps with SOP confirmations</li><li>Resource &amp; equipment assignments per step</li></ul>
       </div>
-      <div class="reveal-right">
-        <div class="mockup">
-          <div class="mockup-bar"><div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div><span class="mockup-bar-title">AMTrack &mdash; Workflow Builder</span></div>
-          <div class="mockup-body">
-            <div class="mockup-sidebar"><div class="sb-icon"></div><div class="sb-icon active"></div><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon"></div></div>
-            <div class="mockup-content">
-              <div class="wf-nodes">
-                <svg class="wf-arrow" style="position:absolute;top:24px;left:100px;width:60px;height:2px"><line x1="0" y1="1" x2="60" y2="1" stroke-dasharray="60" stroke-dashoffset="60"/></svg>
-                <svg class="wf-arrow" style="position:absolute;top:24px;left:250px;width:60px;height:2px"><line x1="0" y1="1" x2="60" y2="1" stroke-dasharray="60" stroke-dashoffset="60"/></svg>
-                <svg class="wf-arrow" style="position:absolute;top:65px;left:140px;width:2px;height:40px"><line x1="1" y1="0" x2="1" y2="40" stroke-dasharray="40" stroke-dashoffset="40"/></svg>
-                <svg class="wf-arrow" style="position:absolute;top:145px;left:140px;width:2px;height:40px"><line x1="1" y1="0" x2="1" y2="40" stroke-dasharray="40" stroke-dashoffset="40"/></svg>
-                <div class="wf-node start" style="top:10px;left:10px">Start</div>
-                <div class="wf-node process" style="top:10px;left:160px">3D Print</div>
-                <div class="wf-node quality" style="top:10px;left:310px">Inspect</div>
-                <div class="wf-node process" style="top:80px;left:80px">Sinter</div>
-                <div class="wf-node quality" style="top:80px;left:230px">CMM Check</div>
-                <div class="wf-node process" style="top:150px;left:80px">Post-Process</div>
-                <div class="wf-node end" style="top:150px;left:260px">Complete</div>
-              </div>
+      <div class="sc-mock reveal-right app-mock" id="wf-mock">
+        <div class="app-topbar"><div class="app-topbar-logo">A</div><span class="app-topbar-text">AMTrack</span><div class="app-topbar-nav"><span>Dashboard</span><span class="active">Workflow</span><span>Purchasing</span></div><div class="app-topbar-right"><div class="app-topbar-dot"></div><span>Admin</span></div></div>
+        <div class="app-body">
+          <div class="app-sidebar"><div class="app-sidebar-label">Operations</div><div class="app-sidebar-item">Formulation</div><div class="app-sidebar-item active">3D Printing</div><div class="app-sidebar-item">Sintering</div><div class="app-sidebar-item">CMM</div><div class="app-sidebar-item">Sanding</div><div class="app-sidebar-label" style="margin-top:6px">Outcomes</div><div class="app-sidebar-item">Product</div></div>
+          <div class="app-main">
+            <div class="wf-canvas" id="wf-canvas">
+              <div class="wf-grid"></div>
+              <svg class="wf-svg" id="wf-svg" viewBox="0 0 500 256">
+                <path d="M110,35 Q135,35 135,55 Q135,75 160,75" stroke="#16a34a" stroke-dasharray="4,3" id="wa0"/>
+                <path d="M256,75 Q280,75 280,95 Q280,115 250,115" stroke="#16a34a" stroke-dasharray="4,3" id="wa1"/>
+                <path d="M186,130 Q186,155 186,165 Q186,175 196,180" stroke="#16a34a" stroke-dasharray="4,3" id="wa2"/>
+                <path d="M346,115 Q370,115 370,140 Q370,165 346,180" stroke="#16a34a" stroke-dasharray="4,3" id="wa3"/>
+                <path d="M406,42 Q440,42 440,90 Q440,130 420,160" stroke="#dc2626" stroke-dasharray="4,3" id="wa4"/>
+              </svg>
+              <div class="wf-node" style="left:14px;top:16px;width:96px" id="wn0"><div class="wf-node-color" style="background:#6366f1"></div><div class="wf-node-type" style="background:#eef2ff;color:#6366f1">Formulation</div><div class="wf-node-name">Mix Powder</div></div>
+              <div class="wf-node" style="left:154px;top:50px;width:102px" id="wn1"><div class="wf-node-color" style="background:#0891b2"></div><div class="wf-node-type" style="background:#ecfeff;color:#0891b2">3D Printing</div><div class="wf-node-name">SLS Print Run</div></div>
+              <div class="wf-node selected" style="left:310px;top:16px;width:96px" id="wn2"><div class="wf-node-color" style="background:#d97706"></div><div class="wf-node-type" style="background:#fffbeb;color:#d97706">Inspection</div><div class="wf-node-name">Visual QA</div></div>
+              <div class="wf-node" style="left:140px;top:140px;width:106px" id="wn3"><div class="wf-node-color" style="background:#dc2626"></div><div class="wf-node-type" style="background:#fef2f2;color:#dc2626">Furnace</div><div class="wf-node-name">Sinter Batch</div></div>
+              <div class="wf-node" style="left:300px;top:140px;width:96px" id="wn4"><div class="wf-node-color" style="background:#d97706"></div><div class="wf-node-type" style="background:#fffbeb;color:#d97706">CMM</div><div class="wf-node-name">Dimensional</div></div>
+              <div class="wf-node" style="left:380px;top:150px;width:80px;border-radius:20px;border:2px solid #059669;background:rgba(240,253,244,0.6);text-align:center" id="wn5"><div class="wf-node-name" style="color:#059669;font-size:10px">Product</div></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 2. INVENTORY & PURCHASING -->
-    <div class="showcase reverse" id="showcase-inv">
-      <div class="showcase-text reveal-right">
+    <!-- INVENTORY -->
+    <div class="showcase reverse" id="sc-inv">
+      <div class="sc-text reveal-right">
         <div class="section-label">Purchasing &amp; Stock</div>
         <h3>Inventory &amp; Purchasing</h3>
-        <p>Track every material with real-time stock levels, suppliers, costs, and lead times. Bills of Materials with full costing. Purchase orders from request to delivery.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Item types, suppliers, unit costs</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> BOMs with custom columns and costing</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Purchase order lifecycle with approvals</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Stock flagging and waste tracking</li>
-        </ul>
+        <p>Real-time stock with item types, suppliers, unit costs, and lead times. BOMs with full costing. Purchase orders from request to delivery with approvals.</p>
+        <ul><li>Item types, suppliers, unit costs, lead times</li><li>BOMs with custom columns and costing</li><li>Purchase order lifecycle with approvals</li><li>Stock flagging and waste tracking</li></ul>
       </div>
-      <div class="reveal-left">
-        <div class="mockup">
-          <div class="mockup-bar"><div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div><span class="mockup-bar-title">AMTrack &mdash; Inventory</span></div>
-          <div class="mockup-body">
-            <div class="mockup-sidebar"><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon active"></div><div class="sb-icon"></div><div class="sb-icon"></div></div>
-            <div class="mockup-content">
-              <table class="inv-table">
-                <thead><tr><th>Code</th><th>Name</th><th>Type</th><th>Supplier</th><th style="text-align:right">Stock</th></tr></thead>
-                <tbody id="inv-rows">
-                  <tr class="inv-row"><td style="font-family:monospace;font-size:10px;color:var(--slate-400)">RES-001</td><td style="font-weight:600">PA12 Nylon Powder</td><td><span class="inv-badge type">Raw Material</span></td><td><span class="inv-badge supplier">EOS GmbH</span></td><td class="inv-stock ok" style="text-align:right">48.5 kg</td></tr>
-                  <tr class="inv-row"><td style="font-family:monospace;font-size:10px;color:var(--slate-400)">RES-002</td><td style="font-weight:600">Resin Tough 2000</td><td><span class="inv-badge type">Raw Material</span></td><td><span class="inv-badge supplier">Formlabs</span></td><td class="inv-stock low" style="text-align:right">2.1 L</td></tr>
-                  <tr class="inv-row"><td style="font-family:monospace;font-size:10px;color:var(--slate-400)">CON-014</td><td style="font-weight:600">Build Platform Seal</td><td><span class="inv-badge type">Consumable</span></td><td><span class="inv-badge supplier">3D Systems</span></td><td class="inv-stock ok" style="text-align:right">120 pcs</td></tr>
-                  <tr class="inv-row"><td style="font-family:monospace;font-size:10px;color:var(--slate-400)">CON-015</td><td style="font-weight:600">VAT Film</td><td><span class="inv-badge type">Consumable</span></td><td><span class="inv-badge supplier">Formlabs</span></td><td class="inv-stock ok" style="text-align:right">35 pcs</td></tr>
-                  <tr class="inv-row"><td style="font-family:monospace;font-size:10px;color:var(--slate-400)">TOL-003</td><td style="font-weight:600">Sanding Disc 400-grit</td><td><span class="inv-badge type">Tooling</span></td><td><span class="inv-badge supplier">Norton</span></td><td class="inv-stock low" style="text-align:right">8 pcs</td></tr>
-                </tbody>
-              </table>
-            </div>
+      <div class="sc-mock reveal-left app-mock" id="inv-mock">
+        <div class="app-topbar"><div class="app-topbar-logo">A</div><span class="app-topbar-text">AMTrack</span><div class="app-topbar-nav"><span>Dashboard</span><span>Workflow</span><span class="active">Purchasing</span></div><div class="app-topbar-right"><div class="app-topbar-dot"></div><span>Admin</span></div></div>
+        <div class="app-body">
+          <div class="app-sidebar"><div class="app-sidebar-label">Purchasing</div><div class="app-sidebar-item active">Inventory</div><div class="app-sidebar-item">BOMs</div><div class="app-sidebar-item">Orders</div><div class="app-sidebar-item">Suppliers</div><div class="app-sidebar-item">Item Types</div></div>
+          <div class="app-main">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:12px;font-weight:700;color:#111827">Inventory Items</span><span style="font-size:9px;background:#6366f1;color:white;padding:3px 8px;border-radius:4px;font-weight:600">+ New Item</span></div>
+            <table class="inv-t"><thead><tr><th>Code</th><th>Name</th><th>Type</th><th>Supplier</th><th>Unit</th><th style="text-align:right">Cost</th><th style="text-align:right">Stock</th></tr></thead>
+            <tbody id="inv-body">
+              <tr class="inv-r"><td class="inv-code">RES-001</td><td class="inv-name">PA12 Nylon Powder</td><td><span class="inv-badge" style="background:#eef2ff;color:#6366f1">Raw Material</span></td><td><span class="inv-badge" style="background:#f0fdf4;color:#059669">EOS GmbH</span></td><td>kg</td><td style="text-align:right;font-family:monospace;font-size:9px">£42.00</td><td class="inv-stock ok">48.5</td></tr>
+              <tr class="inv-r"><td class="inv-code">RES-002</td><td class="inv-name">Resin Tough 2000</td><td><span class="inv-badge" style="background:#eef2ff;color:#6366f1">Raw Material</span></td><td><span class="inv-badge" style="background:#f0fdf4;color:#059669">Formlabs</span></td><td>L</td><td style="text-align:right;font-family:monospace;font-size:9px">£149.00</td><td class="inv-stock low">2.1</td></tr>
+              <tr class="inv-r"><td class="inv-code">CON-014</td><td class="inv-name">Build Platform Seal</td><td><span class="inv-badge" style="background:#fffbeb;color:#d97706">Consumable</span></td><td><span class="inv-badge" style="background:#f0fdf4;color:#059669">3D Systems</span></td><td>pcs</td><td style="text-align:right;font-family:monospace;font-size:9px">£8.50</td><td class="inv-stock ok">120</td></tr>
+              <tr class="inv-r"><td class="inv-code">CON-015</td><td class="inv-name">VAT Film</td><td><span class="inv-badge" style="background:#fffbeb;color:#d97706">Consumable</span></td><td><span class="inv-badge" style="background:#f0fdf4;color:#059669">Formlabs</span></td><td>pcs</td><td style="text-align:right;font-family:monospace;font-size:9px">£24.00</td><td class="inv-stock ok">35</td></tr>
+              <tr class="inv-r"><td class="inv-code">TOL-003</td><td class="inv-name">Sanding Disc 400-grit</td><td><span class="inv-badge" style="background:#f5f3ff;color:#7c3aed">Tooling</span></td><td><span class="inv-badge" style="background:#f0fdf4;color:#059669">Norton</span></td><td>pcs</td><td style="text-align:right;font-family:monospace;font-size:9px">£1.20</td><td class="inv-stock low">8</td></tr>
+            </tbody></table>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 3. QUALITY MANAGEMENT -->
-    <div class="showcase" id="showcase-qms">
-      <div class="showcase-text reveal-left">
+    <!-- QUALITY -->
+    <div class="showcase" id="sc-qms">
+      <div class="sc-text reveal-left">
         <div class="section-label">Quality Management</div>
         <h3>Quality Gates &amp; Inspections</h3>
-        <p>Add quality checkpoints at every stage of your workflow. Capture evidence, record pass/fail results, manage SOPs with versioning, and maintain a complete audit trail.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> SOP versioning with operator confirmations</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Non-conformance records and evidence</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Risk assessments linked to processes</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Full audit trail for AS9100 / ISO 9001</li>
-        </ul>
+        <p>Quality checkpoints at every workflow stage. Evidence capture, pass/fail results, SOP versioning with operator confirmations, and a complete audit trail.</p>
+        <ul><li>SOP versioning with operator confirmations</li><li>Non-conformance records and evidence capture</li><li>Risk assessments linked to processes</li><li>Full audit trail for AS9100 / ISO 9001</li></ul>
       </div>
-      <div class="reveal-right">
-        <div class="mockup">
-          <div class="mockup-bar"><div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div><span class="mockup-bar-title">AMTrack &mdash; Quality Gate</span></div>
-          <div class="mockup-body">
-            <div class="mockup-sidebar"><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon active"></div><div class="sb-icon"></div></div>
-            <div class="mockup-content">
-              <div style="font-size:13px;font-weight:700;color:var(--slate-800);margin-bottom:4px">CMM Inspection &mdash; Part #AX-2041</div>
-              <div style="font-size:11px;color:var(--slate-400);margin-bottom:14px">Inspector: J. Williams &bull; Step 4 of 6</div>
-              <div class="q-checks" id="q-checks">
-                <div class="q-check"><div class="q-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="q-label">SOP confirmed &mdash; CMM-SOP-v3.2</span><span class="q-status">Confirmed</span></div>
-                <div class="q-check"><div class="q-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="q-label">Dimensional check X-axis (0.05mm tol.)</span><span class="q-status">Pass</span></div>
-                <div class="q-check"><div class="q-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="q-label">Dimensional check Y-axis (0.05mm tol.)</span><span class="q-status">Pass</span></div>
-                <div class="q-check"><div class="q-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="q-label">Surface roughness Ra &le; 3.2 &mu;m</span><span class="q-status">Pass</span></div>
-                <div class="q-check pending"><div class="q-box"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><span class="q-label">Photo evidence uploaded</span><span class="q-status">Pending</span></div>
-              </div>
+      <div class="sc-mock reveal-right app-mock" id="qms-mock">
+        <div class="app-topbar"><div class="app-topbar-logo">A</div><span class="app-topbar-text">AMTrack</span><div class="app-topbar-nav"><span>Dashboard</span><span>Workflow</span><span>Purchasing</span><span class="active">Quality</span></div><div class="app-topbar-right"><div class="app-topbar-dot"></div><span>J. Williams</span></div></div>
+        <div class="app-body">
+          <div class="app-sidebar"><div class="app-sidebar-label">Quality</div><div class="app-sidebar-item active">Gateway</div><div class="app-sidebar-item">NCR Records</div><div class="app-sidebar-item">SOPs</div><div class="app-sidebar-item">Risk Assess.</div></div>
+          <div class="app-main">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:2px">CMM Inspection &mdash; Part #AX-2041</div>
+            <div style="font-size:9px;color:#9ca3af;margin-bottom:10px">Inspector: J. Williams &bull; Step 4 of 6 &bull; Workflow: Aerospace Bracket</div>
+            <div id="q-list">
+              <div class="q-item"><div class="q-box"></div><span class="q-label">SOP confirmed &mdash; CMM-SOP-v3.2</span><span class="q-status pass">Confirmed</span></div>
+              <div class="q-item"><div class="q-box"></div><span class="q-label">Dimensional check X-axis (0.05mm tol.)</span><span class="q-status pass">Pass</span></div>
+              <div class="q-item"><div class="q-box"></div><span class="q-label">Dimensional check Y-axis (0.05mm tol.)</span><span class="q-status pass">Pass</span></div>
+              <div class="q-item"><div class="q-box"></div><span class="q-label">Surface roughness Ra &le; 3.2 &mu;m</span><span class="q-status pass">Pass</span></div>
+              <div class="q-item"><div class="q-box"></div><span class="q-label">Upload photo evidence</span><span class="q-status pending">Pending</span></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 4. HR & WORKFORCE -->
-    <div class="showcase reverse" id="showcase-hr">
-      <div class="showcase-text reveal-right">
-        <div class="section-label">Workforce Management</div>
+    <!-- HR -->
+    <div class="showcase reverse" id="sc-hr">
+      <div class="sc-text reveal-right">
+        <div class="section-label">Workforce</div>
         <h3>HR, Skills &amp; Timesheets</h3>
-        <p>Manage your entire workforce from one place. Clock in/out, holiday and sick leave approvals, skills tracking with expiry alerts, and per-machine operator authorisations.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Clock in/out with timesheet management</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Holiday &amp; sick leave with approval flows</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Skills, certifications &amp; expiry alerts</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Per-user permissions across 15+ modules</li>
-        </ul>
+        <p>Manage your entire team. Clock in/out, holiday and sick leave approvals, skills tracking with expiry alerts, and per-machine operator authorisations.</p>
+        <ul><li>Clock in/out with timesheet management</li><li>Holiday &amp; sick leave with approval flows</li><li>Skills, certifications &amp; expiry alerts</li><li>Per-user permissions across 15+ modules</li></ul>
       </div>
-      <div class="reveal-left">
-        <div class="mockup">
-          <div class="mockup-bar"><div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div><span class="mockup-bar-title">AMTrack &mdash; Team Overview</span></div>
-          <div class="mockup-body">
-            <div class="mockup-sidebar"><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon active"></div></div>
-            <div class="mockup-content">
-              <div class="hr-cards" id="hr-cards">
-                <div class="hr-card"><div class="hr-avatar" style="background:var(--primary)">JW</div><div class="hr-name">James Williams</div><div class="hr-role">Senior Technician</div><span class="hr-skill" style="background:#eef2ff;color:var(--primary)">SLS</span><span class="hr-skill" style="background:#fef3c7;color:var(--amber)">CMM</span><span class="hr-skill" style="background:#f0fdf4;color:var(--green)">Furnace</span><div class="hr-status"><span class="dot on"></span> Clocked in &bull; 7h 23m</div></div>
-                <div class="hr-card"><div class="hr-avatar" style="background:var(--green)">SP</div><div class="hr-name">Sarah Patel</div><div class="hr-role">Quality Inspector</div><span class="hr-skill" style="background:#eef2ff;color:var(--primary)">CMM</span><span class="hr-skill" style="background:#fef3c7;color:var(--amber)">Sanding</span><div class="hr-status"><span class="dot on"></span> Clocked in &bull; 5h 41m</div></div>
-                <div class="hr-card"><div class="hr-avatar" style="background:var(--amber)">MR</div><div class="hr-name">Mike Reynolds</div><div class="hr-role">Machine Operator</div><span class="hr-skill" style="background:#eef2ff;color:var(--primary)">FDM</span><span class="hr-skill" style="background:#f0fdf4;color:var(--green)">SLA</span><div class="hr-status"><span class="dot off"></span> Holiday &bull; Back Tue</div></div>
-                <div class="hr-card"><div class="hr-avatar" style="background:#dc2626">LC</div><div class="hr-name">Lisa Chen</div><div class="hr-role">Production Lead</div><span class="hr-skill" style="background:#eef2ff;color:var(--primary)">All Printers</span><span class="hr-skill" style="background:#fef3c7;color:var(--amber)">QA</span><div class="hr-status"><span class="dot on"></span> Clocked in &bull; 8h 02m</div></div>
-              </div>
+      <div class="sc-mock reveal-left app-mock" id="hr-mock">
+        <div class="app-topbar"><div class="app-topbar-logo">A</div><span class="app-topbar-text">AMTrack</span><div class="app-topbar-nav"><span>Dashboard</span><span>Workflow</span><span>Purchasing</span><span>Quality</span><span class="active">HR</span></div><div class="app-topbar-right"><div class="app-topbar-dot"></div><span>Admin</span></div></div>
+        <div class="app-body">
+          <div class="app-sidebar"><div class="app-sidebar-label">HR</div><div class="app-sidebar-item active">Employees</div><div class="app-sidebar-item">Timesheets</div><div class="app-sidebar-item">Holidays</div><div class="app-sidebar-item">Sick Leave</div><div class="app-sidebar-item">Skills</div></div>
+          <div class="app-main">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:8px">Team Overview</div>
+            <div class="hr-grid" id="hr-list">
+              <div class="hr-c"><div class="hr-top"><div class="hr-av" style="background:#6366f1">JW</div><div class="hr-info"><div class="hr-nm">James Williams</div><div class="hr-rl">Senior Technician</div></div></div><span class="hr-sk" style="background:#eef2ff;color:#6366f1">SLS</span><span class="hr-sk" style="background:#fffbeb;color:#d97706">CMM</span><span class="hr-sk" style="background:#f0fdf4;color:#059669">Furnace</span><div class="hr-st"><span class="hr-dot on"></span> Clocked in &bull; 7h 23m</div></div>
+              <div class="hr-c"><div class="hr-top"><div class="hr-av" style="background:#059669">SP</div><div class="hr-info"><div class="hr-nm">Sarah Patel</div><div class="hr-rl">Quality Inspector</div></div></div><span class="hr-sk" style="background:#eef2ff;color:#6366f1">CMM</span><span class="hr-sk" style="background:#f5f3ff;color:#7c3aed">Sanding</span><div class="hr-st"><span class="hr-dot on"></span> Clocked in &bull; 5h 41m</div></div>
+              <div class="hr-c"><div class="hr-top"><div class="hr-av" style="background:#d97706">MR</div><div class="hr-info"><div class="hr-nm">Mike Reynolds</div><div class="hr-rl">Machine Operator</div></div></div><span class="hr-sk" style="background:#ecfeff;color:#0891b2">FDM</span><span class="hr-sk" style="background:#eef2ff;color:#6366f1">SLA</span><div class="hr-st"><span class="hr-dot off"></span> Holiday &bull; Back Tue</div></div>
+              <div class="hr-c"><div class="hr-top"><div class="hr-av" style="background:#dc2626">LC</div><div class="hr-info"><div class="hr-nm">Lisa Chen</div><div class="hr-rl">Production Lead</div></div></div><span class="hr-sk" style="background:#eef2ff;color:#6366f1">All Printers</span><span class="hr-sk" style="background:#fffbeb;color:#d97706">QA</span><div class="hr-st"><span class="hr-dot on"></span> Clocked in &bull; 8h 02m</div></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 5. REPORTING -->
-    <div class="showcase" id="showcase-rpt">
-      <div class="showcase-text reveal-left">
+    <!-- REPORTING -->
+    <div class="showcase" id="sc-rpt">
+      <div class="sc-text reveal-left">
         <div class="section-label">Analytics</div>
         <h3>Reporting &amp; Traceability</h3>
-        <p>Full part traceability from raw material to finished good. Pre-built and custom reports covering production, quality, costs, attendance, and waste. Every action logged.</p>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Part trace from material to delivery</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Pre-built reports: activity, quality, cost, waste</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Custom report builder</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Complete audit log of every action</li>
-        </ul>
+        <p>Full part traceability from raw material to finished good. Pre-built and custom reports for production, quality, costs, and waste. Every action logged.</p>
+        <ul><li>Part trace from material to delivery</li><li>Pre-built reports: activity, quality, cost, waste</li><li>Custom report builder</li><li>Complete audit log of every action</li></ul>
       </div>
-      <div class="reveal-right">
-        <div class="mockup">
-          <div class="mockup-bar"><div class="mockup-dot r"></div><div class="mockup-dot y"></div><div class="mockup-dot g"></div><span class="mockup-bar-title">AMTrack &mdash; Dashboard</span></div>
-          <div class="mockup-body">
-            <div class="mockup-sidebar"><div class="sb-icon active"></div><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon"></div><div class="sb-icon"></div></div>
-            <div class="mockup-content">
-              <div class="rpt-kpis" id="rpt-kpis">
-                <div class="rpt-kpi"><div class="rpt-num" data-target="47">0</div><div class="rpt-lbl">Active Jobs</div></div>
-                <div class="rpt-kpi"><div class="rpt-num" data-target="96">0</div><div class="rpt-lbl">Quality Pass %</div></div>
-                <div class="rpt-kpi"><div class="rpt-num" data-target="12">0</div><div class="rpt-lbl">Team Online</div></div>
-              </div>
-              <div style="margin-top:16px;font-size:10px;font-weight:600;color:var(--slate-400);text-transform:uppercase;letter-spacing:0.5px">Weekly Output</div>
-              <div class="rpt-bars" id="rpt-bars">
-                <div class="rpt-bar" style="--h:60%;background:var(--primary-light)"></div>
-                <div class="rpt-bar" style="--h:85%;background:var(--primary)"></div>
-                <div class="rpt-bar" style="--h:45%;background:var(--primary-light)"></div>
-                <div class="rpt-bar" style="--h:92%;background:var(--primary)"></div>
-                <div class="rpt-bar" style="--h:78%;background:var(--primary-light)"></div>
-                <div class="rpt-bar" style="--h:100%;background:var(--accent)"></div>
-                <div class="rpt-bar" style="--h:30%;background:var(--slate-200)"></div>
-              </div>
-              <div class="rpt-labels"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
-            </div>
+      <div class="sc-mock reveal-right app-mock" id="rpt-mock">
+        <div class="app-topbar"><div class="app-topbar-logo">A</div><span class="app-topbar-text">AMTrack</span><div class="app-topbar-nav"><span class="active">Dashboard</span><span>Workflow</span><span>Purchasing</span></div><div class="app-topbar-right"><div class="app-topbar-dot"></div><span>Admin</span></div></div>
+        <div class="app-body">
+          <div class="app-sidebar"><div class="app-sidebar-label">Reports</div><div class="app-sidebar-item active">Dashboard</div><div class="app-sidebar-item">Activity</div><div class="app-sidebar-item">Quality</div><div class="app-sidebar-item">Cost Analysis</div><div class="app-sidebar-item">Audit Log</div></div>
+          <div class="app-main">
+            <div class="rpt-kpis" id="rpt-kpis"><div class="rpt-kpi"><div class="rpt-num" data-t="47">0</div><div class="rpt-lbl">Active Jobs</div></div><div class="rpt-kpi"><div class="rpt-num" data-t="96">0</div><div class="rpt-lbl">Quality Pass %</div></div><div class="rpt-kpi"><div class="rpt-num" data-t="12">0</div><div class="rpt-lbl">Team Online</div></div></div>
+            <div style="font-size:8px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Weekly Output</div>
+            <div class="rpt-bars" id="rpt-bars"><div class="rpt-bar" style="--h:55%;background:#a5b4fc"></div><div class="rpt-bar" style="--h:82%;background:#6366f1"></div><div class="rpt-bar" style="--h:40%;background:#a5b4fc"></div><div class="rpt-bar" style="--h:90%;background:#6366f1"></div><div class="rpt-bar" style="--h:75%;background:#a5b4fc"></div><div class="rpt-bar" style="--h:100%;background:#4f46e5"></div><div class="rpt-bar" style="--h:25%;background:#e2e8f0"></div></div>
+            <div class="rpt-lbls"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
-<section class="alt-bg" id="how-it-works">
-  <div class="container">
-    <div class="section-header-center reveal">
-      <div class="section-label">Getting Started</div>
-      <div class="section-title">Up and running in 5 minutes</div>
-      <p class="section-desc">No cloud setup. No database configuration. No IT department required.</p>
-    </div>
-    <div class="steps-row">
-      <div class="step-card reveal"><div class="step-num">1</div><h3>Download</h3><p>One installer, under 100 MB</p></div>
-      <div class="step-card reveal"><div class="step-num">2</div><h3>Install</h3><p>Double-click and run the wizard</p></div>
-      <div class="step-card reveal"><div class="step-num">3</div><h3>Launch</h3><p>Server starts automatically</p></div>
-      <div class="step-card reveal"><div class="step-num">4</div><h3>Connect</h3><p>Team opens browser on any device</p></div>
-    </div>
-  </div>
-</section>
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="alt-bg"><div class="container"><div class="section-header-center reveal"><div class="section-label">Getting Started</div><div class="section-title">Up and running in 5 minutes</div><p class="section-desc">No cloud. No database config. No IT department.</p></div><div class="steps-row"><div class="step-card reveal"><div class="step-num">1</div><h3>Download</h3><p>One installer, under 100 MB</p></div><div class="step-card reveal"><div class="step-num">2</div><h3>Install</h3><p>Double-click the wizard</p></div><div class="step-card reveal"><div class="step-num">3</div><h3>Launch</h3><p>Server starts automatically</p></div><div class="step-card reveal"><div class="step-num">4</div><h3>Connect</h3><p>Team opens any browser</p></div></div></div></section>
 
-<!-- COMPARISON -->
-<section id="comparison">
-  <div class="container">
-    <div class="section-header-center reveal">
-      <div class="section-label">Comparison</div>
-      <div class="section-title">How AMTrack compares</div>
-    </div>
-    <div class="comparison-wrapper reveal">
-      <table class="comparison">
-        <tr><th>Capability</th><th>AMTrack</th><th>SAP B1</th><th>Odoo</th><th>AMFG</th><th>Spreadsheets</th></tr>
-        <tr><td>Visual Workflow Builder</td><td class="hl yes">Yes</td><td class="no">No</td><td class="partial">Basic</td><td class="yes">Yes</td><td class="no">No</td></tr>
-        <tr><td>Shop Floor Execution</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr>
-        <tr><td>BOM, Inventory &amp; Purchasing</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr>
-        <tr><td>Quality / NCR / Evidence</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="partial">Basic</td><td class="no">No</td></tr>
-        <tr><td>SOP Versioning &amp; Confirmations</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
-        <tr><td>Equipment &amp; Maintenance</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="no">No</td><td class="no">No</td></tr>
-        <tr><td>HR / Timesheets / Leave</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr>
-        <tr><td>Skills &amp; Certifications</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr>
-        <tr><td>Part Traceability</td><td class="hl yes">Yes</td><td class="partial">Partial</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr>
-        <tr><td>Local / No Cloud</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="partial">Self-host</td><td class="no">Cloud only</td><td class="yes">Yes</td></tr>
-        <tr><td>Setup Time</td><td class="hl" style="color:var(--accent);font-weight:700">5 min</td><td>6&ndash;12 months</td><td>2&ndash;4 weeks</td><td>1&ndash;2 weeks</td><td>Immediate</td></tr>
-        <tr><td><strong>Cost (15 users/year)</strong></td><td class="hl" style="color:var(--accent);font-weight:700">&pound;348</td><td>&pound;27,000+</td><td>&pound;7,500+</td><td>&pound;30,000+</td><td>&pound;0</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
+<!-- ═══ COMPARISON ═══ -->
+<section id="comparison"><div class="container"><div class="section-header-center reveal"><div class="section-label">Comparison</div><div class="section-title">How AMTrack compares</div></div><div class="comparison-wrapper reveal"><table class="comparison"><tr><th>Capability</th><th>AMTrack</th><th>SAP B1</th><th>Odoo</th><th>AMFG</th><th>Spreadsheets</th></tr><tr><td>Visual Workflow Builder</td><td class="hl yes">Yes</td><td class="no">No</td><td class="partial">Basic</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>Shop Floor Execution</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>BOM, Inventory &amp; Purchasing</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr><tr><td>Quality / NCR / Evidence</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="partial">Basic</td><td class="no">No</td></tr><tr><td>SOP &amp; Confirmations</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Equipment &amp; Maintenance</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="no">No</td><td class="no">No</td></tr><tr><td>HR / Timesheets / Leave</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr><tr><td>Part Traceability</td><td class="hl yes">Yes</td><td class="partial">Partial</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>Local / No Cloud</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="partial">Self-host</td><td class="no">Cloud</td><td class="yes">Yes</td></tr><tr><td>Setup Time</td><td class="hl" style="color:var(--accent);font-weight:700">5 min</td><td>6-12 months</td><td>2-4 weeks</td><td>1-2 weeks</td><td>Immediate</td></tr><tr><td><strong>Cost (15 users/yr)</strong></td><td class="hl" style="color:var(--accent);font-weight:700">&pound;348</td><td>&pound;27,000+</td><td>&pound;7,500+</td><td>&pound;30,000+</td><td>&pound;0</td></tr></table></div></div></section>
 
-<!-- PRICING -->
-<section class="alt-bg" id="pricing">
-  <div class="container">
-    <div class="section-header-center reveal">
-      <div class="section-label">Pricing</div>
-      <div class="section-title">Simple, honest pricing</div>
-      <p class="section-desc">No per-user fees. No hidden costs. No cloud bills. Cancel anytime.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="price-card reveal">
-        <h3>Starter</h3><div class="price-amount">&pound;29</div><div class="price-period">per month</div>
-        <div class="price-desc">For small workshops up to 15 people.</div>
-        <ul class="price-features">
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Up to 15 users</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> All 20+ modules</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Auto-updates</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Email support</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
-        </ul>
-        <a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a>
-        <a href="#" onclick="openBuyModal('starter','https://buy.stripe.com/test_dRm4gB8gG3ukfX9an4g7e00');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
-      </div>
-      <div class="price-card featured reveal">
-        <h3>Professional</h3><div class="price-amount">&pound;79</div><div class="price-period">per month</div>
-        <div class="price-desc">For growing teams that need more.</div>
-        <ul class="price-features">
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Unlimited users</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> All modules</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Priority support</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Custom reports</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
-        </ul>
-        <a href="#download" class="price-btn btn-accent">Start Free Trial</a>
-        <a href="#" onclick="openBuyModal('professional','https://buy.stripe.com/test_3cI00l9kK8OE6mz1Qyg7e01');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
-      </div>
-      <div class="price-card reveal">
-        <h3>Enterprise</h3><div class="price-amount">&pound;199</div><div class="price-period">per month</div>
-        <div class="price-desc">Multi-site with dedicated support.</div>
-        <ul class="price-features">
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Multi-site deployment</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Custom integrations</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> Dedicated support &amp; SLA</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> On-site training</li>
-          <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg> 30-day free trial</li>
-        </ul>
-        <a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a>
-        <a href="#" onclick="openBuyModal('enterprise','https://buy.stripe.com/test_aFadRbdB02qg5iv9j0g7e02');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a>
-      </div>
-    </div>
-    <p style="text-align:center;margin-top:28px;color:var(--slate-400);font-size:13px">Prefer a one-time purchase? &pound;1,995 perpetual licence with 12 months of updates.</p>
-  </div>
-</section>
+<!-- ═══ PRICING ═══ -->
+<section class="alt-bg" id="pricing"><div class="container"><div class="section-header-center reveal"><div class="section-label">Pricing</div><div class="section-title">Simple, honest pricing</div><p class="section-desc">No per-user fees. No hidden costs. Cancel anytime.</p></div><div class="pricing-grid"><div class="price-card reveal"><h3>Starter</h3><div class="price-amount">&pound;29</div><div class="price-period">per month</div><div class="price-desc">Up to 15 people.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Up to 15 users</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All 20+ modules</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Auto-updates</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Email support</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30-day free trial</li></ul><a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a><a href="#" onclick="openBuyModal('starter','https://buy.stripe.com/test_dRm4gB8gG3ukfX9an4g7e00');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a></div><div class="price-card featured reveal"><h3>Professional</h3><div class="price-amount">&pound;79</div><div class="price-period">per month</div><div class="price-desc">For growing teams.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited users</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All modules</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Custom reports</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30-day free trial</li></ul><a href="#download" class="price-btn btn-accent">Start Free Trial</a><a href="#" onclick="openBuyModal('professional','https://buy.stripe.com/test_3cI00l9kK8OE6mz1Qyg7e01');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a></div><div class="price-card reveal"><h3>Enterprise</h3><div class="price-amount">&pound;199</div><div class="price-period">per month</div><div class="price-desc">Multi-site + SLA.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Multi-site deploy</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Custom integrations</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Dedicated support</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>On-site training</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30-day free trial</li></ul><a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a><a href="#" onclick="openBuyModal('enterprise','https://buy.stripe.com/test_aFadRbdB02qg5iv9j0g7e02');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a></div></div><p style="text-align:center;margin-top:28px;color:var(--slate-400);font-size:13px">&pound;1,995 perpetual licence also available.</p></div></section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-text reveal-left">
-        <div class="section-label">About Us</div>
-        <div class="section-title">Built on the shop floor,<br>not in a software office.</div>
-        <p>AMTrack was created by an additive manufacturing professional who experienced first-hand the gap between expensive enterprise software and inadequate spreadsheets.</p>
-        <p>We understand the daily reality of running a manufacturing workshop &mdash; tracking builds, managing inventory, meeting deadlines, and keeping a growing team organised.</p>
-        <p>Our mission: give every small manufacturer access to the same tools that large corporations use, at a price that makes sense.</p>
-      </div>
-      <div class="about-values reveal-right">
-        <div class="about-value"><h4>Local-first</h4><p>Your data stays on your hardware. No cloud dependency.</p></div>
-        <div class="about-value"><h4>Purpose-built</h4><p>Designed for real manufacturing workflows, not adapted from generic ERP.</p></div>
-        <div class="about-value"><h4>Affordable</h4><p>Enterprise capability at a fraction of the cost. No per-user fees.</p></div>
-        <div class="about-value"><h4>Compliance-ready</h4><p>Full audit trail, SOP versioning, and traceability for AS9100 and ISO 9001.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ═══ ABOUT ═══ -->
+<section id="about"><div class="container"><div class="about-grid"><div class="about-text reveal-left"><div class="section-label">About Us</div><div class="section-title">Built on the shop floor,<br>not in a software office.</div><p>AMTrack was created by an additive manufacturing professional who experienced first-hand the gap between expensive enterprise software and inadequate spreadsheets.</p><p>Our mission: give every small manufacturer the same tools large corporations use, at a price that makes sense.</p></div><div class="about-values reveal-right"><div class="about-value"><h4>Local-first</h4><p>Your data stays on your hardware. No cloud dependency.</p></div><div class="about-value"><h4>Purpose-built</h4><p>Designed for manufacturing, not adapted from generic ERP.</p></div><div class="about-value"><h4>Affordable</h4><p>Enterprise capability. No per-user fees.</p></div><div class="about-value"><h4>Compliance-ready</h4><p>Full audit trail for AS9100 and ISO 9001.</p></div></div></div></div></section>
 
-<!-- CONTACT -->
-<section class="alt-bg" id="contact">
-  <div class="container">
-    <div class="section-header-center reveal">
-      <div class="section-label">Get in Touch</div>
-      <div class="section-title">Questions? We're here to help.</div>
-    </div>
-    <div class="contact-grid">
-      <div class="contact-card reveal"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><h3>General Enquiries</h3><p><a href="mailto:info@am-track.co.uk">info@am-track.co.uk</a></p></div>
-      <div class="contact-card reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><h3>Technical Support</h3><p><a href="mailto:support@am-track.co.uk">support@am-track.co.uk</a></p></div>
-      <div class="contact-card reveal"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><h3>Location</h3><p>United Kingdom</p></div>
-    </div>
-  </div>
-</section>
+<!-- ═══ CONTACT ═══ -->
+<section class="alt-bg" id="contact"><div class="container"><div class="section-header-center reveal"><div class="section-label">Get in Touch</div><div class="section-title">Questions? We're here.</div></div><div class="contact-grid"><div class="contact-card reveal"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><h3>Enquiries</h3><p><a href="mailto:info@am-track.co.uk">info@am-track.co.uk</a></p></div><div class="contact-card reveal"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg><h3>Support</h3><p><a href="mailto:support@am-track.co.uk">support@am-track.co.uk</a></p></div><div class="contact-card reveal"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><h3>Location</h3><p>United Kingdom</p></div></div></div></section>
 
-<!-- CTA / DOWNLOAD -->
+<!-- ═══ CTA ═══ -->
 <section class="cta" id="download">
   <div id="download-form-section">
-    <h2>Ready to take control of your workshop?</h2>
-    <p>Download AMTrack and have your team running on it today. No credit card required.</p>
+    <h2>Ready to take control?</h2>
+    <p>Download AMTrack free. No credit card. 30-day trial.</p>
     <form id="download-form" style="max-width:440px;margin:0 auto;text-align:left">
-      <div style="margin-bottom:12px"><label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Full Name *</label><input type="text" id="dl-name" required placeholder="John Smith" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></div>
-      <div style="margin-bottom:12px"><label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Company Name *</label><input type="text" id="dl-company" required placeholder="Your company name" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></div>
-      <div style="margin-bottom:12px"><label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Industry *</label><select id="dl-industry" required style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit;appearance:auto"><option value="" style="color:#333">Select your industry</option><option value="Additive Manufacturing" style="color:#333">Additive Manufacturing / 3D Printing</option><option value="Precision Engineering" style="color:#333">Precision Engineering / CNC</option><option value="Aerospace" style="color:#333">Aerospace &amp; Defence</option><option value="Automotive" style="color:#333">Automotive</option><option value="Medical Devices" style="color:#333">Medical Devices</option><option value="Composites" style="color:#333">Composites</option><option value="General Manufacturing" style="color:#333">General Manufacturing</option><option value="Other" style="color:#333">Other</option></select></div>
-      <div style="margin-bottom:16px"><label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Work Email *</label><input type="email" id="dl-email" required placeholder="you@company.com" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit" onfocus="this.style.borderColor='rgba(255,255,255,0.3)'" onblur="this.style.borderColor='rgba(255,255,255,0.12)'"></div>
-      <label style="display:flex;align-items:flex-start;gap:8px;margin-bottom:14px;cursor:pointer"><input type="checkbox" id="dl-terms" required style="width:16px;height:16px;margin-top:2px;accent-color:#6366f1;flex-shrink:0"><span style="font-size:12px;color:#94a3b8;line-height:1.5">I agree to the <a href="terms.html" target="_blank" style="color:white;text-decoration:underline;font-weight:600">Terms & Conditions</a> and Software Licence Agreement.</span></label>
+      <div style="margin-bottom:12px"><label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Full Name *</label><input type="text" id="dl-name" required placeholder="John Smith" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit"></div>
+      <div style="margin-bottom:12px"><label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Company *</label><input type="text" id="dl-company" required placeholder="Company name" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit"></div>
+      <div style="margin-bottom:12px"><label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Industry *</label><select id="dl-industry" required style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit;appearance:auto"><option value="" style="color:#333">Select</option><option value="Additive Manufacturing" style="color:#333">Additive Manufacturing / 3D Printing</option><option value="Precision Engineering" style="color:#333">Precision Engineering / CNC</option><option value="Aerospace" style="color:#333">Aerospace &amp; Defence</option><option value="Automotive" style="color:#333">Automotive</option><option value="Medical Devices" style="color:#333">Medical Devices</option><option value="General Manufacturing" style="color:#333">General Manufacturing</option><option value="Other" style="color:#333">Other</option></select></div>
+      <div style="margin-bottom:16px"><label style="display:block;font-size:12px;color:#94a3b8;margin-bottom:4px;font-weight:600">Work Email *</label><input type="email" id="dl-email" required placeholder="you@company.com" style="width:100%;padding:10px 14px;border-radius:6px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:white;font-size:14px;outline:none;font-family:inherit"></div>
+      <label style="display:flex;align-items:flex-start;gap:8px;margin-bottom:14px;cursor:pointer"><input type="checkbox" id="dl-terms" required style="width:16px;height:16px;margin-top:2px;accent-color:#6366f1;flex-shrink:0"><span style="font-size:12px;color:#94a3b8;line-height:1.5">I agree to the <a href="terms.html" target="_blank" style="color:white;text-decoration:underline;font-weight:600">Terms &amp; Conditions</a>.</span></label>
       <button type="submit" class="btn btn-white" style="width:100%;text-align:center;font-size:15px;padding:12px;cursor:pointer">Download Free Trial</button>
-      <p style="text-align:center;margin-top:12px;font-size:11px;color:#64748b">Windows 10/11 &bull; Under 100 MB &bull; 30-day free trial</p>
+      <p style="text-align:center;margin-top:12px;font-size:11px;color:#64748b">Windows 10/11 &bull; Under 100 MB &bull; 30-day trial</p>
     </form>
   </div>
   <div id="download-success" style="display:none;text-align:center">
-    <div style="width:56px;height:56px;border-radius:50%;background:rgba(5,150,105,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 20px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+    <div style="width:56px;height:56px;border-radius:50%;background:rgba(5,150,105,0.15);display:flex;align-items:center;justify-content:center;margin:0 auto 20px"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></div>
     <h2>Your download is starting.</h2>
-    <p style="color:#94a3b8;margin:12px auto;max-width:480px;font-size:15px">If the download doesn't start automatically, <a id="manual-download" href="#" style="color:white;font-weight:600;text-decoration:underline">click here</a>.</p>
-    <div style="max-width:480px;margin:28px auto 0;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:20px;text-align:left">
-      <p style="font-size:13px;font-weight:700;color:white;margin-bottom:8px">Installation note</p>
-      <p style="font-size:12px;color:#94a3b8;line-height:1.7;margin:0">Windows may show a <strong style="color:white">"Windows protected your PC"</strong> message. Click <strong style="color:white">"More info"</strong> then <strong style="color:white">"Run anyway"</strong>. AMTrack runs on your local network &mdash; your data never leaves your building.</p>
-    </div>
+    <p style="color:#94a3b8;margin:12px auto;max-width:480px;font-size:15px">If it doesn't start, <a id="manual-download" href="#" style="color:white;font-weight:600;text-decoration:underline">click here</a>.</p>
+    <div style="max-width:480px;margin:28px auto 0;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:20px;text-align:left"><p style="font-size:13px;font-weight:700;color:white;margin-bottom:8px">Installation note</p><p style="font-size:12px;color:#94a3b8;line-height:1.7;margin:0">Windows may show <strong style="color:white">"Windows protected your PC"</strong>. Click <strong style="color:white">"More info"</strong> then <strong style="color:white">"Run anyway"</strong>.</p></div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand"><div class="footer-brand-name">AMTrack</div><p>Manufacturing management, simplified.</p></div>
-      <div class="footer-cols">
-        <div class="footer-col"><h4>Product</h4><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#comparison">Compare</a><a href="#download">Download</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="#about">About</a><a href="#contact">Contact</a><a href="terms.html" target="_blank">Terms</a></div>
-        <div class="footer-col"><h4>Contact</h4><a href="mailto:info@am-track.co.uk">info@am-track.co.uk</a><a href="mailto:support@am-track.co.uk">support@am-track.co.uk</a></div>
-      </div>
-    </div>
-    <div class="footer-bottom">&copy; 2026 AMTrack Ltd. All rights reserved. &nbsp;|&nbsp; <a href="terms.html" target="_blank" style="color:#64748b;text-decoration:underline">Terms & Conditions</a></div>
-  </div>
-</footer>
+<footer><div class="footer-inner"><div class="footer-top"><div class="footer-brand"><div class="footer-brand-name">AMTrack</div><p>Manufacturing management, simplified.</p></div><div class="footer-cols"><div class="footer-col"><h4>Product</h4><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#comparison">Compare</a><a href="#download">Download</a></div><div class="footer-col"><h4>Company</h4><a href="#about">About</a><a href="#contact">Contact</a><a href="terms.html" target="_blank">Terms</a></div><div class="footer-col"><h4>Contact</h4><a href="mailto:info@am-track.co.uk">info@am-track.co.uk</a><a href="mailto:support@am-track.co.uk">support@am-track.co.uk</a></div></div></div><div class="footer-bottom">&copy; 2026 AMTrack Ltd. All rights reserved. | <a href="terms.html" target="_blank" style="color:#64748b;text-decoration:underline">Terms</a></div></div></footer>
 
 <script>
-  // ── NAV ──
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => document.querySelector('.nav-links').classList.remove('open'));
+document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>document.querySelector('.nav-links').classList.remove('open')));
+window.addEventListener('scroll',()=>{document.querySelector('nav').style.boxShadow=window.scrollY>10?'0 1px 8px rgba(0,0,0,0.06)':'none'});
+
+// ── Scroll reveal ──
+const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');const id=e.target.closest('[id]')?.id;if(id==='hero-wf'||id==='sc-wf')animWf();if(id==='sc-inv')animInv();if(id==='sc-qms')animQ();if(id==='sc-hr')animHr();if(id==='sc-rpt')animRpt();}})},{threshold:0.15});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
+
+// ── Hero workflow auto-animate ──
+let heroDone=false;
+setTimeout(()=>{
+  document.querySelectorAll('#hero-wf .wf-node').forEach((n,i)=>setTimeout(()=>n.classList.add('show'),i*180));
+  // SVG arrows for hero
+  const heroSvg=document.getElementById('hero-svg');
+  if(heroSvg){
+    const paths=[
+      {d:'M110,40 C135,40 135,95 160,95',c:'#16a34a'},
+      {d:'M256,95 C280,95 280,130 310,130',c:'#16a34a'},
+      {d:'M406,40 C430,40 430,130 350,130',c:'#dc2626'},
+      {d:'M186,130 C186,175 186,210 196,210',c:'#16a34a'},
+      {d:'M346,130 C370,150 370,210 330,210',c:'#16a34a'},
+    ];
+    paths.forEach((p,i)=>{
+      const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+      path.setAttribute('d',p.d);path.setAttribute('stroke',p.c);path.setAttribute('stroke-dasharray','4,3');
+      heroSvg.appendChild(path);
+      setTimeout(()=>path.classList.add('show'),600+i*200);
+    });
+  }
+},300);
+
+// ── Workflow ──
+let wfDone=false;
+function animWf(){if(wfDone)return;wfDone=true;
+  document.querySelectorAll('#wf-canvas .wf-node').forEach((n,i)=>setTimeout(()=>n.classList.add('show'),i*200));
+  document.querySelectorAll('#wf-svg path').forEach((p,i)=>setTimeout(()=>p.classList.add('show'),500+i*200));
+}
+// ── Inventory ──
+let invDone=false;
+function animInv(){if(invDone)return;invDone=true;
+  document.querySelectorAll('#inv-body .inv-r').forEach((r,i)=>setTimeout(()=>r.classList.add('show'),i*120));
+}
+// ── Quality ──
+let qDone=false;
+function animQ(){if(qDone)return;qDone=true;
+  document.querySelectorAll('#q-list .q-item').forEach((c,i)=>{
+    setTimeout(()=>{c.classList.add('show');if(i<4)setTimeout(()=>c.classList.add('done'),350);},i*250);
   });
-  window.addEventListener('scroll', () => {
-    document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 1px 8px rgba(0,0,0,0.06)' : 'none';
+}
+// ── HR ──
+let hrDone=false;
+function animHr(){if(hrDone)return;hrDone=true;
+  document.querySelectorAll('#hr-list .hr-c').forEach((c,i)=>setTimeout(()=>c.classList.add('show'),i*180));
+}
+// ── Report ──
+let rptDone=false;
+function animRpt(){if(rptDone)return;rptDone=true;
+  document.querySelectorAll('#rpt-bars .rpt-bar').forEach((b,i)=>setTimeout(()=>b.classList.add('show'),i*80));
+  document.querySelectorAll('#rpt-kpis .rpt-num').forEach(el=>{
+    const t=+el.dataset.t;let c=0;const s=Math.ceil(t/25);
+    const iv=setInterval(()=>{c+=s;if(c>=t){c=t;clearInterval(iv);}el.textContent=c;},30);
   });
+}
 
-  // ── SCROLL REVEAL ──
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        // Trigger mockup animations
-        const id = entry.target.closest('[id]')?.id;
-        if (id === 'showcase-wf') animateWorkflow();
-        if (id === 'showcase-inv') animateInventory();
-        if (id === 'showcase-qms') animateQuality();
-        if (id === 'showcase-hr') animateHR();
-        if (id === 'showcase-rpt') animateReport();
-      }
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+// ── Download ──
+let DOWNLOAD_URL=null;
+const downloadReady=fetch('https://api.github.com/repos/momoradik/am-track-website/releases/latest').then(r=>r.json()).then(r=>{const e=r.assets?.find(a=>a.name.endsWith('.exe')&&!a.name.endsWith('.blockmap'));if(e)DOWNLOAD_URL=e.browser_download_url;}).catch(()=>{});
 
-  // ── WORKFLOW ANIMATION ──
-  let wfDone = false;
-  function animateWorkflow() {
-    if (wfDone) return; wfDone = true;
-    const nodes = document.querySelectorAll('#showcase-wf .wf-node');
-    const arrows = document.querySelectorAll('#showcase-wf .wf-arrow line');
-    nodes.forEach((n, i) => setTimeout(() => n.classList.add('show'), i * 200));
-    arrows.forEach((a, i) => setTimeout(() => { a.style.animation = 'drawLine 0.6s ease forwards'; }, 400 + i * 300));
-  }
+function recordConsent(n,e,c,t){const r={name:n,email:e,company:c,type:t,terms_version:'2026-05-19',accepted_at:new Date().toISOString(),user_agent:navigator.userAgent};try{const s=JSON.parse(localStorage.getItem('amtrack_consents')||'[]');s.push(r);localStorage.setItem('amtrack_consents',JSON.stringify(s));}catch(_){}try{fetch('https://formspree.io/f/xvzypyel',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({...r,_subject:'T&C: '+n+' ('+c+') — '+t})});}catch(_){}}
 
-  // ── INVENTORY ANIMATION ──
-  let invDone = false;
-  function animateInventory() {
-    if (invDone) return; invDone = true;
-    document.querySelectorAll('#inv-rows .inv-row').forEach((r, i) => {
-      setTimeout(() => r.classList.add('show'), i * 150);
-    });
-  }
+function openBuyModal(tier,url){const tn={starter:'Starter',professional:'Professional',enterprise:'Enterprise'};const ex=document.getElementById('buy-modal');if(ex)ex.remove();const m=document.createElement('div');m.id='buy-modal';m.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)';m.innerHTML=`<div style="background:white;border-radius:12px;padding:32px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.2);position:relative"><button onclick="document.getElementById('buy-modal').remove()" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8">&times;</button><h2 style="font-size:20px;font-weight:800;color:#1e1b4b;margin:0 0 4px">Subscribe to ${tn[tier]}</h2><p style="font-size:13px;color:#64748b;margin:0 0 20px">Complete details to proceed.</p><form id="buy-form" style="display:flex;flex-direction:column;gap:12px"><div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Full Name *</label><input type="text" id="buy-name" required placeholder="John Smith" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit"/></div><div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Company *</label><input type="text" id="buy-company" required placeholder="Company" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit"/></div><div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Email *</label><input type="email" id="buy-email" required placeholder="you@co.com" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit"/></div><label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;margin-top:4px"><input type="checkbox" id="buy-terms" required style="width:16px;height:16px;margin-top:2px;accent-color:#4f46e5;flex-shrink:0"/><span style="font-size:12px;color:#475569;line-height:1.5">I agree to the <a href="terms.html" target="_blank" style="color:#4f46e5;font-weight:600;text-decoration:underline">Terms</a>.</span></label><button type="submit" style="background:#4f46e5;color:white;border:none;padding:12px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;margin-top:4px">Proceed to Payment</button></form></div>`;document.body.appendChild(m);m.addEventListener('click',e=>{if(e.target===m)m.remove();});document.getElementById('buy-form').addEventListener('submit',async e=>{e.preventDefault();const b=e.target.querySelector('button[type="submit"]');b.textContent='Redirecting...';b.disabled=true;const l={name:document.getElementById('buy-name').value,company:document.getElementById('buy-company').value,email:document.getElementById('buy-email').value,tier,_subject:'Purchase: '+document.getElementById('buy-company').value+' ('+tn[tier]+')'};try{await fetch('https://formspree.io/f/xvzypyel',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(l)});}catch(_){}recordConsent(l.name,l.email,l.company,'purchase_'+tier);window.open(url,'_blank');m.remove();});}
 
-  // ── QUALITY ANIMATION ──
-  let qDone = false;
-  function animateQuality() {
-    if (qDone) return; qDone = true;
-    document.querySelectorAll('#q-checks .q-check').forEach((c, i) => {
-      setTimeout(() => {
-        c.classList.add('show');
-        if (i < 4) setTimeout(() => c.classList.add('done'), 400);
-      }, i * 300);
-    });
-  }
-
-  // ── HR ANIMATION ──
-  let hrDone = false;
-  function animateHR() {
-    if (hrDone) return; hrDone = true;
-    document.querySelectorAll('#hr-cards .hr-card').forEach((c, i) => {
-      setTimeout(() => c.classList.add('show'), i * 200);
-    });
-  }
-
-  // ── REPORT ANIMATION ──
-  let rptDone = false;
-  function animateReport() {
-    if (rptDone) return; rptDone = true;
-    document.querySelectorAll('#rpt-bars .rpt-bar').forEach((b, i) => {
-      setTimeout(() => b.classList.add('show'), i * 100);
-    });
-    // Counter animation
-    document.querySelectorAll('#rpt-kpis .rpt-num').forEach(el => {
-      const target = parseInt(el.dataset.target);
-      let current = 0;
-      const step = Math.ceil(target / 30);
-      const timer = setInterval(() => {
-        current += step;
-        if (current >= target) { current = target; clearInterval(timer); }
-        el.textContent = current;
-      }, 30);
-    });
-  }
-
-  // ── DOWNLOAD ──
-  let DOWNLOAD_URL = null;
-  const downloadReady = fetch('https://api.github.com/repos/momoradik/am-track-website/releases/latest')
-    .then(r => r.json())
-    .then(release => {
-      const exe = release.assets?.find(a => a.name.endsWith('.exe') && !a.name.endsWith('.blockmap'));
-      if (exe) DOWNLOAD_URL = exe.browser_download_url;
-    })
-    .catch(() => {});
-
-  function recordConsent(name, email, company, type) {
-    const record = { name, email, company, type, terms_version: '2026-05-19', accepted_at: new Date().toISOString(), user_agent: navigator.userAgent };
-    try { const c = JSON.parse(localStorage.getItem('amtrack_consents') || '[]'); c.push(record); localStorage.setItem('amtrack_consents', JSON.stringify(c)); } catch (_) {}
-    try { fetch('https://formspree.io/f/xvzypyel', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ ...record, _subject: 'T&C Accepted: ' + name + ' (' + company + ') — ' + type }) }); } catch (_) {}
-  }
-
-  function openBuyModal(tier, stripeUrl) {
-    const tierNames = { starter: 'Starter', professional: 'Professional', enterprise: 'Enterprise' };
-    const existing = document.getElementById('buy-modal');
-    if (existing) existing.remove();
-    const modal = document.createElement('div');
-    modal.id = 'buy-modal';
-    modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)';
-    modal.innerHTML = `<div style="background:white;border-radius:12px;padding:32px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.2);position:relative"><button onclick="document.getElementById('buy-modal').remove()" style="position:absolute;top:12px;right:12px;background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8">&times;</button><h2 style="font-size:20px;font-weight:800;color:#1e1b4b;margin:0 0 4px">Subscribe to ${tierNames[tier]}</h2><p style="font-size:13px;color:#64748b;margin:0 0 20px">Complete your details to proceed.</p><form id="buy-form" style="display:flex;flex-direction:column;gap:12px"><div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Full Name *</label><input type="text" id="buy-name" required placeholder="John Smith" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit"/></div><div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Company *</label><input type="text" id="buy-company" required placeholder="Your company" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit"/></div><div><label style="display:block;font-size:12px;font-weight:600;color:#334155;margin-bottom:4px">Email *</label><input type="email" id="buy-email" required placeholder="you@company.com" style="width:100%;padding:10px 12px;border:1px solid #d1d5db;border-radius:6px;font-size:14px;outline:none;font-family:inherit"/></div><label style="display:flex;align-items:flex-start;gap:8px;cursor:pointer;margin-top:4px"><input type="checkbox" id="buy-terms" required style="width:16px;height:16px;margin-top:2px;accent-color:#4f46e5;flex-shrink:0"/><span style="font-size:12px;color:#475569;line-height:1.5">I agree to the <a href="terms.html" target="_blank" style="color:#4f46e5;font-weight:600;text-decoration:underline">Terms & Conditions</a>.</span></label><button type="submit" style="background:#4f46e5;color:white;border:none;padding:12px;border-radius:6px;font-size:15px;font-weight:600;cursor:pointer;margin-top:4px">Proceed to Payment</button><p style="text-align:center;font-size:11px;color:#94a3b8;margin:0">Secure payment via Stripe</p></form></div>`;
-    document.body.appendChild(modal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
-    document.getElementById('buy-form').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = e.target.querySelector('button[type="submit"]'); btn.textContent = 'Redirecting...'; btn.disabled = true;
-      const lead = { name: document.getElementById('buy-name').value, company: document.getElementById('buy-company').value, email: document.getElementById('buy-email').value, tier, _subject: 'New AMTrack Purchase: ' + document.getElementById('buy-company').value + ' (' + tierNames[tier] + ')' };
-      try { await fetch('https://formspree.io/f/xvzypyel', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(lead) }); } catch (_) {}
-      try { const e = JSON.parse(localStorage.getItem('amtrack_purchases') || '[]'); e.push({ ...lead, timestamp: new Date().toISOString() }); localStorage.setItem('amtrack_purchases', JSON.stringify(e)); } catch (_) {}
-      recordConsent(lead.name, lead.email, lead.company, 'purchase_' + tier);
-      window.open(stripeUrl, '_blank'); modal.remove();
-    });
-  }
-
-  document.getElementById('download-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]'); btn.textContent = 'Preparing download...'; btn.disabled = true;
-    const lead = { full_name: document.getElementById('dl-name').value, company_name: document.getElementById('dl-company').value, industry: document.getElementById('dl-industry').value, email: document.getElementById('dl-email').value, source: 'website' };
-    try { await fetch('https://formspree.io/f/xvzypyel', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify({ name: lead.full_name, company: lead.company_name, industry: lead.industry, email: lead.email, _subject: 'New AMTrack Download: ' + lead.company_name }) }); } catch (_) {}
-    try { const e = JSON.parse(localStorage.getItem('amtrack_leads') || '[]'); e.push({ ...lead, downloaded_at: new Date().toISOString() }); localStorage.setItem('amtrack_leads', JSON.stringify(e)); } catch (_) {}
-    recordConsent(lead.full_name, lead.email, lead.company_name, 'free_trial_download');
-    document.getElementById('download-form-section').style.display = 'none';
-    document.getElementById('download-success').style.display = 'block';
-    await downloadReady;
-    if (DOWNLOAD_URL) { document.getElementById('manual-download').href = DOWNLOAD_URL; window.location.href = DOWNLOAD_URL; }
-    else { const f = 'https://github.com/momoradik/am-track-website/releases/latest'; document.getElementById('manual-download').href = f; window.location.href = f; }
-  });
+document.getElementById('download-form').addEventListener('submit',async e=>{e.preventDefault();const b=e.target.querySelector('button[type="submit"]');b.textContent='Preparing...';b.disabled=true;const l={full_name:document.getElementById('dl-name').value,company_name:document.getElementById('dl-company').value,industry:document.getElementById('dl-industry').value,email:document.getElementById('dl-email').value,source:'website'};try{await fetch('https://formspree.io/f/xvzypyel',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:l.full_name,company:l.company_name,industry:l.industry,email:l.email,_subject:'Download: '+l.company_name})});}catch(_){}recordConsent(l.full_name,l.email,l.company_name,'free_trial_download');document.getElementById('download-form-section').style.display='none';document.getElementById('download-success').style.display='block';await downloadReady;if(DOWNLOAD_URL){document.getElementById('manual-download').href=DOWNLOAD_URL;window.location.href=DOWNLOAD_URL;}else{const f='https://github.com/momoradik/am-track-website/releases/latest';document.getElementById('manual-download').href=f;window.location.href=f;}});
 </script>
 </body>
 </html>
