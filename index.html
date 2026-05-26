@@ -152,6 +152,34 @@
   .hr-dot { width: 5px; height: 5px; border-radius: 50%; }
   .hr-dot.on { background: #22c55e; } .hr-dot.off { background: #d1d5db; }
 
+  /* ── TASK ASSIGNMENT MOCKUP ── */
+  .task-list { display: flex; flex-direction: column; gap: 6px; }
+  .task-row { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: white; border: 1px solid #f1f5f9; border-radius: 8px; opacity: 0; transform: translateX(-12px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+  .task-row.show { opacity: 1; transform: none; }
+  .task-step { font-size: 9px; font-weight: 600; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+  .task-part { font-size: 10px; font-weight: 700; color: #111827; flex: 1; }
+  .task-assign { display: flex; align-items: center; gap: 4px; }
+  .task-av { width: 18px; height: 18px; border-radius: 50%; font-size: 7px; font-weight: 800; color: white; display: flex; align-items: center; justify-content: center; }
+  .task-name { font-size: 8px; color: #6b7280; font-weight: 500; }
+  .task-status { font-size: 8px; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+  .task-status.progress { background: #dbeafe; color: #2563eb; }
+  .task-status.waiting { background: #fef3c7; color: #d97706; }
+  .task-status.done { background: #d1fae5; color: #059669; }
+
+  /* ── MAINTENANCE MOCKUP ── */
+  .maint-list { display: flex; flex-direction: column; gap: 6px; }
+  .maint-row { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: white; border: 1px solid #f1f5f9; border-radius: 8px; opacity: 0; transform: translateY(8px); transition: all 0.4s ease; }
+  .maint-row.show { opacity: 1; transform: none; }
+  .maint-icon { width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .maint-icon svg { width: 14px; height: 14px; stroke-width: 2; fill: none; }
+  .maint-info { flex: 1; }
+  .maint-title { font-size: 10px; font-weight: 700; color: #111827; }
+  .maint-sub { font-size: 8px; color: #9ca3af; }
+  .maint-due { font-size: 8px; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+  .maint-due.overdue { background: #fef2f2; color: #dc2626; }
+  .maint-due.soon { background: #fef3c7; color: #d97706; }
+  .maint-due.ok { background: #d1fae5; color: #059669; }
+
   /* ── REPORT MOCKUP ── */
   .rpt-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; margin-bottom: 10px; }
   .rpt-kpi { background: white; border: 1px solid #f1f5f9; border-radius: 6px; padding: 8px; text-align: center; }
@@ -548,6 +576,81 @@
         </div>
       </div>
     </div>
+    <!-- TASK ASSIGNMENT -->
+    <div class="showcase reverse" id="sc-task">
+      <div class="sc-text reveal-right">
+        <div class="section-label">Shop Floor</div>
+        <h3>Assign Tasks to Your Team</h3>
+        <p>Assign workflow steps and substeps to specific operators. Each team member sees their personal task queue with SOP confirmations required before they can start work.</p>
+        <ul><li>Assign steps to one or multiple operators</li><li>Personal "My Tasks" queue per employee</li><li>SOP read-and-confirm before execution</li><li>Real-time progress tracking per step</li><li>Evidence upload and substep completion</li></ul>
+      </div>
+      <div class="sc-mock reveal-left app-mock" id="task-mock">
+        <div class="app-topbar"><div class="app-topbar-logo">A</div><span class="app-topbar-text">AMTrack</span><div class="app-topbar-nav"><span>Dashboard</span><span class="active">My Tasks</span><span>Workflow</span></div><div class="app-topbar-right"><div class="app-topbar-dot"></div><span>J. Williams</span></div></div>
+        <div class="app-body">
+          <div class="app-sidebar"><div class="app-sidebar-label">Execution</div><div class="app-sidebar-item active">My Tasks</div><div class="app-sidebar-item">Active Jobs</div><div class="app-sidebar-item">Tracker</div><div class="app-sidebar-item">Overview</div></div>
+          <div class="app-main">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:12px;font-weight:700;color:#111827">My Tasks</span><span style="font-size:9px;color:#9ca3af">3 assigned &bull; 1 in progress</span></div>
+            <div class="task-list" id="task-list">
+              <div class="task-row"><div class="task-step" style="background:#ecfeff;color:#0891b2">3D Printing</div><div class="task-part">Part #AX-2041 &mdash; SLS Print Run</div><div class="task-assign"><div class="task-av" style="background:#6366f1">JW</div><div class="task-name">Assigned to you</div></div><div class="task-status progress">In Progress</div></div>
+              <div class="task-row"><div class="task-step" style="background:#fffbeb;color:#d97706">CMM</div><div class="task-part">Part #BK-1087 &mdash; Dimensional Check</div><div class="task-assign"><div class="task-av" style="background:#6366f1">JW</div><div class="task-name">Assigned to you</div></div><div class="task-status waiting">Waiting</div></div>
+              <div class="task-row"><div class="task-step" style="background:#fef2f2;color:#dc2626">Furnace</div><div class="task-part">Batch #SB-044 &mdash; Sinter Cycle</div><div class="task-assign"><div class="task-av" style="background:#6366f1">JW</div><div class="task-av" style="background:#059669;margin-left:-6px">SP</div><div class="task-name">+1 more</div></div><div class="task-status waiting">Waiting</div></div>
+              <div class="task-row"><div class="task-step" style="background:#f5f3ff;color:#7c3aed">Sanding</div><div class="task-part">Part #AX-2038 &mdash; Surface Finish</div><div class="task-assign"><div class="task-av" style="background:#6366f1">JW</div><div class="task-name">Assigned to you</div></div><div class="task-status done">Completed</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAINTENANCE & EQUIPMENT -->
+    <div class="showcase" id="sc-maint">
+      <div class="sc-text reveal-left">
+        <div class="section-label">Equipment</div>
+        <h3>Maintenance &amp; Equipment Tracking</h3>
+        <p>Register every machine with status tracking, scheduled maintenance with SOP procedures, calibration logging, and usage history linked to workflow executions.</p>
+        <ul><li>Machine registry with live status</li><li>Scheduled maintenance with SOP &amp; evidence</li><li>Calibration tracking and usage logging</li><li>Operator authorisations per machine</li><li>Assign equipment directly to workflow steps</li></ul>
+      </div>
+      <div class="sc-mock reveal-right app-mock" id="maint-mock">
+        <div class="app-topbar"><div class="app-topbar-logo">A</div><span class="app-topbar-text">AMTrack</span><div class="app-topbar-nav"><span>Dashboard</span><span>Workflow</span><span class="active">Resources</span></div><div class="app-topbar-right"><div class="app-topbar-dot"></div><span>Admin</span></div></div>
+        <div class="app-body">
+          <div class="app-sidebar"><div class="app-sidebar-label">Resources</div><div class="app-sidebar-item">Equipment</div><div class="app-sidebar-item active">Maintenance</div><div class="app-sidebar-item">Skills</div><div class="app-sidebar-item">Printers</div><div class="app-sidebar-item">Furnaces</div></div>
+          <div class="app-main">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:8px">Scheduled Maintenance</div>
+            <div class="maint-list" id="maint-list">
+              <div class="maint-row"><div class="maint-icon" style="background:#fef2f2"><svg viewBox="0 0 24 24" stroke="#dc2626"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="maint-info"><div class="maint-title">SLS Printer #2 &mdash; Laser Calibration</div><div class="maint-sub">SOP: CAL-SLS-v2.1 &bull; Assigned: J. Williams</div></div><div class="maint-due overdue">Overdue 2d</div></div>
+              <div class="maint-row"><div class="maint-icon" style="background:#fef3c7"><svg viewBox="0 0 24 24" stroke="#d97706"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="maint-info"><div class="maint-title">Furnace #1 &mdash; Thermocouple Check</div><div class="maint-sub">SOP: FURN-TC-v1.3 &bull; Assigned: S. Patel</div></div><div class="maint-due soon">Due tomorrow</div></div>
+              <div class="maint-row"><div class="maint-icon" style="background:#dbeafe"><svg viewBox="0 0 24 24" stroke="#2563eb"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><div class="maint-info"><div class="maint-title">CMM Machine &mdash; Annual Service</div><div class="maint-sub">SOP: CMM-SVC-v4.0 &bull; Assigned: External</div></div><div class="maint-due ok">In 12 days</div></div>
+              <div class="maint-row"><div class="maint-icon" style="background:#f0fdf4"><svg viewBox="0 0 24 24" stroke="#059669"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="maint-info"><div class="maint-title">FDM Printer #1 &mdash; Nozzle Replacement</div><div class="maint-sub">SOP: FDM-NOZ-v1.0 &bull; Completed by M. Reynolds</div></div><div class="maint-due ok">Done 3d ago</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISITOR MANAGEMENT -->
+    <div class="showcase reverse" id="sc-visit">
+      <div class="sc-text reveal-right">
+        <div class="section-label">Facility</div>
+        <h3>Visitor Sign-In &amp; Notifications</h3>
+        <p>Digital visitor kiosk that runs in the browser &mdash; no login required. Track who's on-site for compliance and safety. Plus real-time notifications for all team members.</p>
+        <ul><li>Touchscreen-friendly sign-in kiosk</li><li>Badge number and purpose tracking</li><li>Active visitor list and sign-out</li><li>Bell notifications for all employees</li><li>Full visitor log for audits</li></ul>
+      </div>
+      <div class="sc-mock reveal-left app-mock" id="visit-mock">
+        <div class="app-topbar"><div class="app-topbar-logo">A</div><span class="app-topbar-text">AMTrack</span><div class="app-topbar-nav"><span>Dashboard</span><span>Workflow</span><span class="active">Visitors</span></div><div class="app-topbar-right"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span style="background:#dc2626;color:white;font-size:7px;font-weight:800;padding:1px 4px;border-radius:8px;margin-left:-4px">3</span><span style="margin-left:6px">Reception</span></div></div>
+        <div class="app-body">
+          <div class="app-sidebar"><div class="app-sidebar-label">Visitors</div><div class="app-sidebar-item active">Sign In</div><div class="app-sidebar-item">Active Now</div><div class="app-sidebar-item">Visitor Log</div></div>
+          <div class="app-main" id="visit-main">
+            <div style="font-size:12px;font-weight:700;color:#111827;margin-bottom:2px">Active Visitors</div>
+            <div style="font-size:9px;color:#9ca3af;margin-bottom:8px">3 currently signed in</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div class="task-row" style="opacity:0;transform:translateX(-12px)"><div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></div><div style="flex:1"><div style="font-size:10px;font-weight:700;color:#111827">David Chen &mdash; Rolls-Royce</div><div style="font-size:8px;color:#9ca3af">Visiting: J. Williams &bull; Purpose: Part inspection &bull; Badge: V-042</div></div><div style="font-size:8px;color:#9ca3af">10:24 AM</div></div>
+              <div class="task-row" style="opacity:0;transform:translateX(-12px)"><div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></div><div style="flex:1"><div style="font-size:10px;font-weight:700;color:#111827">Emma Roberts &mdash; ISO Auditor</div><div style="font-size:8px;color:#9ca3af">Visiting: L. Chen &bull; Purpose: Surveillance audit &bull; Badge: V-043</div></div><div style="font-size:8px;color:#9ca3af">09:15 AM</div></div>
+              <div class="task-row" style="opacity:0;transform:translateX(-12px)"><div style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0"></div><div style="flex:1"><div style="font-size:10px;font-weight:700;color:#111827">Tom Harris &mdash; EOS Service</div><div style="font-size:8px;color:#9ca3af">Visiting: M. Reynolds &bull; Purpose: Printer maintenance &bull; Badge: V-044</div></div><div style="font-size:8px;color:#9ca3af">11:02 AM</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -555,7 +658,7 @@
 <section class="alt-bg"><div class="container"><div class="section-header-center reveal"><div class="section-label">Getting Started</div><div class="section-title">Up and running in 5 minutes</div><p class="section-desc">No cloud. No database config. No IT department.</p></div><div class="steps-row"><div class="step-card reveal"><div class="step-num">1</div><h3>Download</h3><p>One installer, under 100 MB</p></div><div class="step-card reveal"><div class="step-num">2</div><h3>Install</h3><p>Double-click the wizard</p></div><div class="step-card reveal"><div class="step-num">3</div><h3>Launch</h3><p>Server starts automatically</p></div><div class="step-card reveal"><div class="step-num">4</div><h3>Connect</h3><p>Team opens any browser</p></div></div></div></section>
 
 <!-- ═══ COMPARISON ═══ -->
-<section id="comparison"><div class="container"><div class="section-header-center reveal"><div class="section-label">Comparison</div><div class="section-title">How AMTrack compares</div></div><div class="comparison-wrapper reveal"><table class="comparison"><tr><th>Capability</th><th>AMTrack</th><th>SAP B1</th><th>Odoo</th><th>AMFG</th><th>Spreadsheets</th></tr><tr><td>Visual Workflow Builder</td><td class="hl yes">Yes</td><td class="no">No</td><td class="partial">Basic</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>Shop Floor Execution</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>BOM, Inventory &amp; Purchasing</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr><tr><td>Quality / NCR / Evidence</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="partial">Basic</td><td class="no">No</td></tr><tr><td>SOP &amp; Confirmations</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Equipment &amp; Maintenance</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="no">No</td><td class="no">No</td></tr><tr><td>HR / Timesheets / Leave</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr><tr><td>Part Traceability</td><td class="hl yes">Yes</td><td class="partial">Partial</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>Local / No Cloud</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="partial">Self-host</td><td class="no">Cloud</td><td class="yes">Yes</td></tr><tr><td>Setup Time</td><td class="hl" style="color:var(--accent);font-weight:700">5 min</td><td>6-12 months</td><td>2-4 weeks</td><td>1-2 weeks</td><td>Immediate</td></tr><tr><td><strong>Cost (15 users/yr)</strong></td><td class="hl" style="color:var(--accent);font-weight:700">&pound;348</td><td>&pound;27,000+</td><td>&pound;7,500+</td><td>&pound;30,000+</td><td>&pound;0</td></tr></table></div></div></section>
+<section id="comparison"><div class="container"><div class="section-header-center reveal"><div class="section-label">Comparison</div><div class="section-title">How AMTrack compares</div></div><div class="comparison-wrapper reveal"><table class="comparison"><tr><th>Capability</th><th>AMTrack</th><th>SAP B1</th><th>Odoo</th><th>AMFG</th><th>Spreadsheets</th></tr><tr><td>Visual Workflow Builder</td><td class="hl yes">Yes</td><td class="no">No</td><td class="partial">Basic</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>Shop Floor Execution</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>BOM, Inventory &amp; Purchasing</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr><tr><td>Quality / NCR / Evidence</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="partial">Basic</td><td class="no">No</td></tr><tr><td>SOP &amp; Confirmations</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Equipment &amp; Maintenance</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="partial">Add-on</td><td class="no">No</td><td class="no">No</td></tr><tr><td>HR / Timesheets / Leave</td><td class="hl yes">Yes</td><td class="partial">Add-on</td><td class="yes">Yes</td><td class="no">No</td><td class="partial">Manual</td></tr><tr><td>Task Assignment &amp; Tracking</td><td class="hl yes">Yes</td><td class="no">No</td><td class="partial">Basic</td><td class="partial">Basic</td><td class="no">No</td></tr><tr><td>Visitor Management</td><td class="hl yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td></tr><tr><td>Part Traceability</td><td class="hl yes">Yes</td><td class="partial">Partial</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td></tr><tr><td>Local / No Cloud</td><td class="hl yes">Yes</td><td class="yes">Yes</td><td class="partial">Self-host</td><td class="no">Cloud</td><td class="yes">Yes</td></tr><tr><td>Setup Time</td><td class="hl" style="color:var(--accent);font-weight:700">5 min</td><td>6-12 months</td><td>2-4 weeks</td><td>1-2 weeks</td><td>Immediate</td></tr><tr><td><strong>Cost (15 users/yr)</strong></td><td class="hl" style="color:var(--accent);font-weight:700">&pound;348</td><td>&pound;27,000+</td><td>&pound;7,500+</td><td>&pound;30,000+</td><td>&pound;0</td></tr></table></div></div></section>
 
 <!-- ═══ PRICING ═══ -->
 <section class="alt-bg" id="pricing"><div class="container"><div class="section-header-center reveal"><div class="section-label">Pricing</div><div class="section-title">Simple, honest pricing</div><p class="section-desc">No per-user fees. No hidden costs. Cancel anytime.</p></div><div class="pricing-grid"><div class="price-card reveal"><h3>Starter</h3><div class="price-amount">&pound;29</div><div class="price-period">per month</div><div class="price-desc">Up to 15 people.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Up to 15 users</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All 20+ modules</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Auto-updates</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Email support</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30-day free trial</li></ul><a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a><a href="#" onclick="openBuyModal('starter','https://buy.stripe.com/test_dRm4gB8gG3ukfX9an4g7e00');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a></div><div class="price-card featured reveal"><h3>Professional</h3><div class="price-amount">&pound;79</div><div class="price-period">per month</div><div class="price-desc">For growing teams.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited users</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>All modules</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Custom reports</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30-day free trial</li></ul><a href="#download" class="price-btn btn-accent">Start Free Trial</a><a href="#" onclick="openBuyModal('professional','https://buy.stripe.com/test_3cI00l9kK8OE6mz1Qyg7e01');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a></div><div class="price-card reveal"><h3>Enterprise</h3><div class="price-amount">&pound;199</div><div class="price-period">per month</div><div class="price-desc">Multi-site + SLA.</div><ul class="price-features"><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Multi-site deploy</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Custom integrations</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Dedicated support</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>On-site training</li><li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>30-day free trial</li></ul><a href="#download" class="price-btn btn-outline-light" style="color:var(--primary);border:1px solid var(--slate-300)">Start Free Trial</a><a href="#" onclick="openBuyModal('enterprise','https://buy.stripe.com/test_aFadRbdB02qg5iv9j0g7e02');return false" class="price-btn btn-primary" style="margin-top:8px">Buy Now</a></div></div><p style="text-align:center;margin-top:28px;color:var(--slate-400);font-size:13px">&pound;1,995 perpetual licence also available.</p></div></section>
@@ -596,7 +699,7 @@ document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',
 window.addEventListener('scroll',()=>{document.querySelector('nav').style.boxShadow=window.scrollY>10?'0 1px 8px rgba(0,0,0,0.06)':'none'});
 
 // ── Scroll reveal ──
-const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');const id=e.target.closest('[id]')?.id;if(id==='hero-wf'||id==='sc-wf')animWf();if(id==='sc-inv')animInv();if(id==='sc-qms')animQ();if(id==='sc-hr')animHr();if(id==='sc-rpt')animRpt();}})},{threshold:0.15});
+const obs = new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');const id=e.target.closest('[id]')?.id;if(id==='hero-wf'||id==='sc-wf')animWf();if(id==='sc-inv')animInv();if(id==='sc-qms')animQ();if(id==='sc-hr')animHr();if(id==='sc-rpt')animRpt();if(id==='sc-task')animTask();if(id==='sc-maint')animMaint();if(id==='sc-visit')animVisit();}})},{threshold:0.15});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.observe(el));
 
 // ── Hero workflow auto-animate ──
@@ -673,6 +776,22 @@ function animRpt(){if(rptDone)return;rptDone=true;
     const t=+el.dataset.t;let c=0;const s=Math.ceil(t/25);
     const iv=setInterval(()=>{c+=s;if(c>=t){c=t;clearInterval(iv);}el.textContent=c;},30);
   });
+}
+
+// ── Task Assignment ──
+let taskDone=false;
+function animTask(){if(taskDone)return;taskDone=true;
+  document.querySelectorAll('#task-list .task-row').forEach((r,i)=>setTimeout(()=>r.classList.add('show'),i*150));
+}
+// ── Maintenance ──
+let maintDone=false;
+function animMaint(){if(maintDone)return;maintDone=true;
+  document.querySelectorAll('#maint-list .maint-row').forEach((r,i)=>setTimeout(()=>r.classList.add('show'),i*150));
+}
+// ── Visitors ──
+let visitDone=false;
+function animVisit(){if(visitDone)return;visitDone=true;
+  document.querySelectorAll('#visit-main .task-row').forEach((r,i)=>setTimeout(()=>{r.style.opacity='1';r.style.transform='none';},i*180));
 }
 
 // ── Download ──
