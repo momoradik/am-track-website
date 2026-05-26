@@ -590,9 +590,9 @@
     document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 1px 8px rgba(0,0,0,0.06)' : 'none';
   });
 
-  let DOWNLOAD_URL = 'https://github.com/momoradik/am-track-website/releases/latest';
-  // Fetch latest release asset URL from public website repo
-  fetch('https://api.github.com/repos/momoradik/am-track-website/releases/latest')
+  let DOWNLOAD_URL = null;
+  // Fetch latest release asset URL from public website repo — store as promise so we can await it
+  const downloadReady = fetch('https://api.github.com/repos/momoradik/am-track-website/releases/latest')
     .then(r => r.json())
     .then(release => {
       const exe = release.assets?.find(a => a.name.endsWith('.exe') && !a.name.endsWith('.blockmap'));
@@ -729,8 +729,18 @@
 
     document.getElementById('download-form-section').style.display = 'none';
     document.getElementById('download-success').style.display = 'block';
-    document.getElementById('manual-download').href = DOWNLOAD_URL;
-    window.location.href = DOWNLOAD_URL;
+
+    // Wait for the download URL to be resolved before triggering download
+    await downloadReady;
+    if (DOWNLOAD_URL) {
+      document.getElementById('manual-download').href = DOWNLOAD_URL;
+      window.location.href = DOWNLOAD_URL;
+    } else {
+      // Fallback: redirect to releases page if API failed
+      const fallback = 'https://github.com/momoradik/am-track-website/releases/latest';
+      document.getElementById('manual-download').href = fallback;
+      window.location.href = fallback;
+    }
   });
 </script>
 
