@@ -478,27 +478,29 @@
                   <marker id="ah-pass" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#16a34a"/></marker>
                   <marker id="ah-fail" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#dc2626"/></marker>
                 </defs>
-                <!-- Mix → Print (pass) -->
-                <path class="wf-line" d="M68,55 L68,72 L165,72 L165,12" stroke="#16a34a" marker-end="url(#ah-pass)"/>
-                <path class="wf-dots" d="M68,55 L68,72 L165,72 L165,12" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
-                <g class="wf-badge"><rect x="96" y="63" width="36" height="14" rx="7" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="114" y="74" text-anchor="middle" fill="#16a34a" font-size="7" font-weight="700">Pass</text></g>
-                <!-- Print → Visual QA (pass) -->
-                <path class="wf-line" d="M215,55 L215,78 L330,78 L330,12" stroke="#16a34a" marker-end="url(#ah-pass)"/>
-                <path class="wf-dots" d="M215,55 L215,78 L330,78 L330,12" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
-                <g class="wf-badge"><rect x="252" y="69" width="36" height="14" rx="7" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="270" y="80" text-anchor="middle" fill="#16a34a" font-size="7" font-weight="700">Pass</text></g>
-                <!-- Visual QA → Sinter (pass) -->
-                <path class="wf-line" d="M320,55 L320,90 L120,90 L120,106" stroke="#16a34a" marker-end="url(#ah-pass)"/>
-                <path class="wf-dots" d="M320,55 L320,90 L120,90 L120,106" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
-                <!-- Visual QA fail stub -->
-                <path class="wf-line" d="M350,55 L350,78" stroke="#dc2626"/>
-                <g class="wf-badge"><rect x="334" y="68" width="28" height="14" rx="7" fill="#FEE2E2" stroke="#dc2626" stroke-width="1.2"/><text x="348" y="79" text-anchor="middle" fill="#dc2626" font-size="7" font-weight="700">Fail</text></g>
-                <!-- Sinter → CMM (pass) -->
-                <path class="wf-line" d="M120,156 L120,172 L300,172 L300,156" stroke="#16a34a" marker-end="url(#ah-pass)"/>
-                <path class="wf-dots" d="M120,156 L120,172 L300,172 L300,156" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
-                <g class="wf-badge"><rect x="190" y="163" width="36" height="14" rx="7" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="208" y="174" text-anchor="middle" fill="#16a34a" font-size="7" font-weight="700">Pass</text></g>
-                <!-- CMM → Product (pass) -->
-                <path class="wf-line" d="M300,156 L300,195 L390,195" stroke="#16a34a" marker-end="url(#ah-pass)"/>
-                <path class="wf-dots" d="M300,156 L300,195 L390,195" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <!-- wn0 pass(47,64) → wn1 input(208,5) -->
+                <path class="wf-line" d="M47,64 L47,80 L208,80 L208,5" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M47,64 L47,80 L208,80 L208,5" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <g class="wf-badge"><rect x="108" y="71" width="36" height="14" rx="7" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="126" y="82" text-anchor="middle" fill="#16a34a" font-size="7" font-weight="700">Pass</text></g>
+                <!-- wn1 pass(187,64) → wn2 input(349,5) -->
+                <path class="wf-line" d="M187,64 L187,80 L349,80 L349,5" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M187,64 L187,80 L349,80 L349,5" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <g class="wf-badge"><rect x="249" y="71" width="36" height="14" rx="7" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="267" y="82" text-anchor="middle" fill="#16a34a" font-size="7" font-weight="700">Pass</text></g>
+                <!-- wn2 pass(328,64) → wn3 input(112,101) -->
+                <path class="wf-line" d="M328,64 L328,83 L112,83 L112,101" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M328,64 L328,83 L112,83 L112,101" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <g class="wf-badge"><rect x="200" y="74" width="36" height="14" rx="7" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="218" y="85" text-anchor="middle" fill="#16a34a" font-size="7" font-weight="700">Pass</text></g>
+                <!-- wn2 fail(349,64) → stub -->
+                <path class="wf-line" d="M349,64 L349,84" stroke="#dc2626"/>
+                <g class="wf-badge"><rect x="335" y="73" width="28" height="14" rx="7" fill="#FEE2E2" stroke="#dc2626" stroke-width="1.2"/><text x="349" y="84" text-anchor="middle" fill="#dc2626" font-size="7" font-weight="700">Fail</text></g>
+                <!-- wn3 pass(91,160) → wn4 input(299,101) -->
+                <path class="wf-line" d="M91,160 L91,174 L299,174 L299,101" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M91,160 L91,174 L299,174 L299,101" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <g class="wf-badge"><rect x="175" y="165" width="36" height="14" rx="7" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="193" y="176" text-anchor="middle" fill="#16a34a" font-size="7" font-weight="700">Pass</text></g>
+                <!-- wn4 pass(278,160) → wn5 input(422,177) -->
+                <path class="wf-line" d="M278,160 L278,187 L422,187 L422,177" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M278,160 L278,187 L422,187 L422,177" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <g class="wf-badge"><rect x="330" y="178" width="36" height="14" rx="7" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="348" y="189" text-anchor="middle" fill="#16a34a" font-size="7" font-weight="700">Pass</text></g>
               </svg>
               <!-- Node: Mix Powder -->
               <div class="wf-node" style="left:10px;top:10px;width:116px" id="wn0">
@@ -802,12 +804,12 @@ setTimeout(()=>{
   if(hs){
     const ns='http://www.w3.org/2000/svg';
     const conns=[
-      {d:'M65,56 L65,74 L209,74 L209,14',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:118,ly:66},
-      {d:'M209,56 L209,78 L359,78 L359,14',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:266,ly:70},
-      {d:'M379,56 L379,78',c:'#dc2626',m:'hah-f',lbl:'Fail',lx:364,ly:70},
-      {d:'M349,56 L349,86 L139,86 L139,100',c:'#16a34a',m:'hah-p'},
-      {d:'M139,146 L139,168 L299,168 L299,146',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:198,ly:160},
-      {d:'M299,146 L299,190 L370,190',c:'#16a34a',m:'hah-p'},
+      {d:'M44,57 L44,72 L209,72 L209,9',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:108,ly:64},
+      {d:'M188,57 L188,72 L359,72 L359,9',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:254,ly:64},
+      {d:'M338,57 L338,76 L139,76 L139,95',c:'#16a34a',m:'hah-p'},
+      {d:'M359,57 L359,77',c:'#dc2626',m:'hah-f',lbl:'Fail',lx:345,ly:64},
+      {d:'M118,143 L118,156 L299,156 L299,95',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:189,ly:148},
+      {d:'M278,143 L278,193 L358,193 L358,185',c:'#16a34a',m:'hah-p'},
     ];
     conns.forEach((cn,i)=>{
       // Main solid line
