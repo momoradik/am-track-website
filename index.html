@@ -590,7 +590,15 @@
     document.querySelector('nav').style.boxShadow = window.scrollY > 10 ? '0 1px 8px rgba(0,0,0,0.06)' : 'none';
   });
 
-  const DOWNLOAD_URL = 'https://github.com/momoradik/am-track-website/releases/latest/download/AMTrack-Setup-1.7.1.exe';
+  let DOWNLOAD_URL = 'https://github.com/momoradik/SinTrack/releases/latest';
+  // Fetch latest release asset URL so the download link never goes stale
+  fetch('https://api.github.com/repos/momoradik/SinTrack/releases/latest')
+    .then(r => r.json())
+    .then(release => {
+      const exe = release.assets?.find(a => a.name.endsWith('.exe') && !a.name.endsWith('.blockmap'));
+      if (exe) DOWNLOAD_URL = exe.browser_download_url;
+    })
+    .catch(() => {});
 
   // ─── Record T&C consent with timestamp (permanent proof) ───
   function recordConsent(name, email, company, type) {
