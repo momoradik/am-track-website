@@ -110,8 +110,12 @@
   .wf-port.pass { border-color: #16a34a; } .wf-port.pass.filled { background: #16a34a; }
   .wf-port.fail { border-color: #dc2626; } .wf-port.fail.filled { background: #dc2626; }
   .wf-svg { position: absolute; inset: 0; pointer-events: none; }
-  .wf-svg path { fill: none; stroke-width: 2; stroke-linecap: round; opacity: 0; transition: opacity 0.6s; }
-  .wf-svg path.show { opacity: 1; }
+  .wf-svg .wf-line { fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.6s; }
+  .wf-svg .wf-line.show { opacity: 1; }
+  .wf-svg .wf-dots { fill: none; stroke-width: 2; stroke-linecap: round; opacity: 0; transition: opacity 0.6s; }
+  .wf-svg .wf-dots.show { opacity: 0.4; }
+  .wf-svg .wf-badge { opacity: 0; transition: opacity 0.6s; }
+  .wf-svg .wf-badge.show { opacity: 1; }
 
   /* ── INV TABLE MOCKUP ── */
   .inv-t { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; border: 1px solid #e5e7eb; }
@@ -340,7 +344,12 @@
           <div class="app-main">
             <div class="wf-canvas" id="hero-wf">
               <div class="wf-grid"></div>
-              <svg class="wf-svg" id="hero-svg" viewBox="0 0 500 256"></svg>
+              <svg class="wf-svg" id="hero-svg" viewBox="0 0 500 256">
+                <defs>
+                  <marker id="hah-p" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#16a34a"/></marker>
+                  <marker id="hah-f" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#dc2626"/></marker>
+                </defs>
+              </svg>
               <!-- Nodes -->
               <div class="wf-node" style="left:20px;top:20px;width:90px" id="hn0"><div class="wf-node-color" style="background:#6366f1"></div><div class="wf-node-type" style="background:#eef2ff;color:#6366f1">Formulation</div><div class="wf-node-name">Mix Powder</div><div class="wf-port wf-port-in" style="display:none"></div></div>
               <div class="wf-node" style="left:160px;top:14px;width:96px" id="hn1"><div class="wf-node-color" style="background:#0891b2"></div><div class="wf-node-type" style="background:#ecfeff;color:#0891b2">3D Printing</div><div class="wf-node-name">SLS Print</div></div>
@@ -401,18 +410,38 @@
             <div class="wf-canvas" id="wf-canvas">
               <div class="wf-grid"></div>
               <svg class="wf-svg" id="wf-svg" viewBox="0 0 500 256">
-                <path d="M110,35 Q135,35 135,55 Q135,75 160,75" stroke="#16a34a" stroke-dasharray="4,3" id="wa0"/>
-                <path d="M256,75 Q280,75 280,95 Q280,115 250,115" stroke="#16a34a" stroke-dasharray="4,3" id="wa1"/>
-                <path d="M186,130 Q186,155 186,165 Q186,175 196,180" stroke="#16a34a" stroke-dasharray="4,3" id="wa2"/>
-                <path d="M346,115 Q370,115 370,140 Q370,165 346,180" stroke="#16a34a" stroke-dasharray="4,3" id="wa3"/>
-                <path d="M406,42 Q440,42 440,90 Q440,130 420,160" stroke="#dc2626" stroke-dasharray="4,3" id="wa4"/>
+                <defs>
+                  <marker id="ah-pass" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#16a34a"/></marker>
+                  <marker id="ah-fail" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#dc2626"/></marker>
+                </defs>
+                <!-- Mix Powder → SLS Print (pass, orthogonal) -->
+                <path class="wf-line" d="M62,58 L62,75 L205,75 L205,50" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M62,58 L62,75 L205,75 L205,50" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <g class="wf-badge"><rect x="113" y="66" width="40" height="16" rx="8" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="133" y="78" text-anchor="middle" fill="#16a34a" font-size="8" font-weight="700">Pass</text></g>
+                <!-- SLS Print → Visual QA (pass) -->
+                <path class="wf-line" d="M205,92 L205,110 L358,110 L358,58" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M205,92 L205,110 L358,110 L358,58" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <g class="wf-badge"><rect x="261" y="101" width="40" height="16" rx="8" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="281" y="113" text-anchor="middle" fill="#16a34a" font-size="8" font-weight="700">Pass</text></g>
+                <!-- Visual QA → Sinter Batch (pass) -->
+                <path class="wf-line" d="M358,58 L358,118 L193,118 L193,140" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M358,58 L358,118 L193,118 L193,140" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <!-- Visual QA → fail goes nowhere (red stub) -->
+                <path class="wf-line" d="M378,58 L378,80" stroke="#dc2626"/>
+                <g class="wf-badge"><rect x="358" y="72" width="32" height="14" rx="7" fill="#FEE2E2" stroke="#dc2626" stroke-width="1.2"/><text x="374" y="83" text-anchor="middle" fill="#dc2626" font-size="8" font-weight="700">Fail</text></g>
+                <!-- Sinter → CMM (pass) -->
+                <path class="wf-line" d="M193,182 L193,198 L348,198 L348,182" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M193,182 L193,198 L348,198 L348,182" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <!-- CMM → Product (pass) -->
+                <path class="wf-line" d="M348,182 L348,210 L420,210" stroke="#16a34a" marker-end="url(#ah-pass)"/>
+                <path class="wf-dots" d="M348,182 L348,210 L420,210" stroke="#16a34a" stroke-dasharray="4,12"><animate attributeName="stroke-dashoffset" values="16;0" dur="1.5s" repeatCount="indefinite"/></path>
+                <g class="wf-badge"><rect x="362" y="201" width="40" height="16" rx="8" fill="#DCFCE7" stroke="#16a34a" stroke-width="1.2"/><text x="382" y="213" text-anchor="middle" fill="#16a34a" font-size="8" font-weight="700">Pass</text></g>
               </svg>
               <div class="wf-node" style="left:14px;top:16px;width:96px" id="wn0"><div class="wf-node-color" style="background:#6366f1"></div><div class="wf-node-type" style="background:#eef2ff;color:#6366f1">Formulation</div><div class="wf-node-name">Mix Powder</div></div>
-              <div class="wf-node" style="left:154px;top:50px;width:102px" id="wn1"><div class="wf-node-color" style="background:#0891b2"></div><div class="wf-node-type" style="background:#ecfeff;color:#0891b2">3D Printing</div><div class="wf-node-name">SLS Print Run</div></div>
+              <div class="wf-node" style="left:157px;top:8px;width:102px" id="wn1"><div class="wf-node-color" style="background:#0891b2"></div><div class="wf-node-type" style="background:#ecfeff;color:#0891b2">3D Printing</div><div class="wf-node-name">SLS Print Run</div></div>
               <div class="wf-node selected" style="left:310px;top:16px;width:96px" id="wn2"><div class="wf-node-color" style="background:#d97706"></div><div class="wf-node-type" style="background:#fffbeb;color:#d97706">Inspection</div><div class="wf-node-name">Visual QA</div></div>
               <div class="wf-node" style="left:140px;top:140px;width:106px" id="wn3"><div class="wf-node-color" style="background:#dc2626"></div><div class="wf-node-type" style="background:#fef2f2;color:#dc2626">Furnace</div><div class="wf-node-name">Sinter Batch</div></div>
               <div class="wf-node" style="left:300px;top:140px;width:96px" id="wn4"><div class="wf-node-color" style="background:#d97706"></div><div class="wf-node-type" style="background:#fffbeb;color:#d97706">CMM</div><div class="wf-node-name">Dimensional</div></div>
-              <div class="wf-node" style="left:380px;top:150px;width:80px;border-radius:20px;border:2px solid #059669;background:rgba(240,253,244,0.6);text-align:center" id="wn5"><div class="wf-node-name" style="color:#059669;font-size:10px">Product</div></div>
+              <div class="wf-node" style="left:380px;top:155px;width:80px;border-radius:20px;border:2px solid #059669;background:rgba(240,253,244,0.6);text-align:center" id="wn5"><div class="wf-node-name" style="color:#059669;font-size:10px">Product</div></div>
             </div>
           </div>
         </div>
@@ -574,21 +603,41 @@ document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>obs.
 let heroDone=false;
 setTimeout(()=>{
   document.querySelectorAll('#hero-wf .wf-node').forEach((n,i)=>setTimeout(()=>n.classList.add('show'),i*180));
-  // SVG arrows for hero
-  const heroSvg=document.getElementById('hero-svg');
-  if(heroSvg){
-    const paths=[
-      {d:'M110,40 C135,40 135,95 160,95',c:'#16a34a'},
-      {d:'M256,95 C280,95 280,130 310,130',c:'#16a34a'},
-      {d:'M406,40 C430,40 430,130 350,130',c:'#dc2626'},
-      {d:'M186,130 C186,175 186,210 196,210',c:'#16a34a'},
-      {d:'M346,130 C370,150 370,210 330,210',c:'#16a34a'},
+  // SVG arrows for hero — orthogonal routing like real app
+  const hs=document.getElementById('hero-svg');
+  if(hs){
+    const ns='http://www.w3.org/2000/svg';
+    const conns=[
+      {d:'M65,58 L65,80 L208,80 L208,56',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:120,ly:72},
+      {d:'M208,96 L208,120 L358,120 L358,56',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:268,ly:112},
+      {d:'M380,56 L380,80',c:'#dc2626',m:'hah-f',lbl:'Fail',lx:364,ly:72},
+      {d:'M358,56 L358,126 L138,126 L138,140',c:'#16a34a',m:'hah-p'},
+      {d:'M138,186 L138,210 L298,210 L298,186',c:'#16a34a',m:'hah-p',lbl:'Pass',lx:198,ly:202},
+      {d:'M298,186 L298,218 L370,218',c:'#16a34a',m:'hah-p'},
     ];
-    paths.forEach((p,i)=>{
-      const path=document.createElementNS('http://www.w3.org/2000/svg','path');
-      path.setAttribute('d',p.d);path.setAttribute('stroke',p.c);path.setAttribute('stroke-dasharray','4,3');
-      heroSvg.appendChild(path);
-      setTimeout(()=>path.classList.add('show'),600+i*200);
+    conns.forEach((cn,i)=>{
+      // Main solid line
+      const line=document.createElementNS(ns,'path');
+      line.setAttribute('d',cn.d);line.setAttribute('stroke',cn.c);line.setAttribute('class','wf-line');
+      if(cn.m)line.setAttribute('marker-end','url(#'+cn.m+')');
+      hs.appendChild(line);
+      // Animated flow dots
+      const dots=document.createElementNS(ns,'path');
+      dots.setAttribute('d',cn.d);dots.setAttribute('stroke',cn.c);dots.setAttribute('stroke-dasharray','4,12');dots.setAttribute('class','wf-dots');
+      const anim=document.createElementNS(ns,'animate');
+      anim.setAttribute('attributeName','stroke-dashoffset');anim.setAttribute('values','16;0');anim.setAttribute('dur','1.5s');anim.setAttribute('repeatCount','indefinite');
+      dots.appendChild(anim);hs.appendChild(dots);
+      // Label badge
+      if(cn.lbl){
+        const g=document.createElementNS(ns,'g');g.setAttribute('class','wf-badge');
+        const bg=cn.c==='#dc2626'?'#FEE2E2':'#DCFCE7';const w=cn.lbl==='Fail'?30:36;
+        const r=document.createElementNS(ns,'rect');
+        r.setAttribute('x',cn.lx);r.setAttribute('y',cn.ly);r.setAttribute('width',w);r.setAttribute('height',14);r.setAttribute('rx',7);r.setAttribute('fill',bg);r.setAttribute('stroke',cn.c);r.setAttribute('stroke-width','1.2');
+        const t=document.createElementNS(ns,'text');
+        t.setAttribute('x',cn.lx+w/2);t.setAttribute('y',cn.ly+10.5);t.setAttribute('text-anchor','middle');t.setAttribute('fill',cn.c);t.setAttribute('font-size','8');t.setAttribute('font-weight','700');t.textContent=cn.lbl;
+        g.appendChild(r);g.appendChild(t);hs.appendChild(g);
+      }
+      setTimeout(()=>{line.classList.add('show');dots.classList.add('show');const b=hs.querySelectorAll('.wf-badge');if(b[b.length-1])b[b.length-1].classList.add('show');},600+i*180);
     });
   }
 },300);
@@ -597,7 +646,7 @@ setTimeout(()=>{
 let wfDone=false;
 function animWf(){if(wfDone)return;wfDone=true;
   document.querySelectorAll('#wf-canvas .wf-node').forEach((n,i)=>setTimeout(()=>n.classList.add('show'),i*200));
-  document.querySelectorAll('#wf-svg path').forEach((p,i)=>setTimeout(()=>p.classList.add('show'),500+i*200));
+  document.querySelectorAll('#wf-svg .wf-line, #wf-svg .wf-dots, #wf-svg .wf-badge').forEach((p,i)=>setTimeout(()=>p.classList.add('show'),500+i*120));
 }
 // ── Inventory ──
 let invDone=false;
